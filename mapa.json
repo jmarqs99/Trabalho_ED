@@ -1,0 +1,8 @@
+{
+"nome": "sexta-feira 13",
+"pontos": 100,
+"mapa": [
+{"aposento": "cozinha", "fantasma": 15, "ligacoes": ["exterior", "sala"]},
+{"aposento": "sala", "fantasma": 0, "ligacoes": ["entrada", "cozinha", "wc"]}
+]
+} 

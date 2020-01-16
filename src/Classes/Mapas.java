@@ -6,6 +6,9 @@
 package Classes;
 
 import EstruturasDeDados.Network;
+import Exceptions.ElementNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.simple.*;
 
 /**
@@ -19,12 +22,19 @@ public class Mapas {
     private Network<String> aposentos;
 
     public Mapas(JSONObject mapa) {
+        // Verificar se existe apenas uma entrada
+
         this.PONTOS = (int) mapa.get("pontos");
         this.NOME = (String) mapa.get("nome");
-        Object map[] = (Object[]) mapa.get("mapa");
-        for (int i = 0; i < map.length; i++) {
-            Object object = map[i];
-            
-        }
+        JSONArray jsonAposentos = (JSONArray) mapa.get("mapa");
+        jsonAposentos.forEach(ite -> {
+            JSONObject temp = (JSONObject) ite;
+            String nomeMapa = (String) temp.get("aposento");
+            try {
+                aposentos.addVertex(nomeMapa);
+            } catch (ElementNotFoundException ex) {
+                Logger.getLogger(Mapas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                });
     }
 }
