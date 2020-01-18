@@ -30,7 +30,7 @@ public class Test1 {
     public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
 
-        File file = new File("mapas.json");
+        File file = new File("mapa.json");
 
         Object object = jsonParser.parse(new FileReader(file));
 
@@ -38,7 +38,7 @@ public class Test1 {
        
         Mapas map = new Mapas(mapas);
         
-        map.
+        System.out.println(map.getAposentos().toString());
     }
     
 }
