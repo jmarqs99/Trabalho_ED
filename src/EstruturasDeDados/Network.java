@@ -332,4 +332,5 @@ public class Network<T> implements NetworkADT<T> {
     private boolean indexIsValid(int index) {
         return vertices[index] != null;
     }
+
 }
