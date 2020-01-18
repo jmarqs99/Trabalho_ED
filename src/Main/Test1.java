@@ -1,12 +1,10 @@
 package Main;
 
 import Classes.Mapas;
-import java.io.File;
+import Classes.ReadJSON;
+import Exceptions.FicheiroNaoEncontrado;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -20,15 +18,13 @@ import org.json.simple.parser.ParseException;
  * <strong>Author: </strong><br>
  * Joao Sousa<br>
  * <strong>Description: </strong><br>
- * 
+ *
  * </p>
  */
-
 public class Test1 {
-    
-    
-    public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
-        JSONParser jsonParser = new JSONParser();
+
+    public static void main(String[] args) throws FileNotFoundException, IOException, ParseException, FicheiroNaoEncontrado {
+        /*JSONParser jsonParser = new JSONParser();
 
         File file = new File("mapa.json");
 
@@ -39,6 +35,9 @@ public class Test1 {
         Mapas map = new Mapas(mapas);
         
         System.out.println(map.getAposentos().toString());
+         */
+        Mapas map = new Mapas(ReadJSON.loadJSON());
+        System.out.println(map.getAposentos().toString());
     }
-    
+
 }

@@ -23,7 +23,7 @@ public class Network<T> implements NetworkADT<T> {
     protected T[] vertices;
 
     public Network() {
-        super();
+        this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
         this.numVertices = 0;
         this.adjMatrix = new Double[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
     }
@@ -315,8 +315,8 @@ public class Network<T> implements NetworkADT<T> {
     private int getIndex(T vertex) throws ElementNotFoundException {
         int pos = -1;
         boolean found = false;
-        for (int i = 0; i <= numVertices; i++) {
-            if (vertices[i] == vertex && !found) {
+        for (int i = 0; i < numVertices; i++) {
+            if (vertices[i].equals(vertex) && !found) {
                 pos = i;
                 found = true;
             }

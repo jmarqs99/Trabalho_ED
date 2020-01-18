@@ -23,40 +23,40 @@ public class Mapas {
 
     public Mapas(JSONObject mapa) {
 
-        this.PONTOS = (long) mapa.get("pontos");
+        this.PONTOS = ((Long) mapa.get("pontos")).intValue();
         this.NOME = (String) mapa.get("nome");
         this.aposentos = new Network<>();
         aposentos.addVertex("entrada");
         aposentos.addVertex("exterior");
 
-        JSONArray jsonAposentos = (JSONArray) mapa.get("mapa");
-        //Adiciona os aposentos todos
+        JSONArray jsonAposentos = ((JSONArray) mapa.get("mapa"));
+        //Adiciona os aposentos(vertices) ao grafo
         jsonAposentos.forEach(ite1 -> this.aposentos.addVertex(((String) ((JSONObject) ite1).get("aposento"))));
-        
-        //De aposento em aposento, adiciona as ligações
-        jsonAposentos.forEach(ite2 -> {
-            String aposento1 = (String) ((JSONObject) ite2).get("aposento");
-            //Para verificar se apenas existe um entrada
-            int numEntradas = 0;
-            ((JSONArray) ((JSONObject) ite2).get("ligacoes")).forEach(ite3 -> {
-//                if (numEntradas > 1) {
-//                    //Dar throw de um execeção Geral com indicativo de erro nas entradas!
-//                }
-//                if (ite3 == "entrada") {
-//                    numEntradas += 1;
-//                }
-                try {
-                    this.aposentos.addEdge(aposento1, (String) ite3, (double) ((JSONObject) ite2).get("fantasma"));
+        //Adiciona as ligações entre os aposentos
+        jsonAposentos.forEach(ite1 -> addEdge((JSONObject) ite1));
+    }
 
-                } catch (ElementNotFoundException ex) {
-                    //Dar throw da nossa Exceção Que vai ser uma exceção geral de erro ao carregar ficheiro
-                }
-            });
+    private void addEdge(JSONObject edge) {
+        int fantasma = ((Long) edge.get("fantasma")).intValue();
+        ((JSONArray) (edge.get("ligacoes"))).forEach(i -> {
+            try {
+                aposentos.addEdge((String) i, (String) edge.get("aposento"), fantasma);
+            } catch (ElementNotFoundException ex) {
+                Logger.getLogger(Mapas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 
     public Network<String> getAposentos() {
         return aposentos;
+    }
+
+    public String getNOME() {
+        return NOME;
+    }
+
+    public long getPONTOS() {
+        return PONTOS;
     }
 
 }
