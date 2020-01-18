@@ -35,9 +35,10 @@ public class Test1 {
         Object object = jsonParser.parse(new FileReader(file));
 
         JSONObject mapas = (JSONObject) object;
-
-        JSONObject mapas = new JSONObject(mapas);
+       
         Mapas map = new Mapas(mapas);
+        
+        map.
     }
     
 }

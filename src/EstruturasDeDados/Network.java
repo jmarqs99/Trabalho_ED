@@ -39,7 +39,7 @@ public class Network<T> implements NetworkADT<T> {
     }
 
     @Override
-    public void addVertex(T vertex) throws ElementNotFoundException {
+    public void addVertex(T vertex) {
         if (numVertices == vertices.length) {
             expandCapacity();
         }

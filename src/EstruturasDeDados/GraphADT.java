@@ -11,10 +11,11 @@ import java.util.Iterator;
 /**
  *
  * @author Utilizador
+ * @param <T>
  */
 public interface GraphADT<T> {
 
-    public void addVertex(T vertex) throws ElementNotFoundException;
+    public void addVertex(T vertex);
 
     public void removeVertex(T vertex) throws ElementNotFoundException;
 
