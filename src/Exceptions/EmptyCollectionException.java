@@ -6,6 +6,7 @@
 package Exceptions;
 
 /**
+ * Exceção para o caso não exista elementos na coleção
  *
  * @author Utilizador
  */

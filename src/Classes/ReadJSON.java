@@ -8,21 +8,18 @@ import org.json.simple.parser.*;
 import Exceptions.FicheiroNaoEncontrado;
 
 /**
- * <h3>
- * ESTG - Escola Superior de Tecnologia e Gestão<br>
- * IPP - Instituto Politécnico do Porto<br>
- * LEI - Licenciatura em Engenharia Informática<br>
- * PP - Paradigmas de Programação<br>
- * </h3>
- * <p>
- * <strong>Author: </strong><br>
- * Joao Sousa<br>
- * <strong>Description: </strong><br>
- * Class that represents
- * </p>
+ * Classe para fazer a leitura do ficheiro JSon
+ *
+ * @author Utilizador
  */
 public class ReadJSON {
 
+    /**
+     * Método para fazer a leitura do ficheiro
+     *
+     * @return @throws FicheiroNaoEncontrado caso o ficheiro json não seja
+     * encontrado
+     */
     public static JSONObject loadJSON() throws FicheiroNaoEncontrado {
         JSONParser jsonParser = new JSONParser();
         Object jsonObj = null;

@@ -4,8 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Classe para gerir os inputs inseridos pelo utilizador
+ *
+ * @author Utilizador
+ */
 public class Inputs {
 
+    /**
+     * Método para guardar o ponto de origem inserido pelo utilizador
+     *
+     * @return uma string com o ponto de origem
+     */
     public static final String lerPontoOrigem() {
         final String INSERIR_PONTO_ORIGEM_MSG = "Insira o Ponto de Origem: ";
         String pontoOrigem = new String();
@@ -31,6 +41,11 @@ public class Inputs {
         return pontoOrigem;
     }
 
+    /**
+     * Método para guardar o ponto de origem inserido pelo utilizador
+     *
+     * @return uma string com o ponto de origem
+     */
     public static final String lerPontoDestino() {
         final String INSERIR_PONTO_DESTINO_MSG = "Insira o Ponto de Destino: ";
         String pontoDestino = new String();

@@ -21,6 +21,10 @@ public class Mapas {
     private final long PONTOS;
     private Network<String> aposentos;
 
+    /**
+     *
+     * @param mapa
+     */
     public Mapas(JSONObject mapa) {
 
         this.PONTOS = ((Long) mapa.get("pontos")).intValue();
@@ -47,14 +51,26 @@ public class Mapas {
         });
     }
 
+    /**
+     *
+     * @return
+     */
     public Network<String> getAposentos() {
         return aposentos;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNOME() {
         return NOME;
     }
 
+    /**
+     *
+     * @return
+     */
     public long getPONTOS() {
         return PONTOS;
     }

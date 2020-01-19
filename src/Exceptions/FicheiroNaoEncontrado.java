@@ -6,6 +6,7 @@
 package Exceptions;
 
 /**
+ * Exceção para caso o ficheiro não seja encontrado
  *
  * @author Utilizador
  */
