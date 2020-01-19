@@ -81,7 +81,14 @@ public class Test1 {
                         Util.limparEcra();
                     }
                 } while (opcao < MenusInteracao.OPCAO_SAIR || opcao > MenusInteracao.MODO_AUTOMATICO);
-
+                switch (opcao) {
+                    case MenusInteracao.MODO_MANUAL:
+                        modoManual(map);
+                        break;
+                    case MenusInteracao.MODO_AUTOMATICO:
+                        modoAutomatico(map);
+                        break;
+                }
                 Util.primaEnterparaContinuar();
             } while (opcao != MenusInteracao.OPCAO_SAIR);
         } catch (IOException exception) {
