@@ -20,13 +20,13 @@ public class ReadJSON {
      * @return @throws FicheiroNaoEncontrado caso o ficheiro json não seja
      * encontrado
      */
-    public static JSONObject loadJSON() throws FicheiroNaoEncontrado {
+    public static JSONObject loadJSON(String path) {
         JSONParser jsonParser = new JSONParser();
         Object jsonObj = null;
-        try (FileReader reader = new FileReader("./mapas/mapa.json")) {
+        try (FileReader reader = new FileReader(path)) {
             jsonObj = jsonParser.parse(reader);
         } catch (FileNotFoundException e) {
-            throw new FicheiroNaoEncontrado("Ficheiro não encontrado!\n");
+            System.out.println("File not found");
         } catch (IOException | ParseException e) {
         }
         return (JSONObject) jsonObj;
