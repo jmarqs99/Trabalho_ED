@@ -10,7 +10,7 @@ package EstruturasDeDados;
  * @author Utilizador
  */
 public class LinkedNode<T> {
-    
+
     private LinkedNode<T> next;
     private T element;
 
@@ -23,15 +23,16 @@ public class LinkedNode<T> {
         return next;
     }
 
-    public void setNext(LinkedNode<T> next) {
-        this.next = next;
-    }
-
     public T getElement() {
         return element;
+    }
+
+    public void setNext(LinkedNode<T> next) {
+        this.next = next;
     }
 
     public void setElement(T element) {
         this.element = element;
     }
+
 }

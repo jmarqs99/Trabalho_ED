@@ -68,7 +68,7 @@ public class Jogo {
         do {
             System.out.println(MenusInteracao.MENU_MAPAS);
             for (int i = 0; i < mapas.length; i++) {
-                System.out.println((i + 1) + "." + ReadJSON.loadJSON(mapas[i].getPath()).get("nome") + "\n0. Sair");
+                System.out.println((i + 1) + ". " + ReadJSON.loadJSON(mapas[i].getPath()).get("nome") + "\n0. Sair");
             }
             opcao = Integer.parseInt(bufferedReader.readLine());
         } while (opcao == null || opcao < 0 || opcao > mapas.length);
@@ -107,15 +107,16 @@ public class Jogo {
     }
 
     private void modoSimulacao(Mapas mapa, Jogador jogador) throws FicheiroNaoEncontrado, ElementNotFoundException {
-        System.out.println("Modo simulação:\n");
-        String aposento = "entrada";
         Iterator itr = mapa.getAposentos().iteratorShortestPath("entrada", "exterior");
+        System.out.println("Modo simulação:\n");
+        System.out.println("Caminho: " + itr.next());
+        String aposento = "entrada";
         int pontosIniciais = jogador.getPontos();
         while (itr.hasNext()) {
             String proxAposento = (String) itr.next();
-            System.out.println(itr.next());
             jogador.setPontos(pontosIniciais - ((int) mapa.getAposentos().shortestPathWeight("entrada", "exterior")));
-
+            System.out.println(proxAposento);
+            aposento = proxAposento;
         }
         System.out.println("Pontuação : " + jogador.getPontos());
     }

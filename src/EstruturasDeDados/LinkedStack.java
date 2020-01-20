@@ -6,7 +6,6 @@
 package EstruturasDeDados;
 
 import Exceptions.EmptyCollectionException;
-import java.util.Arrays;
 
 /**
  *
@@ -15,23 +14,24 @@ import java.util.Arrays;
 public class LinkedStack<T> implements StackADT<T> {
 
     private LinkedNode<T> top;
-    private int count = 0;
+    private int count;
 
     public LinkedStack() {
         this.top = null;
+        this.count = 0;
     }
 
     @Override
     public void push(T element) {
-        LinkedNode<T> newNode = new LinkedNode<T>(top, element);
+        LinkedNode<T> newNode = new LinkedNode<>(top, element);
         top = newNode;
         count++;
     }
 
     @Override
     public T pop() throws EmptyCollectionException {
-        if (count == 0) {
-            throw new EmptyCollectionException();
+        if (isEmpty() == true) {
+            throw new EmptyCollectionException("ERRO:Sem elementos na Stack!");
         }
         T result = top.getElement();
         top = top.getNext();
@@ -41,20 +41,18 @@ public class LinkedStack<T> implements StackADT<T> {
 
     @Override
     public T peek() throws EmptyCollectionException {
-        if (count == 0) {
-            throw new EmptyCollectionException();
-        } else {
-            return top.getElement();
+        if (isEmpty() == true) {
+            throw new EmptyCollectionException("ERRO:Sem elementos na Stack!");
         }
+        return top.getElement();
     }
 
     @Override
     public boolean isEmpty() {
         if (count == 0) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -62,4 +60,13 @@ public class LinkedStack<T> implements StackADT<T> {
         return count;
     }
 
+    public String toString() {
+        String result = "";
+        LinkedNode<T> iterationNode = top;
+        for (int i = 0; i < count; i++) {
+            result = result + iterationNode.getElement().toString() + "\n";
+            iterationNode = iterationNode.getNext();
+        }
+        return result;
+    }
 }

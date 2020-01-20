@@ -11,15 +11,14 @@ package EstruturasDeDados;
  * @param <T>
  */
 public class ShortestPathNode<T> {
+    protected T element;
+    protected ShortestPathNode<T> antecessor;
+    protected Double lenght;
 
-    public T element;
-    public ShortestPathNode<T> antecessor;
-    public Double length;
-
-    public ShortestPathNode(T element, ShortestPathNode<T> antecessor, Double length) {
+    public ShortestPathNode(T element, ShortestPathNode<T> antecessor,Double len) {
         this.element = element;
         this.antecessor = antecessor;
-        this.length = length;
+        this.lenght = len;
     }
 
     public T getElement() {
@@ -38,12 +37,12 @@ public class ShortestPathNode<T> {
         this.antecessor = antecessor;
     }
 
-    public double getLength() {
-        return length;
+    public Double getLenght() {
+        return lenght;
     }
 
-    public void setLength(double length) {
-        this.length = length;
+    public void setLenght(double lenght) {
+        this.lenght = lenght;
     }
-
+    
 }

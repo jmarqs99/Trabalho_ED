@@ -64,26 +64,26 @@ public class Network<T> implements NetworkADT<T> {
     }
 
     @Override
-    public double shortestPathWeight(T vertex1, T vertex2) throws ElementNotFoundException{
+    public double shortestPathWeight(T vertex1, T vertex2) throws ElementNotFoundException {
         int startIndex = getIndex(vertex1);
         int targetIndex = getIndex(vertex2);
         if (!indexIsValid(startIndex) && !indexIsValid(targetIndex)) {
             throw new ElementNotFoundException();
         }
-        
+
         boolean[][] visited = new boolean[numVertices][numVertices];
         for (int i = 0; i < numVertices; i++) {
-            for(int y=0;y< numVertices;y++){
+            for (int y = 0; y < numVertices; y++) {
                 visited[i][y] = false;
             }
         }
-        Queue<ShortestPathNode<Integer>> traversalQueue = new Queue<>();
+        LinkedQueue<ShortestPathNode<Integer>> traversalQueue = new LinkedQueue<>();
         ShortestPathNode<Integer>[] nodes = new ShortestPathNode[numVertices];
-        for(int i=0;i<numVertices;i++){
-            nodes[i] = new ShortestPathNode<>(i,null,Double.MAX_VALUE);
+        for (int i = 0; i < numVertices; i++) {
+            nodes[i] = new ShortestPathNode<>(i, null, Double.MAX_VALUE);
         }
         ShortestPathNode<Integer> x = nodes[0];
-        traversalQueue.enqueue(new ShortestPathNode<>(startIndex, null,0.0));
+        traversalQueue.enqueue(new ShortestPathNode<>(startIndex, null, 0.0));
         visited[startIndex][0] = true;
         while (!traversalQueue.isEmpty()) {
             try {
@@ -98,10 +98,10 @@ public class Network<T> implements NetworkADT<T> {
             if (x.getElement() != targetIndex) {
                 for (int i = 0; i < numVertices; i++) {
                     if (adjMatrix[x.getElement()][i] != null && !visited[x.getElement()][i]) {
-                        
-                        if(nodes[i].getLength() > x.getLength()+adjMatrix[x.getElement()][i]){
+
+                        if (nodes[i].getLenght() > x.getLenght() + adjMatrix[x.getElement()][i]) {
                             nodes[i].setAntecessor(x);
-                            nodes[i].setLength(x.getLength()+adjMatrix[x.getElement()][i]);
+                            nodes[i].setLenght(x.getLenght() + adjMatrix[x.getElement()][i]);
                         }
                         traversalQueue.enqueue(nodes[i]);
                         visited[x.getElement()][i] = true;
@@ -110,7 +110,7 @@ public class Network<T> implements NetworkADT<T> {
             }
 
         }
-        return nodes[targetIndex].getLength();
+        return nodes[targetIndex].getLenght();
     }
 
     @Override
@@ -166,7 +166,7 @@ public class Network<T> implements NetworkADT<T> {
     public Iterator iteratorBFS(T startVertex) throws ElementNotFoundException {
         Integer x = null;
         int startIndex = getIndex(startVertex);
-        Queue<Integer> traversalQueue = new Queue<>();
+        LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
         if (!indexIsValid(startIndex)) {
             return resultList.iterator();
@@ -185,7 +185,7 @@ public class Network<T> implements NetworkADT<T> {
             } catch (EmptyCollectionException ex) {
                 Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
             }
-            resultList.addRear(vertices[x]);
+            resultList.addToRear(vertices[x]);
             /**
              * Find all vertices adjacent to x that have not been visited and
              * queue them up
@@ -216,7 +216,7 @@ public class Network<T> implements NetworkADT<T> {
         }
 
         traversalStack.push(startIndex);
-        resultList.addRear(vertices[startIndex]);
+        resultList.addToRear(vertices[startIndex]);
         visited[startIndex] = true;
 
         while (!traversalStack.isEmpty()) {
@@ -224,13 +224,13 @@ public class Network<T> implements NetworkADT<T> {
                 x = traversalStack.peek();
                 found = false;
                 /**
-                 * Find a vertex adjacent to x that has not been visited and push it
-                 * on the stack
+                 * Find a vertex adjacent to x that has not been visited and
+                 * push it on the stack
                  */
                 for (int i = 0; (i < numVertices) && !found; i++) {
                     if (adjMatrix[x][i] != null && !visited[i]) {
                         traversalStack.push(i);
-                        resultList.addRear(vertices[i]);
+                        resultList.addToRear(vertices[i]);
                         visited[i] = true;
                         found = true;
                     }
@@ -245,7 +245,7 @@ public class Network<T> implements NetworkADT<T> {
         return resultList.iterator();
     }
 
-    @Override
+    /*@Override
     public Iterator iteratorShortestPath(T startVertex, T targetVertex) throws ElementNotFoundException {
         int startIndex = getIndex(startVertex);
         int targetIndex = getIndex(targetVertex);
@@ -253,20 +253,82 @@ public class Network<T> implements NetworkADT<T> {
             throw new ElementNotFoundException();
         }
         
+        ShortestPathNode<Integer> x = null;
+        LinkedQueue<ShortestPathNode<Integer>> traversalQueue = new LinkedQueue<>();
+        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
+        
         boolean[][] visited = new boolean[numVertices][numVertices];
         for (int i = 0; i < numVertices; i++) {
             for(int y=0;y< numVertices;y++){
                 visited[i][y] = false;
             }
         }
-        Queue<ShortestPathNode<Integer>> traversalQueue = new Queue<>();
+
+        traversalQueue.enqueue(new ShortestPathNode<>(startIndex, null,0));
+        visited[startIndex][0] = true;
+        ShortestPathNode<Integer>[] paths = new ShortestPathNode[10];
+        int pathCount = 0;
+        while (!traversalQueue.isEmpty()) {
+            try {
+                x = traversalQueue.dequeue();
+            } catch (EmptyCollectionException ex) {
+                Logger.getLogger(Network.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            /**
+             * Find all vertices adjacent to x that have not been visited and
+             * queue them up
+     */
+ /*if (x.getElement() == targetIndex) {
+                paths[pathCount] = x;
+                pathCount++;
+            } else {
+                for (int i = 0; i < numVertices; i++) {
+                    if (adjMatrix[x.getElement()][i]!=null && !visited[x.getElement()][i]) {
+                        traversalQueue.enqueue(new ShortestPathNode<>(i, x,x.getLenght()+adjMatrix[x.getElement()][i]));
+                        visited[x.getElement()][i] = true;
+                    }
+                }
+            }
+
+        }
+        x = paths[0];
+        for(int i=0;i<pathCount;i++){
+            if(x.getLenght() > paths[i].getLenght()){
+                x = paths[i];
+            }
+        }
+        boolean finished = false;
+        while (!finished) {
+            resultList.addToFront(vertices[x.getElement()]);
+            x = x.getAntecessor();
+            if (x == null) {
+                finished = true;
+            }
+        }
+        return resultList.iterator();
+    }*/
+    @Override
+    public Iterator iteratorShortestPath(T startVertex, T targetVertex) throws ElementNotFoundException {
+        int startIndex = getIndex(startVertex);
+        int targetIndex = getIndex(targetVertex);
+        if (!indexIsValid(startIndex) && !indexIsValid(targetIndex)) {
+            throw new ElementNotFoundException();
+        }
+
+        boolean[][] visited = new boolean[numVertices][numVertices];
+        for (int i = 0; i < numVertices; i++) {
+            for (int y = 0; y < numVertices; y++) {
+                visited[i][y] = false;
+            }
+        }
+        LinkedQueue<ShortestPathNode<Integer>> traversalQueue = new LinkedQueue<>();
         ShortestPathNode<Integer>[] nodes = new ShortestPathNode[numVertices];
-        for(int i=0;i<numVertices;i++){
-            nodes[i] = new ShortestPathNode<>(i,null,Double.MAX_VALUE);
+        for (int i = 0; i < numVertices; i++) {
+            nodes[i] = new ShortestPathNode<>(i, null, Double.MAX_VALUE);
         }
         ShortestPathNode<Integer> x = nodes[0];
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
-        traversalQueue.enqueue(new ShortestPathNode<>(startIndex, null,0.0));
+        traversalQueue.enqueue(new ShortestPathNode<>(startIndex, null, 0.0));
         visited[startIndex][0] = true;
         while (!traversalQueue.isEmpty()) {
             try {
@@ -281,10 +343,10 @@ public class Network<T> implements NetworkADT<T> {
             if (x.getElement() != targetIndex) {
                 for (int i = 0; i < numVertices; i++) {
                     if (adjMatrix[x.getElement()][i] != null && !visited[x.getElement()][i]) {
-                        
-                        if(nodes[i].getLength() > x.getLength()+adjMatrix[x.getElement()][i]){
+
+                        if (nodes[i].getLenght() > x.getLenght() + adjMatrix[x.getElement()][i]) {
                             nodes[i].setAntecessor(x);
-                            nodes[i].setLength(x.getLength()+adjMatrix[x.getElement()][i]);
+                            nodes[i].setLenght(x.getLenght() + adjMatrix[x.getElement()][i]);
                         }
                         traversalQueue.enqueue(nodes[i]);
                         visited[x.getElement()][i] = true;
@@ -296,14 +358,15 @@ public class Network<T> implements NetworkADT<T> {
         x = nodes[targetIndex];
         boolean finished = false;
         while (!finished) {
-            resultList.addFront(vertices[x.getElement()]);
+            resultList.addToFront(vertices[x.getElement()]);
             x = x.getAntecessor();
             if (x == null) {
                 finished = true;
             }
         }
         return resultList.iterator();
-    } 
+    }
+
     @Override
     public boolean isEmpty() {
         return size() == 0;

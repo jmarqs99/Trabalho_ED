@@ -12,11 +12,11 @@ import Exceptions.ElementNotFoundException;
  * @author Utilizador
  * @param <T>
  */
-public interface UnorderedListADT<T> {
+public interface UnorderedListADT<T> extends ListaADT<T> {
 
-    public void addFront(T element);
+    public void addToFront(T element);
 
-    public void addRear(T element);
+    public void addToRear(T element);
 
-    public void addAfter(T element, T prevElement) throws ElementNotFoundException;
+    public void addAfter(T element, T prevElement) throws Exception;
 }
