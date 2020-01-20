@@ -16,14 +16,10 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
 
     @Override
     public void addFront(T element) {
-        if (!this.isEmpty()) {
-            T temp[] = (T[]) new Object[DEFAULT_SIZE + 1];
+        if (!isEmpty()) {
             for (int i = size(); i > 0; i--) {
                 list[i] = list[i - 1];
             }
-
-            list = temp;
-
         }
 
         list[0] = element;

@@ -40,16 +40,17 @@ public class Queue<T> implements QueueADT<T> {
 
     @Override
     public T dequeue() throws EmptyCollectionException {
-        if (count == 0) {
+        if (isEmpty()) {
             throw new EmptyCollectionException("Vazio");
         }
 
-        T oldFront = front.getElement();
+        LinearNode<T> result = front;
+
         front = front.getNext();
 
         count--;
 
-        return oldFront;
+        return result.getElement();
     }
 
     @Override

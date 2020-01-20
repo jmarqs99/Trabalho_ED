@@ -91,14 +91,14 @@ public class Test1 {
         
         System.out.println(map.getAposentos().toString());
          */
-        Mapas map = new Mapas(ReadJSON.loadJSON());
-        Iterator it = map.getAposentos().iteratorShortestPath("entrada", "exterior");
+        //Mapas map = new Mapas(ReadJSON.loadJSON());
+        //Iterator it = map.getAposentos().iteratorShortestPath("entrada", "exterior");
         //while (it.hasNext()) {
-          //  System.out.println(it.next());
+        //  System.out.println(it.next());
         //}
         //modoAutomatico(map);
-        System.out.println(map.getAposentos().toString());
-        /*
+        //System.out.println(map.getAposentos());
+
         int opcao = -1;
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -135,7 +135,7 @@ public class Test1 {
         } catch (IOException exception) {
             System.out.println(exception.getLocalizedMessage());
         }
-         */
+
     }
 
 }
