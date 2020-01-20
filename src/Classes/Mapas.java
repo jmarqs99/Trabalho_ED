@@ -6,6 +6,7 @@
 package Classes;
 
 import EstruturasDeDados.Network;
+import EstruturasDeDados.NetworkADT;
 import Exceptions.ElementNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,7 @@ public class Mapas {
 
     private final String NOME;
     private final long PONTOS;
-    private Network<String> aposentos;
+    private NetworkADT<String> aposentos;
 
     /**
      *
@@ -44,7 +45,10 @@ public class Mapas {
         int fantasma = ((Long) edge.get("fantasma")).intValue();
         ((JSONArray) (edge.get("ligacoes"))).forEach(i -> {
             try {
-                aposentos.addEdge((String) i, (String) edge.get("aposento"), fantasma);
+                aposentos.addEdge((String) i, (String) (edge.get("aposento")), fantasma);
+                if (((String) i).equals("exterior")) {
+                    aposentos.addEdge((String) (edge.get("aposento")), (String) i, 0.0);
+                }
             } catch (ElementNotFoundException ex) {
                 Logger.getLogger(Mapas.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -55,7 +59,7 @@ public class Mapas {
      *
      * @return
      */
-    public Network<String> getAposentos() {
+    public NetworkADT<String> getAposentos() {
         return aposentos;
     }
 

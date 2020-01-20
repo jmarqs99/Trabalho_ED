@@ -14,9 +14,9 @@ public class ShortestPathNode<T> {
 
     public T element;
     public ShortestPathNode<T> antecessor;
-    public double length;
+    public Double length;
 
-    public ShortestPathNode(T element, ShortestPathNode<T> antecessor, double length) {
+    public ShortestPathNode(T element, ShortestPathNode<T> antecessor, Double length) {
         this.element = element;
         this.antecessor = antecessor;
         this.length = length;

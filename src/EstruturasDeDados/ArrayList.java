@@ -115,6 +115,30 @@ public class ArrayList<T> implements ListaADT<T>, Iterable<T> {
         return itr;
     }
 
+    private class ArrayIterator<T> implements Iterator {
+
+        private final int count;
+        private final T[] item;
+        private int current;
+
+        public ArrayIterator(int size, T[] collection) {
+            this.count = size;
+            this.item = collection;
+            this.current = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return (current < count);
+        }
+
+        @Override
+        public Object next() {
+            current++;
+            return item[current - 1];
+        }
+    }
+
     @Override
     public String toString() {
         String result = "To String:";
