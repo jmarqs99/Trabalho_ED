@@ -29,9 +29,9 @@ public class MenusInteracao {
     /**
      * Opção para selecionar opção para voltar para o menu principal
      */
-    public static final String MENU_PRINCIPAL_MSG = "**---Trabalho ED Grupo XX**---\n\n" + MODO_MANUAL + ". Modo de jogo manual\n" + MODO_SIMULACAO + ". Modo de jogo simulação\n" + OPCAO_SAIR + ". Sair\n\nOpcao: ";
+    public static final String MENU_PRINCIPAL_MSG = "**---Trabalho ED Grupo XX**---\n\n" + MODO_MANUAL + ". Modo de jogo manual\n" + MODO_SIMULACAO + ". Modo de jogo simulação\n" + OPCAO_SAIR + ". Sair\n\nOpção: ";
 
-    public static final String MENU_DIFICULDADES = "**---Escolha nivel de dificuldade**---\n\n" + MODO_BASICO + ". Modo jogo básico\n" + MODO_NORMAL + ". Modo jogo normal\n" + MODO_DIFICIL + ". Modo jogo dificil\n" + OPCAO_SAIR + ". Sair\n\nOpcao: ";
+    public static final String MENU_DIFICULDADES = "**---Escolha nivel de dificuldade**---\n\n" + MODO_BASICO + ". Modo jogo básico\n" + MODO_NORMAL + ". Modo jogo normal\n" + MODO_DIFICIL + ". Modo jogo dificil\n" + OPCAO_SAIR + ". Sair\n\nOpção: ";
 
-    public static final String MENU_MAPAS = "**---Escolha o mapa que deseja jogar**---\n\n";
+    public static final String MENU_MAPAS = "**---Escolha o mapa que deseja jogar**---\n";
 }

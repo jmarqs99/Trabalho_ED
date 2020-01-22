@@ -1,19 +1,10 @@
 package Main;
 
 import Classes.Jogo;
-import Classes.Mapas;
-import Classes.ReadJSON;
 import Exceptions.ElementNotFoundException;
 import Exceptions.FicheiroNaoEncontrado;
-import UI.Inputs;
-import UI.MenusInteracao;
-import UI.Util;
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Iterator;
-import static java.util.Spliterators.iterator;
 import org.json.simple.parser.ParseException;
 
 /**

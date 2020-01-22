@@ -16,34 +16,64 @@ import java.util.logging.Logger;
  * @author Utilizador
  */
 public class Network<T> implements NetworkADT<T> {
-
+    
     protected final int DEFAULT_CAPACITY = 10;
     protected int numVertices;
     protected Double[][] adjMatrix;
     protected T[] vertices;
-
+    
     public Network() {
         this.numVertices = 0;
         this.adjMatrix = new Double[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
         this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
     }
-
+    
     @Override
     public void addEdge(T vertex1, T vertex2, double weight) throws ElementNotFoundException {
         addEdgeInter(getIndex(vertex1), getIndex(vertex2), weight);
     }
-
+    
     @Override
     public void addEdge(T vertex1, T vertex2) throws ElementNotFoundException {
         addEdgeInter(getIndex(vertex1), getIndex(vertex2), 0.0);
     }
-
+    
     private void addEdgeInter(int index1, int index2, Double weight) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
             adjMatrix[index1][index2] = weight;
         }
     }
-
+    
+    /**
+     * Gives the Weight between the vertices given
+     * 
+     * @param vertex1
+     * @param vertex2
+     * @return The weight of the edge between the vertices given
+     * @throws ElementNotFoundException if at least on of the vertices wasn't found
+     */
+    public double getWeight(T vertex1,T vertex2) throws ElementNotFoundException{
+        return (double)(adjMatrix[getIndex(vertex1)][getIndex(vertex2)]);
+    }
+    
+    /**
+     * Method to get all the edges of a specific Vertex.
+     * 
+     * @param vertex Vertex to get the edges
+     * @return An Unordered List with the edges
+     * @throws ElementNotFoundException if the Vertex wasn't found
+     */
+    public ArrayUnorderedList<T> getEdges(T vertex) throws ElementNotFoundException {
+        int index = getIndex(vertex);
+        ArrayUnorderedList result = new ArrayUnorderedList<>();
+        for (int i = 0; i < vertices.length - 1; i++) {
+            if (adjMatrix[index][i] != null) {
+                result.addToRear(vertices[i]);
+            }
+        }
+        return result;
+    }
+    
     public int getIndex(T vertex) throws ElementNotFoundException {
         int pos = -1;
         boolean found = false;
@@ -58,11 +88,11 @@ public class Network<T> implements NetworkADT<T> {
         }
         return pos;
     }
-
+    
     private boolean indexIsValid(int index) {
         return vertices[index] != null;
     }
-
+    
     @Override
     public double shortestPathWeight(T vertex1, T vertex2) throws ElementNotFoundException {
         int startIndex = getIndex(vertex1);
@@ -70,7 +100,7 @@ public class Network<T> implements NetworkADT<T> {
         if (!indexIsValid(startIndex) && !indexIsValid(targetIndex)) {
             throw new ElementNotFoundException();
         }
-
+        
         boolean[][] visited = new boolean[numVertices][numVertices];
         for (int i = 0; i < numVertices; i++) {
             for (int y = 0; y < numVertices; y++) {
@@ -98,7 +128,7 @@ public class Network<T> implements NetworkADT<T> {
             if (x.getElement() != targetIndex) {
                 for (int i = 0; i < numVertices; i++) {
                     if (adjMatrix[x.getElement()][i] != null && !visited[x.getElement()][i]) {
-
+                        
                         if (nodes[i].getLenght() > x.getLenght() + adjMatrix[x.getElement()][i]) {
                             nodes[i].setAntecessor(x);
                             nodes[i].setLenght(x.getLenght() + adjMatrix[x.getElement()][i]);
@@ -108,11 +138,11 @@ public class Network<T> implements NetworkADT<T> {
                     }
                 }
             }
-
+            
         }
         return nodes[targetIndex].getLenght();
     }
-
+    
     @Override
     public void addVertex(T vertex) {
         if (numVertices == vertices.length) {
@@ -125,7 +155,7 @@ public class Network<T> implements NetworkADT<T> {
         }
         numVertices++;
     }
-
+    
     @Override
     public void removeVertex(T vertex) throws ElementNotFoundException {
         int pos = getIndex(vertex);
@@ -150,18 +180,18 @@ public class Network<T> implements NetworkADT<T> {
         }
         adjMatrix[size()][size()] = null;
     }
-
+    
     @Override
     public void removeEdge(T vertex1, T vertex2) throws ElementNotFoundException {
         removeEdge(getIndex(vertex1), getIndex(vertex2));
     }
-
+    
     public void removeEdge(int index1, int index2) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
             adjMatrix[index1][index2] = null;
         }
     }
-
+    
     @Override
     public Iterator iteratorBFS(T startVertex) throws ElementNotFoundException {
         Integer x = null;
@@ -175,10 +205,10 @@ public class Network<T> implements NetworkADT<T> {
         for (int i = 0; i < numVertices; i++) {
             visited[i] = false;
         }
-
+        
         traversalQueue.enqueue(startIndex);
         visited[startIndex] = true;
-
+        
         while (!traversalQueue.isEmpty()) {
             try {
                 x = traversalQueue.dequeue();
@@ -199,7 +229,7 @@ public class Network<T> implements NetworkADT<T> {
         }
         return resultList.iterator();
     }
-
+    
     @Override
     public Iterator iteratorDFS(T startVertex) throws ElementNotFoundException {
         Integer x = null;
@@ -214,11 +244,11 @@ public class Network<T> implements NetworkADT<T> {
         for (int i = 0; i < numVertices; i++) {
             visited[i] = false;
         }
-
+        
         traversalStack.push(startIndex);
         resultList.addToRear(vertices[startIndex]);
         visited[startIndex] = true;
-
+        
         while (!traversalStack.isEmpty()) {
             try {
                 x = traversalStack.peek();
@@ -314,7 +344,7 @@ public class Network<T> implements NetworkADT<T> {
         if (!indexIsValid(startIndex) && !indexIsValid(targetIndex)) {
             throw new ElementNotFoundException();
         }
-
+        
         boolean[][] visited = new boolean[numVertices][numVertices];
         for (int i = 0; i < numVertices; i++) {
             for (int y = 0; y < numVertices; y++) {
@@ -343,7 +373,7 @@ public class Network<T> implements NetworkADT<T> {
             if (x.getElement() != targetIndex) {
                 for (int i = 0; i < numVertices; i++) {
                     if (adjMatrix[x.getElement()][i] != null && !visited[x.getElement()][i]) {
-
+                        
                         if (nodes[i].getLenght() > x.getLenght() + adjMatrix[x.getElement()][i]) {
                             nodes[i].setAntecessor(x);
                             nodes[i].setLenght(x.getLenght() + adjMatrix[x.getElement()][i]);
@@ -353,7 +383,7 @@ public class Network<T> implements NetworkADT<T> {
                     }
                 }
             }
-
+            
         }
         x = nodes[targetIndex];
         boolean finished = false;
@@ -366,12 +396,12 @@ public class Network<T> implements NetworkADT<T> {
         }
         return resultList.iterator();
     }
-
+    
     @Override
     public boolean isEmpty() {
         return size() == 0;
     }
-
+    
     @Override
     public boolean isConnected() {
         boolean connected = true;
@@ -388,12 +418,12 @@ public class Network<T> implements NetworkADT<T> {
         }
         return connected;
     }
-
+    
     @Override
     public int size() {
         return numVertices;
     }
-
+    
     @Override
     public String toString() {
         String res = "  ";
@@ -404,14 +434,14 @@ public class Network<T> implements NetworkADT<T> {
         for (int i = 0; i < size(); i++) {
             res = res + vertices[i] + " ";
             for (int y = 0; y < size(); y++) {
-
+                
                 res = res + " " + (adjMatrix[i][y] != null ? adjMatrix[i][y] : "N");
             }
             res = res + "\n";
         }
         return res;
     }
-
+    
     private void expandCapacity() {
         Double newMatrix[][] = new Double[vertices.length + vertices.length][vertices.length + vertices.length];
         for (int i = 0; i < vertices.length; i++) {

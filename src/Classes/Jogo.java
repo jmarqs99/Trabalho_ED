@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Classes;
 
+import EstruturasDeDados.Network;
+import EstruturasDeDados.UnorderedListADT;
 import Exceptions.ElementNotFoundException;
 import Exceptions.FicheiroNaoEncontrado;
+import UI.Inputs;
 import UI.MenusInteracao;
 import UI.Util;
 import java.io.BufferedReader;
@@ -68,8 +66,9 @@ public class Jogo {
         do {
             System.out.println(MenusInteracao.MENU_MAPAS);
             for (int i = 0; i < mapas.length; i++) {
-                System.out.println((i + 1) + ". " + ReadJSON.loadJSON(mapas[i].getPath()).get("nome") + "\n0. Sair");
+                System.out.println((i + 1) + ". " + ReadJSON.loadJSON(mapas[i].getPath()).get("nome"));
             }
+            System.out.print("0. Sair\n\nOpção:");
             opcao = Integer.parseInt(bufferedReader.readLine());
         } while (opcao == null || opcao < 0 || opcao > mapas.length);
         opcao--;
@@ -95,7 +94,7 @@ public class Jogo {
             } while (opcao2 < MenusInteracao.OPCAO_SAIR || opcao2 > MenusInteracao.MODO_SIMULACAO);
             switch (opcao2) {
                 case MenusInteracao.MODO_MANUAL:
-                    System.out.println("safsfsfff");
+                    modoManual(map, j1);
                     break;
                 case MenusInteracao.MODO_SIMULACAO:
                     modoSimulacao(map, j1);
@@ -121,8 +120,33 @@ public class Jogo {
         System.out.println("Pontuação : " + jogador.getPontos());
     }
 
-    private void modoManual() {
-        System.out.println("dasdaf");
+    private void modoManual(Mapas mapa, Jogador jogador) throws ElementNotFoundException {
+//        // Lista que vai guardar o caminho para apresentar no fim ao utilizador (Preciso??)
+//        UnorderedListADT<String> caminho = new ArrayUnorderedList<>();
+        int pontosVida = jogador.getPontos();
+        System.out.println("Modo manual:\n\n\t\tPara desistires escreve DESISTO quando te for pedida uma opção");
+        String opcao = "entrada";
+        //Variável utilizada para poder calcular a pontuação do utilizador
+        String opcaoTemp;
+        do {
+            System.out.println("\nTu estás em *" + opcao + "*!\nOpções de caminho:");
+            UnorderedListADT listaEdges = ((Network) mapa.getAposentos()).getEdges(opcao);
+            listaEdges.addToRear("DESISTO");
+            Iterator itr = listaEdges.iterator();
+            while (itr.hasNext()) {
+                System.out.println("\t-> " + itr.next()); //Presents all options to the user
+            }
+            opcaoTemp = Inputs.lerPontoSeguinte(listaEdges);
+            if (opcaoTemp.equals("DESISTO")) {
+                pontosVida = 0;
+                opcao = "exterior";
+            } else {
+                pontosVida -= (((Network) mapa.getAposentos()).getWeight(opcao, opcaoTemp));
+                opcao = opcaoTemp;
+            }
+
+            System.out.println("Vida: " + pontosVida);
+        } while (!opcao.equals("exterior") && pontosVida > 0);
     }
 
 }
