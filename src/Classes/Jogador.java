@@ -12,11 +12,23 @@ package Classes;
 public class Jogador {
 
     private int pontos;
+    private final String nome;
 
-    public Jogador(int pontos) {
+    /**
+     * Construtor parameterizado
+     * 
+     * @param pontos pontos iniciais do jogo, dado pelo mapa
+     * @param nome nome do jogador
+     */
+    public Jogador(int pontos, String nome) {
         this.pontos = pontos;
+        this.nome = nome;
     }
 
+    public String getNome() {
+        return nome;
+    }
+    
     public int getPontos() {
         return pontos;
     }

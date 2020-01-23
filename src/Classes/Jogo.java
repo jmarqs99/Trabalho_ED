@@ -1,6 +1,5 @@
 package Classes;
 
-import EstruturasDeDados.Network;
 import EstruturasDeDados.UnorderedListADT;
 import Exceptions.ElementNotFoundException;
 import Exceptions.FicheiroNaoEncontrado;
@@ -12,8 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
-import jdk.nashorn.api.scripting.JSObject;
-import org.json.simple.JSONObject;
 
 /**
  *
@@ -27,6 +24,9 @@ public class Jogo {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int opcao = -1;
 
+        System.out.print(MenusInteracao.MENU_JOGADOR);
+        String nomeJogador = bufferedReader.readLine();
+
         do {
             Util.limparEcra();
             do {
@@ -36,7 +36,7 @@ public class Jogo {
                 } catch (NumberFormatException exception) {
                 } finally {
                     if (opcao < MenusInteracao.OPCAO_SAIR || opcao > MenusInteracao.MODO_DIFICIL) {
-                        System.err.println("\nIntroduz uma Opcao Valida!!!");
+                        System.err.println("\nIntroduz uma Opção Valida!!!");
                         Util.primaEnterparaContinuar();
                     }
                     Util.limparEcra();
@@ -70,7 +70,7 @@ public class Jogo {
         String nameToBe;
         for (int i = 0; i < mapas.length - 1; i++) {
             numMapa = 2;
-            for (int j = i+1; j < mapas.length; j++) {
+            for (int j = i + 1; j < mapas.length; j++) {
                 if (ReadJSON.loadJSON(mapas[i].getPath()).get("nome").equals(ReadJSON.loadJSON(mapas[1].getPath()).get("nome"))) {
 //                    nameToBe = (String) ((ReadJSON.loadJSON(mapas[1].getPath()).get("nome")) + " " + String.valueOf(numMapa));
 //                    ((JSONObject) ReadJSON.loadJSON(mapas[1].getPath())).put("noe", "ola"); ISTO SERIA PARA MUDAR O NOME MAS NÃO FUNCIONA
@@ -86,7 +86,7 @@ public class Jogo {
             System.out.print("0. Sair\n\nOpção: ");
             opcao = Integer.parseInt(bufferedReader.readLine());
             if (opcao < MenusInteracao.OPCAO_SAIR || opcao > mapas.length) {
-                System.err.print("\nIntroduz uma Opcao Valida!!!\n");
+                System.err.print("\nIntroduz uma Opção Valida!!!\n");
                 Util.primaEnterparaContinuar();
                 Util.limparEcra();
             }
@@ -94,7 +94,7 @@ public class Jogo {
         if (opcao != 0) {
             opcao--;
             Mapas map = new Mapas(ReadJSON.loadJSON(mapas[opcao].getPath()));
-            Jogador j1 = new Jogador((int) map.getPONTOS());
+            Jogador j1 = new Jogador((int) map.getPONTOS(), "MUDAR DEPOIS");
             int opcao2 = -1;
 
             do {
@@ -106,7 +106,7 @@ public class Jogo {
                     } catch (NumberFormatException exception) {
                     } finally {
                         if (opcao2 < MenusInteracao.OPCAO_SAIR || opcao2 > MenusInteracao.MODO_SIMULACAO) {
-                            System.err.println("\nIntroduz uma Opcao Valida!!!");
+                            System.err.println("\nIntroduz uma Opção Valida!!!");
                             Util.primaEnterparaContinuar();
                         }
                         Util.limparEcra();
@@ -153,7 +153,7 @@ public class Jogo {
             listaEdges.addToRear("DESISTO");
             Iterator itr = listaEdges.iterator();
             while (itr.hasNext()) {
-                System.out.println("\t-> " + itr.next()); //Presents all options to the user
+                System.out.println("\t-> " + itr.next()); //Apresenta todas as opções ao utilizador
             }
             System.out.println("Vida: " + jogador.getPontos());
             opcaoTemp = Inputs.lerPontoSeguinte(listaEdges);
@@ -162,10 +162,16 @@ public class Jogo {
                 opcao = "exterior";
             } else {
                 pontosVida -= (this.dificuldade * ((int) ((NetworkJogo) mapa.getAposentos()).getWeight(opcao, opcaoTemp)));
-                jogador.setPontos(pontosVida);
                 opcao = opcaoTemp;
             }
+            jogador.setPontos(pontosVida);
         } while (!opcao.equals("exterior") && pontosVida > 0);
+        System.out.println("\nPontuação Final: " + pontosVida + "\n");
+        if (pontosVida <= 0) {
+            System.out.println("Perdeste, para a próxima consegues");
+        } else {
+            System.out.println("Boa conseguiste passar o mapa\nA tua pontuação vai ser adicionada ás pontuações");
+        }
     }
 
 }

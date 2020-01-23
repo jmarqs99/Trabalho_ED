@@ -30,7 +30,7 @@ public class Mapas {
 
         this.PONTOS = ((Long) mapa.get("pontos")).intValue();
         this.NOME = (String) mapa.get("nome");
-        this.aposentos = new Network<>();
+        this.aposentos = new NetworkJogo<>();
         aposentos.addVertex("entrada");
         aposentos.addVertex("exterior");
 
