@@ -142,6 +142,7 @@ public class Jogo {
 
     private void modoManual(Mapas mapa, Jogador jogador) throws ElementNotFoundException {
         int pontosVida = (int) mapa.getPONTOS();
+        jogador.setPontos(pontosVida);
         System.out.println("Modo manual:\n\n\t\tPara desistires escreve DESISTO quando te for pedida uma opção");
         String opcao = "entrada";
         //Variável utilizada para poder calcular a pontuação do utilizador
@@ -154,6 +155,7 @@ public class Jogo {
             while (itr.hasNext()) {
                 System.out.println("\t-> " + itr.next()); //Presents all options to the user
             }
+            System.out.println("Vida: " + jogador.getPontos());
             opcaoTemp = Inputs.lerPontoSeguinte(listaEdges);
             if (opcaoTemp.equals("DESISTO")) {
                 pontosVida = 0;
@@ -163,7 +165,6 @@ public class Jogo {
                 jogador.setPontos(pontosVida);
                 opcao = opcaoTemp;
             }
-            System.out.println("Vida: " + jogador.getPontos());
         } while (!opcao.equals("exterior") && pontosVida > 0);
     }
 
