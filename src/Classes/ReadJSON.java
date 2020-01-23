@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
-import Exceptions.FicheiroNaoEncontrado;
 
 /**
  * Classe para fazer a leitura do ficheiro JSon
@@ -17,8 +16,8 @@ public class ReadJSON {
     /**
      * Método para fazer a leitura do ficheiro
      *
-     * @return @throws FicheiroNaoEncontrado caso o ficheiro json não seja
-     * encontrado
+     * @param path
+     * @return
      */
     public static JSONObject loadJSON(String path) {
         JSONParser jsonParser = new JSONParser();
