@@ -44,36 +44,6 @@ public class Network<T> implements NetworkADT<T> {
         }
     }
     
-    /**
-     * Gives the Weight between the vertices given
-     * 
-     * @param vertex1
-     * @param vertex2
-     * @return The weight of the edge between the vertices given
-     * @throws ElementNotFoundException if at least on of the vertices wasn't found
-     */
-    public double getWeight(T vertex1,T vertex2) throws ElementNotFoundException{
-        return (double)(adjMatrix[getIndex(vertex1)][getIndex(vertex2)]);
-    }
-    
-    /**
-     * Method to get all the edges of a specific Vertex.
-     * 
-     * @param vertex Vertex to get the edges
-     * @return An Unordered List with the edges
-     * @throws ElementNotFoundException if the Vertex wasn't found
-     */
-    public ArrayUnorderedList<T> getEdges(T vertex) throws ElementNotFoundException {
-        int index = getIndex(vertex);
-        ArrayUnorderedList result = new ArrayUnorderedList<>();
-        for (int i = 0; i < vertices.length - 1; i++) {
-            if (adjMatrix[index][i] != null) {
-                result.addToRear(vertices[i]);
-            }
-        }
-        return result;
-    }
-    
     public int getIndex(T vertex) throws ElementNotFoundException {
         int pos = -1;
         boolean found = false;

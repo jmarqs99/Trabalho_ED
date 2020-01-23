@@ -149,7 +149,7 @@ public class Jogo {
         String opcaoTemp;
         do {
             System.out.println("\nTu estás em *" + opcao + "*!\nOpções de caminho:");
-            UnorderedListADT listaEdges = ((Network) mapa.getAposentos()).getEdges(opcao);
+            UnorderedListADT listaEdges = ((NetworkJogo) mapa.getAposentos()).getEdges(opcao);
             listaEdges.addToRear("DESISTO");
             Iterator itr = listaEdges.iterator();
             while (itr.hasNext()) {
@@ -161,7 +161,7 @@ public class Jogo {
                 pontosVida = 0;
                 opcao = "exterior";
             } else {
-                pontosVida -= (this.dificuldade * ((int) ((Network) mapa.getAposentos()).getWeight(opcao, opcaoTemp)));
+                pontosVida -= (this.dificuldade * ((int) ((NetworkJogo) mapa.getAposentos()).getWeight(opcao, opcaoTemp)));
                 jogador.setPontos(pontosVida);
                 opcao = opcaoTemp;
             }
