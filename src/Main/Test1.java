@@ -24,26 +24,7 @@ import org.json.simple.parser.ParseException;
 public class Test1 {
 
     public static void main(String[] args) throws FileNotFoundException, IOException, ParseException, FicheiroNaoEncontrado, ElementNotFoundException {
-        /*JSONParser jsonParser = new JSONParser();
 
-        File file = new File("mapa.json");
-
-        Object object = jsonParser.parse(new FileReader(file));
-
-        JSONObject mapas = (JSONObject) object;
-       
-        Mapas map = new Mapas(mapas);
-        
-        System.out.println(map.getAposentos().toString());
-         */
-        //Mapas map = new Mapas(ReadJSON.loadJSON());
-        //Iterator it = map.getAposentos().iteratorShortestPath("entrada", "exterior");
-        //while (it.hasNext()) {
-        //  System.out.println(it.next());
-        //}
-        //modoAutomatico(map);
-        //System.out.println(map.getAposentos());
-        
         Jogo jogo = new Jogo();
 
     }
