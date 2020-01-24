@@ -39,24 +39,20 @@ public class Jogo {
         }
 
         do {
-            System.out.print(MenusInteracao.MENU_JOGADOR); //Chama o "menu" para pedir o nome do jogador
+            System.out.print(MenusInteracao.MENU_JOGADOR);
             String nomeJogador = bufferedReader.readLine();
-            System.out.println(MenusInteracao.MENU_MAPAS); //hama o "menu" para pedir para escolher o mapa
-
+            System.out.println(MenusInteracao.MENU_MAPAS);
             for (int i = 0; i < mapas.length; i++) {
                 System.out.println((i + 1) + ". " + ReadJSON.loadJSON(mapas[i].getPath()).get("nome"));
             }
-
             System.out.print("0. Sair\n\nOpção: ");
             opcao = Integer.parseInt(bufferedReader.readLine());
-
             if (opcao < MenusInteracao.OPCAO_SAIR || opcao > mapas.length) {
                 System.err.print("\nIntroduz uma Opção Valida!!!\n");
                 Util.primaEnterparaContinuar();
                 Util.limparEcra();
             }
         } while (opcao < 0 || opcao > mapas.length);
-
         if (opcao != 0) {
             opcao--;
             Mapas map = new Mapas(ReadJSON.loadJSON(mapas[opcao].getPath()));
@@ -81,9 +77,9 @@ public class Jogo {
                 switch (opcao2) {
                     case MenusInteracao.MODO_MANUAL:
                         menuDificuldades();
-                        modoManual(map, j1);
                         break;
                     case MenusInteracao.MODO_SIMULACAO:
+                        this.dificuldade = 1;
                         modoSimulacao(map, j1);
                         break;
                 }
@@ -92,7 +88,7 @@ public class Jogo {
         }
     }
 
-    private void menuDificuldades() throws IOException, FicheiroNaoEncontrado, ElementNotFoundException {
+    private void menuDificuldades() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int opcao = -1;
 
@@ -132,7 +128,6 @@ public class Jogo {
         System.out.println("Caminho: " + itr.next());
         String aposento = "entrada";
         int pontosIniciais = (int) mapa.getPONTOS();
-
         while (itr.hasNext()) {
             String proxAposento = (String) itr.next();
             jogador.setPontos(pontosIniciais - (this.dificuldade * ((int) mapa.getAposentos().shortestPathWeight("entrada", "exterior"))));
@@ -149,7 +144,6 @@ public class Jogo {
         String opcao = "entrada";
         //Variável utilizada para poder calcular a pontuação do utilizador
         String opcaoTemp;
-
         do {
             System.out.println("\nTu estás em *" + opcao + "*!\nOpções de caminho:");
             UnorderedListADT listaEdges = ((NetworkJogo) mapa.getAposentos()).getEdges(opcao);
@@ -158,10 +152,8 @@ public class Jogo {
             while (itr.hasNext()) {
                 System.out.println("\t-> " + itr.next()); //Apresenta todas as opções ao utilizador
             }
-
             System.out.println("Vida: " + jogador.getPontos());
             opcaoTemp = Inputs.lerPontoSeguinte(listaEdges);
-
             if (opcaoTemp.equals("DESISTO")) {
                 pontosVida = 0;
                 opcao = "exterior";
@@ -169,11 +161,9 @@ public class Jogo {
                 pontosVida -= (this.dificuldade * ((int) ((NetworkJogo) mapa.getAposentos()).getWeight(opcao, opcaoTemp)));
                 opcao = opcaoTemp;
             }
-
             jogador.setPontos(pontosVida);
         } while (!opcao.equals("exterior") && pontosVida > 0);
         System.out.println("\nPontuação Final: " + pontosVida + "\n");
-
         if (pontosVida <= 0) {
             System.out.println("Perdeste, para a próxima consegues");
         } else {
