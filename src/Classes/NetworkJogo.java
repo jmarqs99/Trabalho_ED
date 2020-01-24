@@ -45,7 +45,7 @@ public class NetworkJogo<T> extends Network<T> {
     public ArrayUnorderedList<T> getEdges(T vertex) throws ElementNotFoundException {
         int index = getIndex(vertex);
         ArrayUnorderedList result = new ArrayUnorderedList<>();
-        for (int i = 0; i < super.vertices.length - 1; i++) {
+        for (int i = 0; i < super.vertices.length; i++) {
             if (adjMatrix[index][i] != null) {
                 result.addToRear(super.vertices[i]);
             }

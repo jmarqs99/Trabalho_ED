@@ -18,29 +18,25 @@ import java.util.Iterator;
  */
 public class Jogo {
 
-    int dificuldade;
+    Jogador jogador;
+    Mapas mapa;
 
     public Jogo() throws IOException, FicheiroNaoEncontrado, ElementNotFoundException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print(MenusInteracao.MENU_JOGADOR);
+        String nomeJogador = bufferedReader.readLine();
+        jogador = new Jogador(nomeJogador);
+        // falta aqui o add do jogador á lista de jogadores
+        // falta criar um menu para iniciar ou reiniciar o jogo, depois de ser escolhido o nome
+        menuMapas();
+    }
+
+    private void menuMapas() throws IOException, ElementNotFoundException, FicheiroNaoEncontrado {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         File[] mapas = new File("./mapas").listFiles();
         Integer opcao;
-
-        // Verificação De existência de mapas iguais (em caso de mapas com nome igual muda o nome de um dos mapas)
-        int numMapa; // Acrescenta este número ao nome caso seja igual a outro, o número vai atualizando
-        String nameToBe;
-        for (int i = 0; i < mapas.length - 1; i++) {
-            numMapa = 2;
-            for (int j = i + 1; j < mapas.length; j++) {
-                if (ReadJSON.loadJSON(mapas[i].getPath()).get("nome").equals(ReadJSON.loadJSON(mapas[1].getPath()).get("nome"))) {
-//                    nameToBe = (String) ((ReadJSON.loadJSON(mapas[1].getPath()).get("nome")) + " " + String.valueOf(numMapa));
-//                    ((JSONObject) ReadJSON.loadJSON(mapas[1].getPath())).put("noe", "ola"); ISTO SERIA PARA MUDAR O NOME MAS NÃO FUNCIONA
-                }
-            }
-        }
-
+        Util.limparEcra();
         do {
-            System.out.print(MenusInteracao.MENU_JOGADOR);
-            String nomeJogador = bufferedReader.readLine();
             System.out.println(MenusInteracao.MENU_MAPAS);
             for (int i = 0; i < mapas.length; i++) {
                 System.out.println((i + 1) + ". " + ReadJSON.loadJSON(mapas[i].getPath()).get("nome"));
@@ -55,40 +51,44 @@ public class Jogo {
         } while (opcao < 0 || opcao > mapas.length);
         if (opcao != 0) {
             opcao--;
-            Mapas map = new Mapas(ReadJSON.loadJSON(mapas[opcao].getPath()));
-            Jogador j1 = new Jogador((int) map.getPONTOS(), "MUDAR DEPOIS");
-            int opcao2 = -1;
-
-            do {
-                Util.limparEcra();
-                do {
-                    System.out.print(MenusInteracao.MENU_PRINCIPAL_MSG);
-                    try {
-                        opcao2 = Integer.parseInt(bufferedReader.readLine());
-                    } catch (NumberFormatException exception) {
-                    } finally {
-                        if (opcao2 < MenusInteracao.OPCAO_SAIR || opcao2 > MenusInteracao.MODO_SIMULACAO) {
-                            System.err.println("\nIntroduz uma Opção Valida!!!");
-                            Util.primaEnterparaContinuar();
-                        }
-                        Util.limparEcra();
-                    }
-                } while (opcao2 < MenusInteracao.OPCAO_SAIR || opcao2 > MenusInteracao.MODO_SIMULACAO);
-                switch (opcao2) {
-                    case MenusInteracao.MODO_MANUAL:
-                        menuDificuldades();
-                        break;
-                    case MenusInteracao.MODO_SIMULACAO:
-                        this.dificuldade = 1;
-                        modoSimulacao(map, j1);
-                        break;
-                }
-                Util.primaEnterparaContinuar();
-            } while (opcao2 != MenusInteracao.OPCAO_SAIR);
+            this.mapa = new Mapas(ReadJSON.loadJSON(mapas[opcao].getPath()));
+            jogador.setPontos((int) this.mapa.getPONTOS());
+            menuModo();
         }
     }
 
-    private void menuDificuldades() throws IOException {
+    private void menuModo() throws IOException, ElementNotFoundException, FicheiroNaoEncontrado {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int opcao = -1;
+        do {
+            Util.limparEcra();
+            do {
+                System.out.print(MenusInteracao.MENU_PRINCIPAL_MSG);
+                try {
+                    opcao = Integer.parseInt(bufferedReader.readLine());
+                } catch (NumberFormatException exception) {
+                } finally {
+                    if (opcao < MenusInteracao.OPCAO_SAIR || opcao > MenusInteracao.MODO_SIMULACAO) {
+                        System.err.println("\nIntroduz uma Opção Valida!!!");
+                        Util.primaEnterparaContinuar();
+                    }
+                    Util.limparEcra();
+                }
+            } while (opcao < MenusInteracao.OPCAO_SAIR || opcao > MenusInteracao.MODO_SIMULACAO);
+            switch (opcao) {
+                case MenusInteracao.MODO_MANUAL:
+                    // Após a escolha do modo manual segue-se para a escolha da dificuldade
+                    menuDificuldades();
+                    break;
+                case MenusInteracao.MODO_SIMULACAO:
+                    modoSimulacao(this.mapa, this.jogador);
+                    break;
+            }
+            Util.primaEnterparaContinuar();
+        } while (opcao != MenusInteracao.OPCAO_SAIR);
+    }
+
+    private void menuDificuldades() throws IOException, ElementNotFoundException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int opcao = -1;
 
@@ -109,13 +109,13 @@ public class Jogo {
             } while (opcao < MenusInteracao.OPCAO_SAIR || opcao > MenusInteracao.MODO_DIFICIL);
             switch (opcao) {
                 case MenusInteracao.MODO_BASICO:
-                    this.dificuldade = 1;
+                    modoManual(mapa, jogador, 1);
                     break;
                 case MenusInteracao.MODO_NORMAL:
-                    this.dificuldade = 2;
+                    modoManual(mapa, jogador, 2);
                     break;
                 case MenusInteracao.MODO_DIFICIL:
-                    this.dificuldade = 3;
+                    modoManual(mapa, jogador, 3);
                     break;
             }
             Util.primaEnterparaContinuar();
@@ -130,45 +130,61 @@ public class Jogo {
         int pontosIniciais = (int) mapa.getPONTOS();
         while (itr.hasNext()) {
             String proxAposento = (String) itr.next();
-            jogador.setPontos(pontosIniciais - (this.dificuldade * ((int) mapa.getAposentos().shortestPathWeight("entrada", "exterior"))));
+            jogador.setPontos(pontosIniciais - (((int) mapa.getAposentos().shortestPathWeight("entrada", "exterior")))); // Sem necessidade de multiplicar pela dficuldade pois a dificuldade é sempre a básica
             System.out.println(proxAposento);
             aposento = proxAposento;
         }
         System.out.println("Pontuação : " + jogador.getPontos());
     }
 
-    private void modoManual(Mapas mapa, Jogador jogador) throws ElementNotFoundException {
+    private void modoManual(Mapas mapa, Jogador jogador, int dificuldade) throws ElementNotFoundException, IOException {
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int pontosVida = (int) mapa.getPONTOS();
         jogador.setPontos(pontosVida);
-        System.out.println("Modo manual:\n\n\t\tPara desistires escreve DESISTO quando te for pedida uma opção");
+        
         String opcao = "entrada";
-        //Variável utilizada para poder calcular a pontuação do utilizador
-        String opcaoTemp;
-        do {
-            System.out.println("\nTu estás em *" + opcao + "*!\nOpções de caminho:");
-            UnorderedListADT listaEdges = ((NetworkJogo) mapa.getAposentos()).getEdges(opcao);
-            listaEdges.addToRear("DESISTO");
-            Iterator itr = listaEdges.iterator();
-            while (itr.hasNext()) {
-                System.out.println("\t-> " + itr.next()); //Apresenta todas as opções ao utilizador
-            }
-            System.out.println("Vida: " + jogador.getPontos());
-            opcaoTemp = Inputs.lerPontoSeguinte(listaEdges);
-            if (opcaoTemp.equals("DESISTO")) {
-                pontosVida = 0;
-                opcao = "exterior";
-            } else {
-                pontosVida -= (this.dificuldade * ((int) ((NetworkJogo) mapa.getAposentos()).getWeight(opcao, opcaoTemp)));
-                opcao = opcaoTemp;
-            }
-            jogador.setPontos(pontosVida);
-        } while (!opcao.equals("exterior") && pontosVida > 0);
-        System.out.println("\nPontuação Final: " + pontosVida + "\n");
-        if (pontosVida <= 0) {
-            System.out.println("Perdeste, para a próxima consegues");
-        } else {
-            System.out.println("Boa conseguiste passar o mapa\nA tua pontuação vai ser adicionada ás pontuações");
+        String opcaoTemp; //Variável utilizada para poder calcular a pontuação do utilizador
+        System.out.print("Chegaste a uma Casa Assombrada, vais querer entrar?\n1. Entrar\n0. Fugir\n\nOpção: ");
+        int opcaoEntrar = Integer.parseInt(bufferedReader.readLine());
+        Util.primaEnterparaContinuar();
+        Util.limparEcra();
+        switch (opcaoEntrar) {
+            case 0:
+                System.out.println("Quem foge por medo sempre se cansa.\n Pontuação: 0");
+                break;
+            case 1:
+                System.out.println("Parabéns pela tua escolhe, agora só falta o mais fácil... sobreviveres!");
+                System.out.println("\n\t\tPara desistires escreve DESISTO quando te for pedida uma opção");
+                do {
+                    System.out.println("\nTu estás em *" + opcao + "*!\nOpções de caminho:");
+                    UnorderedListADT listaEdges = ((NetworkJogo) mapa.getAposentos()).getEdges(opcao);
+                    listaEdges.addToRear("DESISTO");
+                    Iterator itr = listaEdges.iterator();
+                    while (itr.hasNext()) {
+                        System.out.println("\t-> " + itr.next()); //Apresenta todas as opções ao utilizador
+                    }
+                    System.out.println("Vida: " + jogador.getPontos());
+                    opcaoTemp = Inputs.lerPontoSeguinte(listaEdges);
+                    if (opcaoTemp.equals("DESISTO")) {
+                        pontosVida = 0;
+                        opcao = "exterior";
+                    } else {
+                        pontosVida -= (dificuldade * ((int) ((NetworkJogo) mapa.getAposentos()).getWeight(opcao, opcaoTemp)));
+                        opcao = opcaoTemp;
+                    }
+                    jogador.setPontos(pontosVida);
+                } while (!opcao.equals("exterior") && pontosVida > 0);
+                System.out.println("\nPontuação Final: " + pontosVida + "\n");
+                if (pontosVida <= 0) {
+                    System.out.println("Perdeste, para a próxima consegues\nA tua pontuação vai ser adicionada ás pontuações, mas não te preocupes não contamos a ninguém");
+                } else {
+                    System.out.println("Boa conseguiste passar o mapa\nA tua pontuação vai ser adicionada ás pontuações");
+                }
+                // falta aqui o add da pontuação ás pontuações
+                break;
         }
+
     }
 
 }

@@ -20,8 +20,7 @@ public class Jogador {
      * @param pontos pontos iniciais do jogo, dado pelo mapa
      * @param nome nome do jogador
      */
-    public Jogador(int pontos, String nome) {
-        this.pontos = pontos;
+    public Jogador(String nome) {
         this.nome = nome;
     }
 
