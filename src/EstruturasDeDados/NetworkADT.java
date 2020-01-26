@@ -16,6 +16,6 @@ public interface NetworkADT<T> extends GraphADT<T> {
 
     public void addEdge(T vertex1, T vertex2, double weight) throws ElementNotFoundException;
 
-    public double shortestPathWeight(T vertex1, T vertex2);
+    public double shortestPathWeight(T vertex1, T vertex2) throws ElementNotFoundException;
 
 }

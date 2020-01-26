@@ -6,6 +6,10 @@
 package Classes;
 
 import EstruturasDeDados.Network;
+import EstruturasDeDados.NetworkADT;
+import Exceptions.ElementNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.simple.*;
 
 /**
@@ -15,16 +19,64 @@ import org.json.simple.*;
 public class Mapas {
 
     private final String NOME;
-    private final int PONTOS;
-    private Network<String> aposentos;
+    private final long PONTOS;
+    private NetworkADT<String> aposentos;
 
+    /**
+     *
+     * @param mapa
+     */
     public Mapas(JSONObject mapa) {
-        this.PONTOS = (int) mapa.get("pontos");
+
+        this.PONTOS = ((Long) mapa.get("pontos")).intValue();
         this.NOME = (String) mapa.get("nome");
-        Object map[] = (Object[]) mapa.get("mapa");
-        for (int i = 0; i < map.length; i++) {
-            Object object = map[i];
-            
-        }
+        this.aposentos = new NetworkJogo<>();
+        aposentos.addVertex("entrada");
+        aposentos.addVertex("exterior");
+
+        JSONArray jsonAposentos = ((JSONArray) mapa.get("mapa"));
+        //Adiciona os aposentos(vertices) ao grafo
+        jsonAposentos.forEach(ite1 -> this.aposentos.addVertex(((String) ((JSONObject) ite1).get("aposento"))));
+        //Adiciona as ligações entre os aposentos
+        jsonAposentos.forEach(ite1 -> addEdge((JSONObject) ite1));
     }
+
+    private void addEdge(JSONObject edge) {
+        int fantasma = ((Long) edge.get("fantasma")).intValue();
+        ((JSONArray) (edge.get("ligacoes"))).forEach(i -> {
+            try {
+                aposentos.addEdge((String) i, (String) (edge.get("aposento")), fantasma);
+                if (((String) i).equals("exterior")) {
+                    aposentos.addEdge((String) (edge.get("aposento")), (String) i, 0.0);
+                }
+            } catch (ElementNotFoundException ex) {
+                Logger.getLogger(Mapas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+    }
+
+    /**
+     *
+     * @return
+     */
+    public NetworkADT<String> getAposentos() {
+        return aposentos;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getNOME() {
+        return NOME;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public long getPONTOS() {
+        return PONTOS;
+    }
+
 }
