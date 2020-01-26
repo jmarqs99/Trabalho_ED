@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package Classes;
 
 /**
  *
  * @author Utilizador
  */
-public interface IMapas {
- 
-    
+public class Classificacao {
     
 }
