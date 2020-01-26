@@ -12,13 +12,13 @@ import Exceptions.EmptyCollectionException;
  * @author Utilizador
  * @param <T>
  */
-public class Queue<T> implements QueueADT<T> {
+public class LinkedQueue<T> implements QueueADT<T> {
 
-    private LinearNode<T> rear;
-    private LinearNode<T> front;
+    private LinkedNode<T> front;
+    private LinkedNode<T> rear;
     private int count;
 
-    public Queue() {
+    public LinkedQueue() {
         this.front = null;
         this.rear = null;
         this.count = 0;
@@ -26,43 +26,45 @@ public class Queue<T> implements QueueADT<T> {
 
     @Override
     public void enqueue(T element) {
-        LinearNode<T> node = new LinearNode<>(null, element);
+        LinkedNode<T> newNode = new LinkedNode<>(null, element);
 
         if (isEmpty()) {
-            front = node;
+            front = newNode;
         } else {
-            rear.setNext(node);
+            rear.setNext(newNode);
         }
-        rear = node;
+
+        rear = newNode;
 
         count++;
     }
 
     @Override
     public T dequeue() throws EmptyCollectionException {
-        if (count == 0) {
-            throw new EmptyCollectionException("Vazio");
+        if (isEmpty()) {
+            throw new EmptyCollectionException("Queue vazia!");
         }
 
-        T oldFront = front.getElement();
+        LinkedNode<T> result = front;
+
         front = front.getNext();
 
         count--;
 
-        return oldFront;
+        return result.getElement();
     }
 
     @Override
     public T first() throws EmptyCollectionException {
-        if (count == 0) {
-            throw new EmptyCollectionException("Vazio");
+        if (isEmpty()) {
+            throw new EmptyCollectionException("Queue vazia!");
         }
         return front.getElement();
     }
 
     @Override
     public boolean isEmpty() {
-        return (count == 0);
+        return (front == null);
     }
 
     @Override
@@ -72,13 +74,12 @@ public class Queue<T> implements QueueADT<T> {
 
     @Override
     public String toString() {
-        String result = "To String:";
-        LinearNode<T> node = front;
+        String result = "To string:\n";
+        LinkedNode<T> iteratioNode = front;
         for (int i = 0; i < size(); i++) {
-            result = result + "\n" + node.getElement();
-            node = node.getNext();
+            result = result + iteratioNode.getElement() + "\n";
+            iteratioNode = iteratioNode.getNext();
         }
         return result;
     }
-
 }

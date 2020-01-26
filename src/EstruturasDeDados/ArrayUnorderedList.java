@@ -15,53 +15,38 @@ import Exceptions.ElementNotFoundException;
 public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedListADT<T> {
 
     @Override
-    public void addFront(T element) {
-        if (!this.isEmpty()) {
-            T temp[] = (T[]) new Object[DEFAULT_SIZE + 1];
+    public void addToFront(T element) {
+        if (!isEmpty()) {
             for (int i = size(); i > 0; i--) {
                 list[i] = list[i - 1];
             }
-
-            list = temp;
-
         }
-
         list[0] = element;
         rear++;
     }
 
     @Override
-    public void addRear(T element) {
+    public void addToRear(T element) {
         list[rear] = element;
         rear++;
     }
 
     @Override
-    public void addAfter(T element, T prevElement) throws ElementNotFoundException {
-        int pos = -1;
-
-        for (int i = 0; i < size(); i++) {
-            if (list[i] == prevElement) {
-                pos = i + 1;
-                i = size();
+    public void addAfter(T element, T prevElement) throws Exception {
+        if (contains(prevElement)) {
+            for (int i = 0; i < size(); i++) {
+                if (list[i] == prevElement) {
+                    for (int k = size(); k > i + 1; k--) {
+                        list[k] = list[k - 1];
+                    }
+                    list[i + 1] = element;
+                    i = size();
+                }
             }
-        }
-
-        if (pos == -1) {
-            throw new ElementNotFoundException();
-        }
-
-        if (list[pos] == null) {
-            list[pos] = element;
-
+            rear++;
         } else {
-            for (int i = size(); i > pos; i--) {
-                list[i] = list[i - 1];
-            }
-            list[pos] = element;
+            throw new Exception("Elemento não existe na lista");
         }
-
-        rear++;
     }
 
 }

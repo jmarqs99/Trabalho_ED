@@ -6,26 +6,26 @@
 package Exceptions;
 
 /**
- * Exceção para o caso não exista elementos na coleção
+ * Exceção para caso o ficheiro não seja encontrado
  *
  * @author Utilizador
  */
-public class EmptyCollectionException extends Exception {
+public class FicheiroNaoEncontrado extends Exception {
 
     /**
-     * Creates a new instance of <code>EmptyCollectionException</code> without
+     * Creates a new instance of <code>FicheiroNaoEncontrado</code> without
      * detail message.
      */
-    public EmptyCollectionException() {
+    public FicheiroNaoEncontrado() {
     }
 
     /**
-     * Constructs an instance of <code>EmptyCollectionException</code> with the
+     * Constructs an instance of <code>FicheiroNaoEncontrado</code> with the
      * specified detail message.
      *
      * @param msg the detail message.
      */
-    public EmptyCollectionException(String msg) {
+    public FicheiroNaoEncontrado(String msg) {
         super(msg);
     }
 }
