@@ -18,34 +18,34 @@ import java.util.logging.Logger;
  * @author Utilizador
  */
 public class Classificacao implements IClassificacao {
-
+    
     private LinkedOrderedList<Integer> classificacao;
-
+    
     public Classificacao(LinkedOrderedList<Integer> classificacao) {
         this.classificacao = classificacao;
     }
-
+    
     @Override
     public void addClassificacao(Jogador j1) {
         int pontos = j1.getPontos();
         String nome = j1.getNome();
         classificacao.add(pontos);
-        save("Jogador: " + nome + "Pontos: " + pontos);
+        //save("Jogador: " + nome + " Pontos: " + pontos);
     }
-
+    
     @Override
     public String getClassificacao() {
-        return "nao implementado";
+        return classificacao.toString().replace("To String:", "Classificações: ").substring(0, 38);
     }
-
+    
     private void save(String mensagem) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("../Classificações/classificaçoes.txt", true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./classificaçoes.txt", true));
             writer.append("[" + java.time.LocalDate.now() + " " + java.time.LocalTime.now() + "]:" + mensagem + "\n");
             writer.close();
         } catch (IOException ex) {
             Logger.getLogger(Classificacao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
 }
