@@ -16,7 +16,7 @@ public class Jogador {
 
     /**
      * Construtor parameterizado
-     * 
+     *
      * @param pontos pontos iniciais do jogo, dado pelo mapa
      * @param nome nome do jogador
      */
@@ -27,7 +27,7 @@ public class Jogador {
     public String getNome() {
         return nome;
     }
-    
+
     public int getPontos() {
         return pontos;
     }

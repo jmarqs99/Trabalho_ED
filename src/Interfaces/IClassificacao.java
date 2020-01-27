@@ -5,10 +5,17 @@
  */
 package Interfaces;
 
+import Classes.Jogador;
+import EstruturasDeDados.LinkedOrderedList;
+
 /**
  *
  * @author Utilizador
  */
 public interface IClassificacao {
+    
+    public void addClassificacao(Jogador j1);
+    
+    public String getClassificacao();
     
 }
