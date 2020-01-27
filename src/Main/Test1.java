@@ -28,15 +28,15 @@ public class Test1 {
 
     public static void main(String[] args) throws FileNotFoundException, IOException, ParseException, FicheiroNaoEncontrado, ElementNotFoundException {
 
-        //Jogo jogo = new Jogo();
-        Jogador j1 = new Jogador("Manel");
-        LinkedOrderedList<Integer> classificacao = new LinkedOrderedList<>();
-        Classificacao c = new Classificacao(classificacao);
-        for(int i=0;i<30;i++){
-            c.addClassificacao(j1);
-        }
+        Jogo jogo = new Jogo();
+        //Jogador j1 = new Jogador("Manel");
+        //LinkedOrderedList<Integer> classificacao = new LinkedOrderedList<>();
+        //Classificacao c = new Classificacao(classificacao);
+        //for(int i=0;i<30;i++){
+          //  c.addClassificacao(j1);
+        //}
         
-        System.out.println(c.getClassificacao());
+        //System.out.println(c.getClassificacao());
 
     }
 }

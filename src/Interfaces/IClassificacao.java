@@ -6,7 +6,6 @@
 package Interfaces;
 
 import Classes.Jogador;
-import EstruturasDeDados.LinkedOrderedList;
 
 /**
  *

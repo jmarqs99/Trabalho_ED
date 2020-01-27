@@ -30,12 +30,12 @@ public class Classificacao implements IClassificacao {
         int pontos = j1.getPontos();
         String nome = j1.getNome();
         classificacao.add(pontos);
-        //save("Jogador: " + nome + " Pontos: " + pontos);
+        save("Jogador: " + nome + " Pontos: " + pontos);
     }
     
     @Override
     public String getClassificacao() {
-        return classificacao.toString().replace("To String:", "Classificações: ").substring(0, 38);
+        return classificacao.toString().replace("To String:", "Classificações: ");
     }
     
     private void save(String mensagem) {
