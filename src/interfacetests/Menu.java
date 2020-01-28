@@ -2,9 +2,11 @@ package interfacetests;
 
 import Classes.Jogador;
 import Classes.Mapas;
+import Classes.ReadJSON;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -36,12 +38,19 @@ public class Menu extends javax.swing.JFrame {
 
         initComponents();
 
-        for (int i = 1; i <= 10; i++) {
-            jComboBoxMapas.addItem("Mapa" + i);
+        jogador = new Jogador(TextFIeldNomeJogador.getText()); //Cria um jogador com o nome inserido na UI
+
+        File[] mapas = new File("./mapas").listFiles(); // Cria um array com todos os mapas
+
+        for (int i = 0; i < mapas.length; i++) {
+            jComboBoxMapas.addItem((i + 1) + ". " + ReadJSON.loadJSON(mapas[i].getPath()).get("nome")); //Mostra todos os mapas
         }
 
-        jButtonAvancar.setVisible(false);
+        int opcao = jComboBoxMapas.getSelectedIndex();
+        this.mapa = new Mapas(ReadJSON.loadJSON(mapas[opcao].getPath()));
+        jogador.setPontos((int) this.mapa.getPONTOS());
 
+        jButtonAvancar.setVisible(false);
         jPanelEscolhas.setVisible(false);
 
         apresentaDificuldade.setVisible(false);
@@ -503,7 +512,8 @@ public class Menu extends javax.swing.JFrame {
     });
 
     /**
-     * Método chamado pelo modo automático(pelo Timer) para mostrar o jogo e esconder a janela de escolhas 
+     * Método chamado pelo modo automático(pelo Timer) para mostrar o jogo e
+     * esconder a janela de escolhas
      */
     private void showTheGame() {
         new MenuJogo(this, "Automático", 1, jogador);
