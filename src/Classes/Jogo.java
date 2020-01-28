@@ -158,7 +158,7 @@ public class Jogo {
                 System.out.println("\n\t\tPara desistires escreve DESISTO quando te for pedida uma opção");
                 do {
                     System.out.println("\nTu estás em *" + opcao + "*!\nOpções de caminho:");
-                    UnorderedListADT listaEdges = ((NetworkJogo) mapa.getAposentos()).getEdges(opcao);
+                    UnorderedListADT<String> listaEdges = ((NetworkJogo) mapa.getAposentos()).getEdges(opcao);
                     listaEdges.addToRear("DESISTO");
                     Iterator itr = listaEdges.iterator();
                     while (itr.hasNext()) {

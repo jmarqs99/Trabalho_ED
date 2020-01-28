@@ -115,6 +115,7 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Título.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        Título.setForeground(new java.awt.Color(255, 255, 255));
         Título.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Título.setText("Trabalho da UC - Estruras de Dados");
 
@@ -163,6 +164,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         LabelNomeJogador.setFont(new java.awt.Font("Lucida Console", 0, 16)); // NOI18N
+        LabelNomeJogador.setForeground(new java.awt.Color(255, 255, 255));
         LabelNomeJogador.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         LabelNomeJogador.setText("Introduz o teu nome:");
         LabelNomeJogador.setToolTipText("");
@@ -194,15 +196,23 @@ public class Menu extends javax.swing.JFrame {
 
         apresentacoisasPanel.setPreferredSize(new java.awt.Dimension(180, 254));
 
+        apresentaNomeJogador.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        apresentaNomeJogador.setForeground(new java.awt.Color(255, 255, 255));
         apresentaNomeJogador.setText("Nome:");
         apresentaNomeJogador.setMaximumSize(new java.awt.Dimension(60, 60));
 
+        apresentaNomeMapa.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        apresentaNomeMapa.setForeground(new java.awt.Color(255, 255, 255));
         apresentaNomeMapa.setText("Mapa:");
         apresentaNomeMapa.setMaximumSize(new java.awt.Dimension(50, 300));
 
+        apresentaModo.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        apresentaModo.setForeground(new java.awt.Color(255, 255, 255));
         apresentaModo.setText("Modo:");
         apresentaModo.setMaximumSize(new java.awt.Dimension(50, 300));
 
+        apresentaDificuldade.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        apresentaDificuldade.setForeground(new java.awt.Color(255, 255, 255));
         apresentaDificuldade.setText("Dificuldade:");
         apresentaDificuldade.setMaximumSize(new java.awt.Dimension(50, 300));
 

@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jDesktopPane1" alignment="0" pref="826" max="32767" attributes="0"/>
+          <Component id="jDesktopPane1" alignment="0" pref="970" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -45,11 +45,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="Titulo" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
-                  <Component id="jPanelInformações" min="-2" pref="212" max="-2" attributes="0"/>
+                  <Component id="jPanelInformações" max="32767" attributes="0"/>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jPanelModoManual" max="32767" attributes="0"/>
                       <Component id="jPanelModoAuto" max="32767" attributes="0"/>
-                      <Component id="jPanelModoManual" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -233,8 +233,11 @@
         </Container>
         <Container class="javax.swing.JPanel" name="jPanelInforma&#xe7;&#xf5;es">
           <Properties>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[214, 358]"/>
+            </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[213, 154]"/>
+              <Dimension value="[356, 358]"/>
             </Property>
           </Properties>
 
@@ -242,19 +245,24 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelMapa" max="32767" attributes="0"/>
-                          <Component id="jLabelDificuldade" alignment="0" pref="188" max="32767" attributes="0"/>
-                          <Component id="jLabelNomeJogador" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabelVida" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
                               <Component id="jButtonDesistir" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jLabelVida" pref="190" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jLabelNomeJogador" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jLabelDificuldade" alignment="0" pref="190" max="32767" attributes="0"/>
+                                      <Component id="jLabelMapa" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -358,6 +366,7 @@
             <Component class="javax.swing.JLabel" name="jLabelCaminhos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel3"/>
+                <Property name="verticalAlignment" type="int" value="1"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -7,8 +7,17 @@ package interfacetests;
 
 import Classes.Jogador;
 import Classes.Mapas;
+import Classes.NetworkJogo;
+import Classes.ReadJSON;
+import EstruturasDeDados.UnorderedListADT;
+import Exceptions.ElementNotFoundException;
 import java.awt.event.WindowEvent;
+import static java.awt.image.ImageObserver.WIDTH;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,17 +49,16 @@ public class MenuJogo extends javax.swing.JFrame {
         this.mapa = mapa;
 
         this.jogador.setPontos((int) mapa.getPONTOS());
-        
+
         this.setTitle("Jogo - A Casa Assombrada");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //Anula o botão de fechar a janela 'x'
         initComponents();
         this.setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize"
 
         //NOTA: REMOVI O BOTÃO VOLTAR, PORQUE O BOTÃO DESISTIR FICA 'VOLTAR' QUANDO O UTILIZADOR TERMINA O JOGO
-        
         jLabelMapa.setText("Mapa: " + mapa.getNOME());
-        jLabelNomeJogador.setText("Nome: " + this.jogador.getNome());
-        jLabelVida.setText("Vida: "+this.jogador.getPontos());
+        jLabelNomeJogador.setText("Nome: " + this.jogador.getNome()); //O NOME SE TIVER 30CHARS FICA ESCONDIDO, FAZER ALGUMA COISA!
+        this.updateInfoVida(); //Método criado para atualizar a vida no painel de informações
 
         if (modo.equals("Manual")) {
             jPanelModoAuto.setVisible(false); //Desaparece a janela do modo auto
@@ -66,6 +74,22 @@ public class MenuJogo extends javax.swing.JFrame {
                 case 3:
                     this.jLabelDificuldade.setText("Dificuldade: Difícil");
                     break;
+            }
+
+            jLabelCaminhos.setText("<html>entrada");
+            jLabelAposentoAtual.setText(jLabelAposentoAtual.getText() + " entrada");
+
+            try {
+                UnorderedListADT<String> listaEdges = ((NetworkJogo) mapa.getAposentos()).getEdges("entrada");
+                jComboBox1.addItem(listaEdges.iterator().next()); //Porque a entrada só tem uma ligação, só necessitamos de ver essa ligação
+                //Sabemos que não tem muito sentido o utilizador escolher na entrada pois só terá uma opção mas terá a possibilidade de Desistir 
+                // antes de entrar na casa o que para nós faz mais sentido
+
+            } catch (ElementNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao carregar o mapa, tente novamente."
+                        + "\nSe o erro persistir o mapa ou os aposentos podem estar mal formatados.", null, WIDTH); //Mensagem de erro numa janela
+                this.dispose();
+                frameMenuEscolhas.setVisible(true);
             }
         } else {
             jPanelModoManual.setVisible(false);//Desaparece a janela do modo manual
@@ -197,7 +221,8 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanelInformações.setPreferredSize(new java.awt.Dimension(213, 154));
+        jPanelInformações.setMinimumSize(new java.awt.Dimension(214, 358));
+        jPanelInformações.setPreferredSize(new java.awt.Dimension(356, 358));
 
         jButtonDesistir.setText("DESISTIR");
         jButtonDesistir.addActionListener(new java.awt.event.ActionListener() {
@@ -223,17 +248,19 @@ public class MenuJogo extends javax.swing.JFrame {
         jPanelInformaçõesLayout.setHorizontalGroup(
             jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInformaçõesLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelDificuldade, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(jLabelNomeJogador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelVida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelInformaçõesLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButtonDesistir)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(139, 139, 139)
+                        .addComponent(jButtonDesistir))
+                    .addGroup(jPanelInformaçõesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelVida, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabelNomeJogador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelDificuldade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                .addComponent(jLabelMapa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelInformaçõesLayout.setVerticalGroup(
             jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,6 +282,7 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelCaminhoTitulo.setText("Caminho percorrido:");
 
         jLabelCaminhos.setText("jLabel3");
+        jLabelCaminhos.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -289,11 +317,11 @@ public class MenuJogo extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(jPanelInformações, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelInformações, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelModoAuto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelModoManual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelModoManual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelModoAuto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -317,7 +345,7 @@ public class MenuJogo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,11 +355,75 @@ public class MenuJogo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método para atualizar a vida no painel de informações
+     */
+    private void updateInfoVida() {
+        jLabelVida.setText("Vida: " + jogador.getPontos());
+        if (jogador.getPontos()<0) {
+            jButtonEscolheAposento.setEnabled(false); //Bloqueia o botão para escolher aposentos
+            JOptionPane.showMessageDialog(null, "Perdeste mas ao menos tentaste.\nVais voltar para o Menu onde podes escolher outro mapa."
+                    + "\nPara a próxima consegues, que nenhum fantasma te persiga..", null, WIDTH); //Mensagem de erro numa janela
+                this.dispose();
+                frameMenuEscolhas.setVisible(true);
+        }
+    }
+
+    /**
+     * Contador do número de aposentos passados, ajuda a perceber a ordem do
+     * caminho
+     */
+    private int count = 1;
+
     private void jButtonEscolheAposentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEscolheAposentoActionPerformed
-        // TODO add your handling code here:
+        if (jComboBox1.getSelectedItem().equals("<Seleciona uma das opções>")) {
+            JOptionPane.showMessageDialog(null, "Opção Inválida.\nEscolhe uma das opções válidas!", null, WIDTH); //Mensagem de erro numa janela
+        } else if (jComboBox1.getSelectedItem().equals("exterior")) {
+            jButtonEscolheAposento.setEnabled(false); //Desativa o botão para não se escolher mais opções que podem causar problemas no sistema
+            jButtonDesistir.setText("VOLTAR"); //O botão 'DESISTIR' passa  chamar-se 'VOLTAR' uma vez que o jogo já chegou ao fim
+            jLabelCaminhos.setText(jLabelCaminhos.getText() + "<br/>exterior</html>"); //Acrescenta o exterior ao caminho
+        } else {
+            String aposentoPassado = jLabelAposentoAtual.getText().replace("Tu estás em: ", ""); //Obtém o aposento em que se está antes de clicar no novo aposento para poder calcular a vida
+            String aposentoAtual = (String) jComboBox1.getSelectedItem(); //Aposento selecionado para ir
+            jLabelCaminhos.setText(jLabelCaminhos.getText() + "<br/>" + (count++) + "º - " + aposentoAtual); //Acrescenta o aposento para onde foi
+            jLabelAposentoAtual.setText("Tu estás em: " + aposentoAtual); //Atualiza o nome do aposento Atual
+            jComboBox1.removeAllItems(); //Tira todos os aposentos antigos para que se possam adicionar os novos
+            jComboBox1.addItem("<Seleciona uma das opções>");
+            try {
+                UnorderedListADT<String> listaEdges = ((NetworkJogo) mapa.getAposentos()).getEdges(aposentoAtual); //Lista com os vértices que têm ligação ao aposento anterior
+                Iterator<String> itr = listaEdges.iterator();
+                while (itr.hasNext()) {
+                    jComboBox1.addItem(itr.next()); //Apresenta todas as opções ao utilizador
+                }
+                this.jogador.setPontos(this.jogador.getPontos() - (dificuldade * ((int) ((NetworkJogo) mapa.getAposentos()).getWeight(aposentoPassado, aposentoAtual)))); //Atualiza a vida do jogador
+                updateInfoVida(); //Atualiza a vida no painel de informações
+            } catch (ElementNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao carregar o mapa, tente novamente."
+                        + "\nSe o erro persistir o mapa ou os aposentos podem estar mal formatados.", null, WIDTH); //Mensagem de erro numa janela
+                this.dispose();
+                frameMenuEscolhas.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_jButtonEscolheAposentoActionPerformed
 
+    /**
+     * Botão de Desistir/Voltar. Este botão tem duas funções, quando o jogo está
+     * a decorrer funciona como 'Desistir', quando o jogo termina o botão passa
+     * a ser 'Voltar'
+     *
+     * @param evt
+     */
     private void jButtonDesistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesistirActionPerformed
+        String mensagemFinal = "";
+        if (jButtonDesistir.getText().equals("DESISTIR")) {
+            mensagemFinal = "Quem não arrisca não petisca.\nMas não te preocupes que não contamos a ninguém.\nPontuação: 0";
+            jogador.setPontos(0);
+            updateInfoVida();
+        } else {
+            mensagemFinal = "Parabéns, passaste o nível.\nPodes estar descansado que vamos guardar a tua pontuação automagicamente."
+                    + "\nAgora podes ir experimentar outros mapas e niveis.\nA tua pontuação: " + jogador.getPontos();
+        }
+        JOptionPane.showMessageDialog(null, mensagemFinal, null, WIDTH); //Mensagem de informação numa janela
         this.dispose();
         frameMenuEscolhas.setVisible(true);
     }//GEN-LAST:event_jButtonDesistirActionPerformed
