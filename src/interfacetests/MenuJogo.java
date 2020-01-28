@@ -28,13 +28,10 @@ public class MenuJogo extends javax.swing.JFrame {
     public MenuJogo(JFrame frame, String modo, int dificuldade, Jogador jogador) {
         this.frameMenuEscolhas = frame;
         
+        this.setTitle("Jogo - A Casa Assombrada");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //Anula o botão de fechar a janela 'x'
-        
         initComponents();
-        
         this.setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize"
-        
-        frame.setVisible(false); //Faz desaparecer o menu de escolhas
         
         this.setVisible(true); //Faz aparecer esta janela do jogo
         

@@ -5,8 +5,6 @@ import Classes.Mapas;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -18,10 +16,6 @@ import javax.swing.Timer;
 // MAIS TARDE SERÀ A CLASSE JOGO
 public class Menu extends javax.swing.JFrame {
 
-    /**
-     * To see if the Timer is running or not
-     */
-    private boolean isTimerRunning;
     private final JFrame frameMenuPrincipal;
     private Jogador jogador;
     private Mapas mapa;
@@ -477,6 +471,7 @@ public class Menu extends javax.swing.JFrame {
             apresentaModo.setText("Modo: Manual"); //Apresenta o modo
             apresentaDificuldade.setVisible(true);
         } else {
+            jButtonAvancar.setVisible(false);
             jRadioButtonModoAuto.setEnabled(true);
             dificuldadePanel.setVisible(false); //Pode escolher outra opção
             jButtonEscolherMapa.setEnabled(true); //Deixa mudar o mapa
@@ -494,10 +489,12 @@ public class Menu extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             jProgressBarLoading.setValue(++counter);
-            isTimerRunning = true;
-            
-            if (counter > 100 || !jRadioButtonModoAuto.isSelected()) {
-                isTimerRunning = false;
+
+            // 101 para dar um tempo extra ao utilizador para ver a animação do loading até ao fim
+            if (counter > 101 || !jRadioButtonModoAuto.isSelected()) {
+                if (counter > 101) {
+                    showTheGame();
+                }
                 setCursor(null); //Coloca o cursor de volta ao normal
                 counter = 0; //Coloca a contagem de volta ao zero para que da proxima vez inicie corretamente
                 timer.stop();
@@ -506,10 +503,20 @@ public class Menu extends javax.swing.JFrame {
     });
 
     /**
+     * Método chamado pelo modo automático(pelo Timer) para mostrar o jogo e esconder a janela de escolhas 
+     */
+    private void showTheGame() {
+        new MenuJogo(this, "Automático", 1, jogador);
+        setVisible(false); //Faz desaparecer o menu de escolhas
+        jRadioButtonModoAuto.doClick(); //Tira a opção do modo para a próxima vez estar limpo
+        jComboBoxMapas.setSelectedIndex(0); //Tira a opção do mapa para a próxima vez estar limpo
+        jButtonEscolherMapa.doClick(); //Tira a opção do mapa para a próxima vez estar limpo
+    }
+
+    /**
      * Method that sets the Loading bar visible and working
      */
     private void showLoadingBar() {
-
         loadingPanel1.setVisible(true); //Mostra a label que diz "LOADING..." e a barra de progresso
         jProgressBarLoading.setMinimum(0);
         jProgressBarLoading.setMaximum(100);
@@ -528,17 +535,6 @@ public class Menu extends javax.swing.JFrame {
             jButtonEscolherMapa.setEnabled(false); //Nao deixa mudar o mapa
             apresentaModo.setText("Modo: Automático");  //Apresenta o modo
             this.showLoadingBar();
-            int i=0;
-
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-                                while (isTimerRunning) {
-                                    System.out.println(i++);
-                }
-            }
-            new MenuJogo(this, "Automático", 1, jogador);
         } else {
             jButtonEscolherMapa.setEnabled(true); //Deixa mudar o mapa
             jRadioButtonModoManual.setEnabled(true); //Pode optar na outra opção
@@ -638,9 +634,9 @@ public class Menu extends javax.swing.JFrame {
             new MenuJogo(this, "Manual", 3, jogador);
             jRadioButtonNivelDificil.doClick(); //Tira a opção do nível para a próxima vez estar limpo
         }
-        jRadioButtonModoManual.doClick(); //Tira a opção do nível para a próxima vez estar limpo
-        jComboBoxMapas.setSelectedIndex(0);
-        jButtonEscolherMapa.doClick();
+        jRadioButtonModoManual.doClick(); //Tira a opção do modo para a próxima vez estar limpo
+        jComboBoxMapas.setSelectedIndex(0); //Tira a opção do mapa para a próxima vez estar limpo
+        jButtonEscolherMapa.doClick(); //Tira a opção do mapa para a próxima vez estar limpo
 
     }//GEN-LAST:event_jButtonAvancarActionPerformed
 
