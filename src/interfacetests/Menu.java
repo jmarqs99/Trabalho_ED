@@ -3,6 +3,7 @@ package interfacetests;
 import Classes.Jogador;
 import Classes.Mapas;
 import Classes.ReadJSON;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +16,6 @@ import javax.swing.Timer;
  *
  * @author Joao Sousa
  */
-// MAIS TARDE SERÀ A CLASSE JOGO
 public class Menu extends javax.swing.JFrame {
 
     private final JFrame frameMenuPrincipal;
@@ -36,8 +36,6 @@ public class Menu extends javax.swing.JFrame {
         this.frameMenuPrincipal = frame; //referência para frame principal
 
         initComponents();
-
-        jogador = new Jogador(TextFIeldNomeJogador.getText()); //Cria um jogador com o nome inserido na UI
 
         mapas = new File("./mapas").listFiles(); // Cria um array com todos os mapas
 
@@ -439,6 +437,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxMapasActionPerformed
 
     /**
+     * Text Field onde o utilizador coloca o nome
      *
      * @param evt
      */
@@ -447,6 +446,7 @@ public class Menu extends javax.swing.JFrame {
         if (nomeJogador.length() < 4 || nomeJogador.length() > 30) {
             JOptionPane.showMessageDialog(null, "Entrada errada, o nome deve conter entre 4 a 30 caracteres!", null, WIDTH); //Mensagem de erro numa janela
         } else {
+            jogador = new Jogador(nomeJogador); //Cria um jogador com o nome inserido na UI
             apresentaNomeJogador.setText("Nome: " + nomeJogador); //Apresenta o nome do jogador
             mapasPanel.setVisible(true); //Mostra a escolha dos mapas
         }
@@ -608,10 +608,10 @@ public class Menu extends javax.swing.JFrame {
             modoPanel.setVisible(false);
         } else {
             TextFIeldNomeJogador.setEnabled(false); //Não pode mudar o nome
-            jPanelEscolhas.setVisible(true);
+            jPanelEscolhas.setVisible(true); //Mostra o painel das escolhas onde pode decidir os modos
             modoPanel.setVisible(true); //Pode escolher um dos modos
             apresentaNomeMapa.setText("Mapa: " + jComboBoxMapas.getSelectedItem()); //Apresenta o nome do mapa
-            this.mapa = new Mapas(ReadJSON.loadJSON(mapas[jComboBoxMapas.getSelectedIndex()-1].getPath()));
+            this.mapa = new Mapas(ReadJSON.loadJSON(mapas[jComboBoxMapas.getSelectedIndex() - 1].getPath()));
         }
     }//GEN-LAST:event_jButtonEscolherMapaActionPerformed
 

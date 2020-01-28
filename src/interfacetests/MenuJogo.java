@@ -39,17 +39,18 @@ public class MenuJogo extends javax.swing.JFrame {
         this.modo = modo;
         this.mapa = mapa;
 
-        jogador.setPontos((int) mapa.getPONTOS());
+        this.jogador.setPontos((int) mapa.getPONTOS());
         
         this.setTitle("Jogo - A Casa Assombrada");
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //Anula o botão de fechar a janela 'x'
         initComponents();
         this.setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize"
 
-        jButtonVoltar.setVisible(false); //Botão só aparece quando o utilizador acaba o jogo, como outra opção tem o botão desistir
-
+        //NOTA: REMOVI O BOTÃO VOLTAR, PORQUE O BOTÃO DESISTIR FICA 'VOLTAR' QUANDO O UTILIZADOR TERMINA O JOGO
+        
         jLabelMapa.setText("Mapa: " + mapa.getNOME());
         jLabelNomeJogador.setText("Nome: " + this.jogador.getNome());
+        jLabelVida.setText("Vida: "+this.jogador.getPontos());
 
         if (modo.equals("Manual")) {
             jPanelModoAuto.setVisible(false); //Desaparece a janela do modo auto
@@ -69,7 +70,7 @@ public class MenuJogo extends javax.swing.JFrame {
         } else {
             jPanelModoManual.setVisible(false);//Desaparece a janela do modo manual
             jPanelModoAuto.setVisible(true); //Aparece a janela do modo auto
-            jLabelDificuldade.setText("Dificuldade: Básico");
+            jLabelDificuldade.setVisible(false);
         }
 
         this.setVisible(true); //Faz aparecer esta janela do jogo
@@ -103,11 +104,12 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelNomeJogador = new javax.swing.JLabel();
         jLabelVida = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButtonVoltar = new javax.swing.JButton();
         jLabelCaminhoTitulo = new javax.swing.JLabel();
         jLabelCaminhos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(0, 0));
 
         Titulo.setBackground(new java.awt.Color(55, 55, 55));
         Titulo.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 24)); // NOI18N
@@ -149,10 +151,10 @@ public class MenuJogo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonEscolheAposento))
                     .addComponent(jLabelIndicação1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(56, 56, 56))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelModoManualLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelModoAuto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelModoAuto1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanelModoManualLayout.setVerticalGroup(
@@ -167,7 +169,7 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addGroup(jPanelModoManualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEscolheAposento))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabelModoAuto.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
@@ -224,12 +226,13 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelDificuldade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelDificuldade, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                     .addComponent(jLabelNomeJogador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelVida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelInformaçõesLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
                         .addComponent(jButtonDesistir)
-                        .addGap(0, 110, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelInformaçõesLayout.setVerticalGroup(
@@ -248,13 +251,7 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButtonVoltar.setText("VOLTAR");
-        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVoltarActionPerformed(evt);
-            }
-        });
-
+        jLabelCaminhoTitulo.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabelCaminhoTitulo.setText("Caminho percorrido:");
 
         jLabelCaminhos.setText("jLabel3");
@@ -267,7 +264,6 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelCaminhos, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonVoltar)
                     .addComponent(jLabelCaminhoTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -278,8 +274,6 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addComponent(jLabelCaminhoTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelCaminhos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonVoltar)
                 .addContainerGap())
         );
 
@@ -297,10 +291,10 @@ public class MenuJogo extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addComponent(jPanelInformações, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelModoAuto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelModoManual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                    .addComponent(jPanelModoManual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -310,7 +304,7 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jPanelModoManual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelModoManual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanelModoAuto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(3, 3, 3))
@@ -323,11 +317,11 @@ public class MenuJogo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
         );
 
         pack();
@@ -342,15 +336,10 @@ public class MenuJogo extends javax.swing.JFrame {
         frameMenuEscolhas.setVisible(true);
     }//GEN-LAST:event_jButtonDesistirActionPerformed
 
-    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonVoltarActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton jButtonDesistir;
     private javax.swing.JButton jButtonEscolheAposento;
-    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
