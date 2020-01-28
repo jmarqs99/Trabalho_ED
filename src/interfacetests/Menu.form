@@ -28,7 +28,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jDesktopPane1" max="32767" attributes="0"/>
+          <Component id="jDesktopPane1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -41,26 +41,18 @@
               <Group type="102" attributes="0">
                   <Component id="apresentacoisasPanel" pref="168" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="filler4" min="-2" pref="224" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="LabelNomeJogador" min="-2" pref="205" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+                          <Component id="TextFIeldNomeJogador" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="LabelNomeJogador" min="-2" pref="205" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                                  <Component id="TextFIeldNomeJogador" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="mapasPanel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanelEscolhas" alignment="0" max="32767" attributes="0"/>
-                              <Component id="loadingPanel1" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="filler3" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="mapasPanel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanelEscolhas" alignment="0" max="32767" attributes="0"/>
+                      <Component id="loadingPanel1" max="32767" attributes="0"/>
                   </Group>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Component id="filler3" max="32767" attributes="0"/>
               </Group>
               <Component id="jPanelTitulo" max="32767" attributes="0"/>
           </Group>
@@ -83,10 +75,9 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="loadingPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="apresentacoisasPanel" pref="275" max="32767" attributes="0"/>
+                      <Component id="apresentacoisasPanel" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                  <Component id="filler4" pref="66" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -101,7 +92,7 @@
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="jButtonBack" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="Título" max="32767" attributes="0"/>
+                      <Component id="Título" pref="602" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jButtonAvancar" min="-2" max="-2" attributes="0"/>
@@ -350,8 +341,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.Box$Filler" name="filler4">
-        </Component>
         <Container class="javax.swing.JPanel" name="jPanelEscolhas">
 
           <Layout>

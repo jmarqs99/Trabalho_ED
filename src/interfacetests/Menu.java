@@ -20,7 +20,8 @@ public class Menu extends javax.swing.JFrame {
 
     private final JFrame frameMenuPrincipal;
     private Jogador jogador;
-    private Mapas mapa;
+    private File[] mapas; //Array com todos os mapas do jogo
+    private Mapas mapa; //Mapa escolhido pelo utilizador
 
     /**
      * Creates new form NewJFrame
@@ -34,21 +35,15 @@ public class Menu extends javax.swing.JFrame {
 
         this.frameMenuPrincipal = frame; //referência para frame principal
 
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //Anula o botão 'x'
-
         initComponents();
 
         jogador = new Jogador(TextFIeldNomeJogador.getText()); //Cria um jogador com o nome inserido na UI
 
-        File[] mapas = new File("./mapas").listFiles(); // Cria um array com todos os mapas
+        mapas = new File("./mapas").listFiles(); // Cria um array com todos os mapas
 
         for (int i = 0; i < mapas.length; i++) {
-            jComboBoxMapas.addItem((i + 1) + ". " + ReadJSON.loadJSON(mapas[i].getPath()).get("nome")); //Mostra todos os mapas
+            jComboBoxMapas.addItem((i + 1) + ". " + ReadJSON.loadJSON(mapas[i].getPath()).get("nome")); //Adiciona todos os mapas à Combo Box
         }
-
-        int opcao = jComboBoxMapas.getSelectedIndex();
-        this.mapa = new Mapas(ReadJSON.loadJSON(mapas[opcao].getPath()));
-        jogador.setPontos((int) this.mapa.getPONTOS());
 
         jButtonAvancar.setVisible(false);
         jPanelEscolhas.setVisible(false);
@@ -108,7 +103,6 @@ public class Menu extends javax.swing.JFrame {
         loadingPanel1 = new javax.swing.JPanel();
         jProgressBarLoading = new javax.swing.JProgressBar();
         loadingLabel = new javax.swing.JLabel();
-        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
         jPanelEscolhas = new javax.swing.JPanel();
         modoPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -150,7 +144,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(Título, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Título, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
                 .addGroup(jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelTituloLayout.createSequentialGroup()
                         .addComponent(jButtonAvancar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -380,7 +374,6 @@ public class Menu extends javax.swing.JFrame {
         jDesktopPane1.setLayer(filler3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(apresentacoisasPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(loadingPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(filler4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jPanelEscolhas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -390,22 +383,16 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addComponent(apresentacoisasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                 .addGap(45, 45, 45)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(filler4, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(218, 218, 218))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(LabelNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(TextFIeldNomeJogador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(mapasPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelEscolhas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loadingPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(LabelNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(filler3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(TextFIeldNomeJogador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(mapasPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelEscolhas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loadingPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(filler3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -425,8 +412,7 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(loadingPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(apresentacoisasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(3, 3, 3)
-                .addComponent(filler4, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                .addGap(69, 69, 69))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -437,7 +423,7 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -516,7 +502,7 @@ public class Menu extends javax.swing.JFrame {
      * esconder a janela de escolhas
      */
     private void showTheGame() {
-        new MenuJogo(this, "Automático", 1, jogador);
+        new MenuJogo(this, "Automático", 1, jogador, mapa);
         setVisible(false); //Faz desaparecer o menu de escolhas
         jRadioButtonModoAuto.doClick(); //Tira a opção do modo para a próxima vez estar limpo
         jComboBoxMapas.setSelectedIndex(0); //Tira a opção do mapa para a próxima vez estar limpo
@@ -625,6 +611,7 @@ public class Menu extends javax.swing.JFrame {
             jPanelEscolhas.setVisible(true);
             modoPanel.setVisible(true); //Pode escolher um dos modos
             apresentaNomeMapa.setText("Mapa: " + jComboBoxMapas.getSelectedItem()); //Apresenta o nome do mapa
+            this.mapa = new Mapas(ReadJSON.loadJSON(mapas[jComboBoxMapas.getSelectedIndex()-1].getPath()));
         }
     }//GEN-LAST:event_jButtonEscolherMapaActionPerformed
 
@@ -635,19 +622,19 @@ public class Menu extends javax.swing.JFrame {
      */
     private void jButtonAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvancarActionPerformed
         if (jRadioButtonNivelBasico.isSelected()) {
-            new MenuJogo(this, "Manual", 1, jogador);
+            new MenuJogo(this, "Manual", 1, jogador, mapa);
             jRadioButtonNivelBasico.doClick(); //Tira a opção do nível para a próxima vez estar limpo
-        } else if (rootPaneCheckingEnabled) {
-            new MenuJogo(this, "Manual", 2, jogador);
+        } else if (jRadioButtonNivelNormal.isSelected()) {
+            new MenuJogo(this, "Manual", 2, jogador, mapa);
             jRadioButtonNivelNormal.doClick(); //Tira a opção do nível para a próxima vez estar limpo
         } else {
-            new MenuJogo(this, "Manual", 3, jogador);
+            new MenuJogo(this, "Manual", 3, jogador, mapa);
             jRadioButtonNivelDificil.doClick(); //Tira a opção do nível para a próxima vez estar limpo
         }
+        this.setVisible(false);
         jRadioButtonModoManual.doClick(); //Tira a opção do modo para a próxima vez estar limpo
         jComboBoxMapas.setSelectedIndex(0); //Tira a opção do mapa para a próxima vez estar limpo
         jButtonEscolherMapa.doClick(); //Tira a opção do mapa para a próxima vez estar limpo
-
     }//GEN-LAST:event_jButtonAvancarActionPerformed
 
     /**
@@ -672,7 +659,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel dificuldadePanel;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler3;
-    private javax.swing.Box.Filler filler4;
     private javax.swing.JButton jButtonAvancar;
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonEscolherMapa;
