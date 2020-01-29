@@ -1,5 +1,6 @@
 package Classes;
 
+import EstruturasDeDados.LinkedOrderedList;
 import EstruturasDeDados.UnorderedListADT;
 import Exceptions.ElementNotFoundException;
 import Exceptions.FicheiroNaoEncontrado;
@@ -18,8 +19,10 @@ import java.util.Iterator;
  */
 public class Jogo {
 
-    Jogador jogador;
-    Mapas mapa;
+    private Jogador jogador;
+    private Mapas mapa;
+    private LinkedOrderedList<Integer> classificacao = new LinkedOrderedList<>();
+    private Classificacao c = new Classificacao(classificacao);
 
     public Jogo() throws IOException, FicheiroNaoEncontrado, ElementNotFoundException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -142,7 +145,7 @@ public class Jogo {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int pontosVida = (int) mapa.getPONTOS();
         jogador.setPontos(pontosVida);
-        
+
         String opcao = "entrada";
         String opcaoTemp; //Variável utilizada para poder calcular a pontuação do utilizador
         System.out.print("Chegaste a uma Casa Assombrada, vais querer entrar?\n1. Entrar\n0. Fugir\n\nOpção: ");
@@ -179,9 +182,10 @@ public class Jogo {
                 if (pontosVida <= 0) {
                     System.out.println("Perdeste, para a próxima consegues\nA tua pontuação vai ser adicionada ás pontuações, mas não te preocupes não contamos a ninguém");
                 } else {
-                    System.out.println("Boa conseguiste passar o mapa\nA tua pontuação vai ser adicionada ás pontuações");
+                    System.out.println("Boa conseguiste passar o mapa\nA tua pontuação vai ser adicionada ás pontuações\n\n");
                 }
-                // falta aqui o add da pontuação ás pontuações
+                c.addClassificacao(jogador);
+                System.out.println(c.getClassificacao());
                 break;
         }
 

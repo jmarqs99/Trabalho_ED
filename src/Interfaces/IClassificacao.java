@@ -5,12 +5,16 @@
  */
 package Interfaces;
 
+import Classes.Jogador;
+
 /**
  *
  * @author Utilizador
  */
-public interface IMapas {
- 
+public interface IClassificacao {
     
+    public void addClassificacao(Jogador j1);
+    
+    public String getClassificacao();
     
 }
