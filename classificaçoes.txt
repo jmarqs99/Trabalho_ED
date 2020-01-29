@@ -1,0 +1,4 @@
+[2020-01-27 16:09:55.772]:Jogador: joao Pontos: 80
+[2020-01-27 16:11:13.293]:Jogador: joao Pontos: 80
+[2020-01-27 16:12:19.611]:Jogador: manel Pontos: 0
+[2020-01-27 16:12:47.957]:Jogador: manel Pontos: 0
