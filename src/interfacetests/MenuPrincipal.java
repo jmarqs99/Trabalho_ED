@@ -5,8 +5,6 @@
  */
 package interfacetests;
 
-import javax.swing.JFrame;
-
 /**
  *
  * @author Joao Sousa
@@ -57,7 +55,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Titulo");
+        jLabel3.setText("Casa Assombrada");
 
         jDesktopPane2.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);

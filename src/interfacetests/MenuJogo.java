@@ -8,14 +8,10 @@ package interfacetests;
 import Classes.Jogador;
 import Classes.Mapas;
 import Classes.NetworkJogo;
-import Classes.ReadJSON;
 import EstruturasDeDados.UnorderedListADT;
 import Exceptions.ElementNotFoundException;
-import java.awt.event.WindowEvent;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -47,6 +43,7 @@ public class MenuJogo extends javax.swing.JFrame {
         this.dificuldade = dificuldade;
         this.modo = modo;
         this.mapa = mapa;
+        this.count = 1;
 
         this.jogador.setPontos((int) mapa.getPONTOS());
 
@@ -95,6 +92,29 @@ public class MenuJogo extends javax.swing.JFrame {
             jPanelModoManual.setVisible(false);//Desaparece a janela do modo manual
             jPanelModoAuto.setVisible(true); //Aparece a janela do modo auto
             jLabelDificuldade.setVisible(false);
+
+            try {
+                Iterator itr = mapa.getAposentos().iteratorShortestPath("entrada", "exterior");
+                jLabelCaminhos.setText("<html>entrada");
+                itr.next(); //Saltar a entrada
+                while (itr.hasNext()) {
+                    String proxAposento = (String) itr.next();
+                    if (!"exterior".equals(proxAposento)) {
+                        jLabelCaminhos.setText(jLabelCaminhos.getText() + "<br/>" + (count++) + "º - " + proxAposento);
+                    } else {
+                        jLabelCaminhos.setText(jLabelCaminhos.getText() + "<br/>" + "exterior </html>");
+                    }
+                }
+                jogador.setPontos(jogador.getPontos() - (((int) mapa.getAposentos().shortestPathWeight("entrada", "exterior")))); // Sem necessidade de multiplicar pela dficuldade pois a dificuldade é sempre a básica
+                updateInfoVida();
+                jButtonDesistir.setText("VOLTAR");
+            } catch (ElementNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao carregar o mapa, tente novamente."
+                        + "\nSe o erro persistir o mapa ou os aposentos podem estar mal formatados.", null, WIDTH); //Mensagem de erro numa janela
+                this.dispose();
+                frameMenuEscolhas.setVisible(true);
+            }
+
         }
 
         this.setVisible(true); //Faz aparecer esta janela do jogo
@@ -132,8 +152,6 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelCaminhos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(0, 0));
 
         Titulo.setBackground(new java.awt.Color(55, 55, 55));
         Titulo.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 24)); // NOI18N
@@ -256,11 +274,10 @@ public class MenuJogo extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabelVida, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabelNomeJogador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelDificuldade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                .addComponent(jLabelMapa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabelNomeJogador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelDificuldade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(jLabelMapa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         jPanelInformaçõesLayout.setVerticalGroup(
             jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,12 +334,12 @@ public class MenuJogo extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(jPanelInformações, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelInformações, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelModoManual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelModoAuto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -345,11 +362,11 @@ public class MenuJogo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -360,12 +377,12 @@ public class MenuJogo extends javax.swing.JFrame {
      */
     private void updateInfoVida() {
         jLabelVida.setText("Vida: " + jogador.getPontos());
-        if (jogador.getPontos()<0) {
+        if (jogador.getPontos() < 0) {
             jButtonEscolheAposento.setEnabled(false); //Bloqueia o botão para escolher aposentos
             JOptionPane.showMessageDialog(null, "Perdeste mas ao menos tentaste.\nVais voltar para o Menu onde podes escolher outro mapa."
                     + "\nPara a próxima consegues, que nenhum fantasma te persiga..", null, WIDTH); //Mensagem de erro numa janela
-                this.dispose();
-                frameMenuEscolhas.setVisible(true);
+            this.dispose();
+            frameMenuEscolhas.setVisible(true);
         }
     }
 
@@ -373,7 +390,7 @@ public class MenuJogo extends javax.swing.JFrame {
      * Contador do número de aposentos passados, ajuda a perceber a ordem do
      * caminho
      */
-    private int count = 1;
+    private int count;
 
     private void jButtonEscolheAposentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEscolheAposentoActionPerformed
         if (jComboBox1.getSelectedItem().equals("<Seleciona uma das opções>")) {

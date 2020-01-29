@@ -3,7 +3,6 @@ package interfacetests;
 import Classes.Jogador;
 import Classes.Mapas;
 import Classes.ReadJSON;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -67,7 +66,7 @@ public class Menu extends javax.swing.JFrame {
         jButtonBack.setToolTipText("Se voltar ao Menu Principal perde as preferências...");
         TextFIeldNomeJogador.setToolTipText("Após a escolha do mapa não podes mudar o nome!");
         jButtonEscolherMapa.setToolTipText("Após a escolha do modo não podes mudar o mapa!");
-        jProgressBarLoading.setToolTipText("Tens 5 segundos para cancelar a seleção..."); //ToolTip dada pela barra de progresso
+        jProgressBarLoading.setToolTipText("Tens 2 segundos para cancelar a seleção..."); //ToolTip dada pela barra de progresso
 
         setLocationRelativeTo(null); // Para posionar a janela para o meio do ecrã
     }
@@ -488,7 +487,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Timer usado para ajudar na progress bar
      */
-    private Timer timer = new Timer(50, new ActionListener() {
+    private Timer timer = new Timer(20, new ActionListener() {
         private int counter = 0;
 
         @Override
