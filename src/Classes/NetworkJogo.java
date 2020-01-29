@@ -52,4 +52,11 @@ public class NetworkJogo<T> extends Network<T> {
         }
         return result;
     }
+
+    @Override
+    public String toString() {
+        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }

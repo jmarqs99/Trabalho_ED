@@ -18,13 +18,13 @@ import java.util.logging.Logger;
  * @author Utilizador
  */
 public class Classificacao implements IClassificacao {
-    
+
     private LinkedOrderedList<Integer> classificacao;
-    
+
     public Classificacao(LinkedOrderedList<Integer> classificacao) {
         this.classificacao = classificacao;
     }
-    
+
     @Override
     public void addClassificacao(Jogador j1) {
         int pontos = j1.getPontos();
@@ -32,12 +32,12 @@ public class Classificacao implements IClassificacao {
         classificacao.add(pontos);
         save("Jogador: " + nome + " Pontos: " + pontos);
     }
-    
+
     @Override
     public String getClassificacao() {
         return classificacao.toString().replace("To String:", "Classificações: ");
     }
-    
+
     private void save(String mensagem) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("./classificaçoes.txt", true));
@@ -47,5 +47,5 @@ public class Classificacao implements IClassificacao {
             Logger.getLogger(Classificacao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

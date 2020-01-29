@@ -400,14 +400,14 @@ public class Network<T> implements NetworkADT<T> {
         for (int y = 0; y < size(); y++) {
             res = res + " " + vertices[y];
         }
-        res = res + "\n";
+        res = res + "<br>";
         for (int i = 0; i < size(); i++) {
             res = res + vertices[i] + " ";
             for (int y = 0; y < size(); y++) {
                 
                 res = res + " " + (adjMatrix[i][y] != null ? adjMatrix[i][y] : "N");
             }
-            res = res + "\n";
+            res = res + "<br>";
         }
         return res;
     }

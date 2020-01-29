@@ -8,6 +8,7 @@ package interfacetests;
 import Classes.Jogador;
 import Classes.Mapas;
 import Classes.NetworkJogo;
+import EstruturasDeDados.Network;
 import EstruturasDeDados.UnorderedListADT;
 import Exceptions.ElementNotFoundException;
 import static java.awt.image.ImageObserver.WIDTH;
@@ -107,6 +108,13 @@ public class MenuJogo extends javax.swing.JFrame {
                 }
                 jogador.setPontos(jogador.getPontos() - (((int) mapa.getAposentos().shortestPathWeight("entrada", "exterior")))); // Sem necessidade de multiplicar pela dficuldade pois a dificuldade é sempre a básica
                 updateInfoVida();
+
+                String map = "<html>" + mapa.getAposentos().toString();
+                //map.replaceAll("\n", "<br/>");
+                //map.replace("\n", "<br>");
+                map.concat("</html>");
+                jLabelShowMap.setText(map);
+
                 jButtonDesistir.setText("VOLTAR");
             } catch (ElementNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao carregar o mapa, tente novamente."
@@ -140,7 +148,7 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelModoAuto1 = new javax.swing.JLabel();
         jPanelModoAuto = new javax.swing.JPanel();
         jLabelModoAuto = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelShowMap = new javax.swing.JLabel();
         jPanelInformações = new javax.swing.JPanel();
         jButtonDesistir = new javax.swing.JButton();
         jLabelMapa = new javax.swing.JLabel();
@@ -217,25 +225,28 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelModoAuto.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabelModoAuto.setText("Modo Automático");
 
-        jLabel1.setText("jLabel2");
+        jLabelShowMap.setText("jLabel2");
 
         javax.swing.GroupLayout jPanelModoAutoLayout = new javax.swing.GroupLayout(jPanelModoAuto);
         jPanelModoAuto.setLayout(jPanelModoAutoLayout);
         jPanelModoAutoLayout.setHorizontalGroup(
             jPanelModoAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelModoAutoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelModoAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelModoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelModoAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelModoAutoLayout.createSequentialGroup()
+                        .addComponent(jLabelModoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97))
+                    .addGroup(jPanelModoAutoLayout.createSequentialGroup()
+                        .addComponent(jLabelShowMap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanelModoAutoLayout.setVerticalGroup(
             jPanelModoAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelModoAutoLayout.createSequentialGroup()
                 .addComponent(jLabelModoAuto)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelShowMap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -336,10 +347,10 @@ public class MenuJogo extends javax.swing.JFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addComponent(jPanelInformações, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelModoManual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelModoAuto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -451,7 +462,6 @@ public class MenuJogo extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEscolheAposento;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAposentoAtual;
     private javax.swing.JLabel jLabelCaminhoTitulo;
     private javax.swing.JLabel jLabelCaminhos;
@@ -461,6 +471,7 @@ public class MenuJogo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelModoAuto;
     private javax.swing.JLabel jLabelModoAuto1;
     private javax.swing.JLabel jLabelNomeJogador;
+    private javax.swing.JLabel jLabelShowMap;
     private javax.swing.JLabel jLabelVida;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelInformações;
