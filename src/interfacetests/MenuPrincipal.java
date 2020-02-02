@@ -6,6 +6,9 @@
 package interfacetests;
 
 import Classes.MenuClassficacoes;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -113,7 +116,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     private void jButtonClassificacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClassificacoesActionPerformed
-        new MenuClassficacoes(null);
+        try {
+            new MenuClassficacoes(null);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonClassificacoesActionPerformed
 
     /**

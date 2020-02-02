@@ -9,6 +9,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
 import Classes.Classificacao;
+import Classes.Mapas;
+import Classes.ReadJSON;
+import java.io.File;
 
 /**
  * <h3>
@@ -30,13 +33,20 @@ public class Test1 {
 
         //Jogo jogo = new Jogo();
         Jogador j1 = new Jogador("Manel");
+        File[] mapas = new File("./mapas").listFiles();
+        Mapas mapa;
+        mapa = new Mapas(ReadJSON.loadJSON(mapas[0].getPath()));
         LinkedOrderedList<Integer> classificacao = new LinkedOrderedList<>();
         Classificacao c = new Classificacao(classificacao);
-        for(int i=0;i<30;i++){
-            c.addClassificacao(j1);
-        }
+        //for(int i=0;i<30;i++){
+         //c.addClassificacao(j1,mapa);
+        //}
+        Jogador j2 = new Jogador("dsasf");
+        c.addClassificacao(j2,mapa);
         
-       System.out.println(c.getClassificacao());
+        //c.loadtxt();
+        System.out.println(c.getClassificacao());
+        
 
     }
 }

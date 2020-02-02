@@ -184,7 +184,7 @@ public class Jogo {
                 } else {
                     System.out.println("Boa conseguiste passar o mapa\nA tua pontuação vai ser adicionada ás pontuações\n\n");
                 }
-                c.addClassificacao(jogador);
+                c.addClassificacao(jogador, mapa);
                 System.out.println(c.getClassificacao());
                 break;
         }

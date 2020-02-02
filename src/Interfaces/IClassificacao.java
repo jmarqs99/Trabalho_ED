@@ -6,15 +6,18 @@
 package Interfaces;
 
 import Classes.Jogador;
+import Classes.Mapas;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
  * @author Utilizador
  */
 public interface IClassificacao {
-    
-    public void addClassificacao(Jogador j1);
-    
-    public String getClassificacao();
-    
+
+    public void addClassificacao(Jogador j1, Mapas mapa);
+
+    public String getClassificacao() throws FileNotFoundException, IOException;
+
 }

@@ -5,6 +5,9 @@
  */
 package Classes;
 
+import EstruturasDeDados.LinkedOrderedList;
+import java.io.IOException;
+
 /**
  *
  * @author Joao Sousa
@@ -12,13 +15,15 @@ package Classes;
 public class MenuClassficacoes extends javax.swing.JFrame {
 
     Mapas mapa;
+    LinkedOrderedList<Integer> classificacao = new LinkedOrderedList<>();
+    Classificacao cl = new Classificacao(classificacao);
 
     /**
      * Creates new form MenuClassficacoes. Shows all classifications of all maps
      *
      * @param mapa null if is to show all maps otherwise show only of one map
      */
-    public MenuClassficacoes(Mapas mapa) {
+    public MenuClassficacoes(Mapas mapa) throws IOException {
 
         this.setTitle("Classificações");
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //Anula o botão de fechar a janela 'x'
@@ -29,7 +34,13 @@ public class MenuClassficacoes extends javax.swing.JFrame {
             this.mapa = mapa;
         }
         this.setVisible(true); //Faz aparecer esta janela do jogo
-        this.setLocationRelativeTo(null); //Coloca a janela ao centro do ecrã
+        this.setLocationRelativeTo(null); //Coloca a janela ao centro do 
+
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            jTable1.setValueAt((i+1), i, 0);
+            jTable1.setValueAt(cl.getClassificacao(), i, 1);
+        }
+
     }
 
     /**

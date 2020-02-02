@@ -1,34 +1,272 @@
-[2020-01-27 16:09:55.772]:Jogador: joao Pontos: 80
-[2020-01-27 16:11:13.293]:Jogador: joao Pontos: 80
-[2020-01-27 16:12:19.611]:Jogador: manel Pontos: 0
-[2020-01-27 16:12:47.957]:Jogador: manel Pontos: 0
-[2020-01-29 15:43:55.099]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.100]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.100]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.100]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.101]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.101]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.101]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.101]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.102]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.102]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.102]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.103]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.103]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.103]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.103]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.104]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.104]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.104]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.105]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.105]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.105]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.106]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.106]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.106]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.107]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.107]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.107]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.107]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.108]:Jogador: Manel Pontos: 0
-[2020-01-29 15:43:55.108]:Jogador: Manel Pontos: 0
+[2020-02-02 16:49:03.117]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.118]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.119]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.119]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.120]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.120]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.120]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.121]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.121]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.128]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.129]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.130]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.130]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.131]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.131]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.131]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.132]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.132]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.133]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.135]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.135]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.136]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.137]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.138]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.138]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.139]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.139]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.140]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.140]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:03.141]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.157]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.159]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.159]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.160]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.161]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.161]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.162]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.162]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.162]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.163]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.163]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.163]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.164]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.164]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.165]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.165]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.166]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.167]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.168]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.169]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.169]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.170]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.170]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.171]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.171]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.172]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.173]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.173]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.174]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:49:39.174]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.661]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.663]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.663]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.664]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.664]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.665]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.665]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.666]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.666]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.667]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.667]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.667]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.669]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.669]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.670]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.670]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.671]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.672]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.672]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.673]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.673]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.674]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.674]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.675]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.675]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.676]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.676]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.677]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.677]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:22.678]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.273]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.274]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.275]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.275]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.276]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.276]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.276]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.277]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.277]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.277]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.278]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.278]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.278]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.279]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.279]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.280]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.280]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.280]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.281]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.281]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.281]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.281]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.282]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.282]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.282]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.283]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.284]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.285]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.285]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:50:54.285]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.069]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.070]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.071]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.071]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.071]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.073]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.073]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.074]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.074]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.075]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.076]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.076]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.077]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.077]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.078]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.078]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.079]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.079]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.080]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.080]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.081]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.082]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.082]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.083]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.083]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.084]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.085]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.086]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.087]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:03.087]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.015]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.017]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.017]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.018]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.018]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.019]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.019]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.019]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.020]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.021]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.021]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.022]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.022]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.022]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.023]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.024]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.025]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.026]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.027]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.027]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.028]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.028]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.029]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.029]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.029]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.030]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.030]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.031]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.031]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:12.031]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.457]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.459]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.459]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.460]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.461]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.461]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.462]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.462]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.462]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.462]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.464]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.464]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.464]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.465]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.465]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.466]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.468]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.469]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.470]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.471]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.472]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.472]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.473]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.474]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.474]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.475]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.475]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.476]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.477]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:51:48.477]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.835]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.838]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.839]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.839]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.840]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.840]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.840]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.841]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.842]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.843]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.844]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.848]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.855]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.857]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.858]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.860]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.861]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.861]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.862]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.863]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.864]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.864]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.865]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.866]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.866]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.867]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.867]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.869]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.870]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:52:29.870]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.981]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.982]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.984]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.984]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.985]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.985]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.986]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.986]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.987]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.987]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.988]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.988]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.989]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.989]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.990]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.990]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.991]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.992]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.992]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.993]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.993]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.993]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.994]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.994]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.994]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.995]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.995]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.996]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.996]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:53:34.998]: Jogador: Manel Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:55:20.021]: Jogador: dsasf Pontos: 0 Mapa: sexta-feira 13
+[2020-02-02 16:56:59.306]: Jogador: dsasf Pontos: 0 Mapa: sexta-feira 13
