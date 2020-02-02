@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfacetests;
 
 import Classes.Jogador;
 import Classes.Mapas;
+import Classes.MenuClassficacoes;
 import Classes.NetworkJogo;
 import EstruturasDeDados.Network;
 import EstruturasDeDados.UnorderedListADT;
@@ -29,7 +25,7 @@ public class MenuJogo extends javax.swing.JFrame {
     private final Mapas mapa;
 
     /**
-     * Creates new form MenuJogo
+    * Creates new form MenuJogo
      *
      * @param frame Frame do Menu de escolhas
      * @param modo Modo de jogo (Manual ou Automático)
@@ -49,13 +45,18 @@ public class MenuJogo extends javax.swing.JFrame {
         this.jogador.setPontos((int) mapa.getPONTOS());
 
         this.setTitle("Jogo - A Casa Assombrada");
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //Anula o botão de fechar a janela 'x'
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //O botão de fechar a janela 'x' fecha esta janela só
         initComponents();
-        this.setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize"
+        this.setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize" ACHO QUE NÃO É PRECISO
+
+        this.jButton1.setVisible(false); //Desapere o botão das classificações e só deve aparecer quando o jogador conclui o mapa
+
+        this.jLabelInformacoes.setText("<html>O jogo começa contigo na entrada, o objetivo é conseguires chegar ao exterior para "
+                + "poderes fugir. Algumas salas vão ter fantasmas outras não, vais ter de confiar no teu instinto para fugires desta casa.");
 
         //NOTA: REMOVI O BOTÃO VOLTAR, PORQUE O BOTÃO DESISTIR FICA 'VOLTAR' QUANDO O UTILIZADOR TERMINA O JOGO
-        jLabelMapa.setText("Mapa: " + mapa.getNOME());
-        jLabelNomeJogador.setText("Nome: " + this.jogador.getNome()); //O NOME SE TIVER 30CHARS FICA ESCONDIDO, FAZER ALGUMA COISA!
+        jLabelMapa.setText("Mapa: " + this.mapa.getNOME());
+        jLabelNomeJogador.setText("Nome: " + this.jogador.getNome());
         this.updateInfoVida(); //Método criado para atualizar a vida no painel de informações
 
         if (modo.equals("Manual")) {
@@ -112,7 +113,7 @@ public class MenuJogo extends javax.swing.JFrame {
                 String map = "<html>" + mapa.getAposentos().toString();
                 //map.replaceAll("\n", "<br/>");
                 //map.replace("\n", "<br>");
-                map.concat("</html>");
+                map = map.concat("</html>");
                 jLabelShowMap.setText(map);
 
                 jButtonDesistir.setText("VOLTAR");
@@ -122,7 +123,6 @@ public class MenuJogo extends javax.swing.JFrame {
                 this.dispose();
                 frameMenuEscolhas.setVisible(true);
             }
-
         }
 
         this.setVisible(true); //Faz aparecer esta janela do jogo
@@ -155,9 +155,12 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelDificuldade = new javax.swing.JLabel();
         jLabelNomeJogador = new javax.swing.JLabel();
         jLabelVida = new javax.swing.JLabel();
+        jLabelInformacoes = new javax.swing.JLabel();
+        jLabelTituloInformacoes = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabelCaminhoTitulo = new javax.swing.JLabel();
         jLabelCaminhos = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -225,7 +228,8 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelModoAuto.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabelModoAuto.setText("Modo Automático");
 
-        jLabelShowMap.setText("jLabel2");
+        jLabelShowMap.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelShowMap.setText("*Aparece o mapa quando se joga*");
 
         javax.swing.GroupLayout jPanelModoAutoLayout = new javax.swing.GroupLayout(jPanelModoAuto);
         jPanelModoAuto.setLayout(jPanelModoAutoLayout);
@@ -272,36 +276,53 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelVida.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 16)); // NOI18N
         jLabelVida.setText("Vida:");
 
+        jLabelInformacoes.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
+        jLabelInformacoes.setText("*Aparece ao iniciar o programa*");
+        jLabelInformacoes.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabelTituloInformacoes.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
+        jLabelTituloInformacoes.setText("Informações:");
+
         javax.swing.GroupLayout jPanelInformaçõesLayout = new javax.swing.GroupLayout(jPanelInformações);
         jPanelInformações.setLayout(jPanelInformaçõesLayout);
         jPanelInformaçõesLayout.setHorizontalGroup(
             jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInformaçõesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonDesistir)
+                .addGap(92, 92, 92))
             .addGroup(jPanelInformaçõesLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelInformaçõesLayout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(jButtonDesistir))
-                    .addGroup(jPanelInformaçõesLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabelVida, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                             .addComponent(jLabelNomeJogador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabelDificuldade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addComponent(jLabelMapa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 20, Short.MAX_VALUE))
+                            .addComponent(jLabelMapa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInformaçõesLayout.createSequentialGroup()
+                        .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelTituloInformacoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelInformacoes, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                        .addGap(60, 60, 60))))
         );
         jPanelInformaçõesLayout.setVerticalGroup(
             jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInformaçõesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelDificuldade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelDificuldade, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelNomeJogador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelNomeJogador, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelVida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(240, 240, 240)
+                .addComponent(jLabelVida, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(jLabelTituloInformacoes)
+                .addGap(0, 0, 0)
+                .addComponent(jLabelInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonDesistir)
                 .addContainerGap())
         );
@@ -309,19 +330,32 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelCaminhoTitulo.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabelCaminhoTitulo.setText("Caminho percorrido:");
 
-        jLabelCaminhos.setText("jLabel3");
+        jLabelCaminhos.setText("*Aparece quando se joga*");
         jLabelCaminhos.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabelCaminhos.setAutoscrolls(true);
+
+        jButton1.setText("Classificações");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelCaminhos, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelCaminhoTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelCaminhos, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCaminhoTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(53, 53, 53))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,6 +364,8 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addComponent(jLabelCaminhoTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelCaminhos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
 
@@ -345,7 +381,7 @@ public class MenuJogo extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(jPanelInformações, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelInformações, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelModoManual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -410,6 +446,7 @@ public class MenuJogo extends javax.swing.JFrame {
             jButtonEscolheAposento.setEnabled(false); //Desativa o botão para não se escolher mais opções que podem causar problemas no sistema
             jButtonDesistir.setText("VOLTAR"); //O botão 'DESISTIR' passa  chamar-se 'VOLTAR' uma vez que o jogo já chegou ao fim
             jLabelCaminhos.setText(jLabelCaminhos.getText() + "<br/>exterior</html>"); //Acrescenta o exterior ao caminho
+            jButton1.setVisible(true); //Aparece o botão para mostrar as classificações
         } else {
             String aposentoPassado = jLabelAposentoAtual.getText().replace("Tu estás em: ", ""); //Obtém o aposento em que se está antes de clicar no novo aposento para poder calcular a vida
             String aposentoAtual = (String) jComboBox1.getSelectedItem(); //Aposento selecionado para ir
@@ -456,8 +493,13 @@ public class MenuJogo extends javax.swing.JFrame {
         frameMenuEscolhas.setVisible(true);
     }//GEN-LAST:event_jButtonDesistirActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new MenuClassficacoes(mapa);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonDesistir;
     private javax.swing.JButton jButtonEscolheAposento;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -467,11 +509,13 @@ public class MenuJogo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCaminhos;
     private javax.swing.JLabel jLabelDificuldade;
     private javax.swing.JLabel jLabelIndicação1;
+    private javax.swing.JLabel jLabelInformacoes;
     private javax.swing.JLabel jLabelMapa;
     private javax.swing.JLabel jLabelModoAuto;
     private javax.swing.JLabel jLabelModoAuto1;
     private javax.swing.JLabel jLabelNomeJogador;
     private javax.swing.JLabel jLabelShowMap;
+    private javax.swing.JLabel jLabelTituloInformacoes;
     private javax.swing.JLabel jLabelVida;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelInformações;
