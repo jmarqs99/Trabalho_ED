@@ -13,7 +13,7 @@ package EstruturasDeDados;
 public class DoubleNode<T> {
 
     private T element;
-    private DoubleNode<T> next;
+    DoubleNode<T> next;
     private DoubleNode<T> prev;
 
     public DoubleNode() {
