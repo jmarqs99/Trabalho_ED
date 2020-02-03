@@ -36,4 +36,12 @@ public class Jogador {
         this.pontos = pontos;
     }
 
+    public int compareTo(Jogador j) {
+        if (j.pontos != this.pontos) {
+            return this.pontos - j.pontos;
+        } else {
+            return 0;
+        }
+    }
+
 }

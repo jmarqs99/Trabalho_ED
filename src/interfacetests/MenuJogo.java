@@ -8,7 +8,10 @@ import EstruturasDeDados.Network;
 import EstruturasDeDados.UnorderedListADT;
 import Exceptions.ElementNotFoundException;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.io.IOException;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -494,7 +497,11 @@ public class MenuJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDesistirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new MenuClassficacoes(mapa);
+        try {
+            new MenuClassficacoes(mapa);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuJogo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

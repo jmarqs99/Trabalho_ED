@@ -36,15 +36,15 @@ public class Test1 {
         File[] mapas = new File("./mapas").listFiles();
         Mapas mapa;
         mapa = new Mapas(ReadJSON.loadJSON(mapas[0].getPath()));
-        LinkedOrderedList<Integer> classificacao = new LinkedOrderedList<>();
-        Classificacao c = new Classificacao(classificacao);
+        LinkedOrderedList<Jogador> classificacao = new LinkedOrderedList<>();
+        Classificacao c = new Classificacao(classificacao,mapa,1);
         //for(int i=0;i<30;i++){
          //c.addClassificacao(j1,mapa);
         //}
         Jogador j2 = new Jogador("dsasf");
-        c.addClassificacao(j2,mapa);
+        c.addClassificacao(j2);
         
-        //c.loadtxt();
+        c.loadtxt();
         System.out.println(c.getClassificacao());
         
 

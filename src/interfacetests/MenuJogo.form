@@ -265,7 +265,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabelTituloInformacoes" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jLabelInformacoes" pref="190" max="32767" attributes="0"/>
+                                  <Component id="jLabelInformacoes" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="60" pref="60" max="-2" attributes="0"/>
                           </Group>
@@ -277,13 +277,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelMapa" pref="21" max="32767" attributes="0"/>
+                      <Component id="jLabelMapa" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelDificuldade" pref="21" max="32767" attributes="0"/>
+                      <Component id="jLabelDificuldade" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelNomeJogador" pref="23" max="32767" attributes="0"/>
+                      <Component id="jLabelNomeJogador" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabelVida" pref="27" max="32767" attributes="0"/>
+                      <Component id="jLabelVida" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jLabelTituloInformacoes" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>

@@ -21,8 +21,8 @@ public class Jogo {
 
     private Jogador jogador;
     private Mapas mapa;
-    private LinkedOrderedList<Integer> classificacao = new LinkedOrderedList<>();
-    private Classificacao c = new Classificacao(classificacao);
+    private LinkedOrderedList<Jogador> classificacao = new LinkedOrderedList<>();
+    private Classificacao c = new Classificacao(classificacao, mapa, 1);
 
     public Jogo() throws IOException, FicheiroNaoEncontrado, ElementNotFoundException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -184,7 +184,7 @@ public class Jogo {
                 } else {
                     System.out.println("Boa conseguiste passar o mapa\nA tua pontuação vai ser adicionada ás pontuações\n\n");
                 }
-                c.addClassificacao(jogador, mapa);
+                c.addClassificacao(jogador);
                 System.out.println(c.getClassificacao());
                 break;
         }

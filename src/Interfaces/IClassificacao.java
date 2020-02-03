@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public interface IClassificacao {
 
-    public void addClassificacao(Jogador j1, Mapas mapa);
+    public void addClassificacao(Jogador j1);
 
     public String getClassificacao() throws FileNotFoundException, IOException;
 
