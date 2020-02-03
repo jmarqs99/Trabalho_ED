@@ -5,47 +5,40 @@ import EstruturasDeDados.Network;
 import Exceptions.ElementNotFoundException;
 
 /**
- * <h3>
- * ESTG - Escola Superior de Tecnologia e Gestão<br>
- * IPP - Instituto Politécnico do Porto<br>
- * LEI - Licenciatura em Engenharia Informática<br>
- * PP - Paradigmas de Programação<br>
- * </h3>
- * <p>
- * <strong>Author: </strong><br>
- * Joao Sousa<br>
- * <strong>Description: </strong><br>
- * Class that represents
- * </p>
- * @param <T>
+ * Classe para adicionar métodos adicionais á Network
+ *
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551
+ * @author João Sousa nº8180175
+ * @param <T> genérico
  */
-
 public class NetworkJogo<T> extends Network<T> {
 
     /**
-     * Gives the Weight between the vertices given
+     * Define o peso entre os dois vertices dados
      *
-     * @param vertex1
-     * @param vertex2
-     * @return The weight of the edge between the vertices given
-     * @throws ElementNotFoundException if at least on of the vertices wasn't
-     * found
+     * @param vertex1 primeiro vertice
+     * @param vertex2 segundo vertice
+     * @return O peso da aresta entre os vertices dados
+     * @throws ElementNotFoundException caso um dos vertices não seja encontrado
      */
     public double getWeight(T vertex1, T vertex2) throws ElementNotFoundException {
         return (double) (super.adjMatrix[super.getIndex(vertex1)][super.getIndex(vertex2)]);
     }
 
     /**
-     * Method to get all the edges of a specific Vertex.
+     * Método para retornar todas as arestas para o dado vertice
      *
-     * @param vertex Vertex to get the edges
-     * @return An Unordered List with the edges
-     * @throws ElementNotFoundException if the Vertex wasn't found
+     * @param vertex vertice ao qual irão ser procuradas arestas
+     * @return uma lista não ordenada com os vertices aos quais existe ligação
+     * @throws ElementNotFoundException caso o vertice não seja encontrado
      */
     public ArrayUnorderedList<T> getEdges(T vertex) throws ElementNotFoundException {
         int index = getIndex(vertex);
         ArrayUnorderedList result = new ArrayUnorderedList<>();
+        
         for (int i = 0; i < super.vertices.length; i++) {
+            
             if (adjMatrix[index][i] != null) {
                 result.addToRear(super.vertices[i]);
             }
@@ -57,6 +50,5 @@ public class NetworkJogo<T> extends Network<T> {
     public String toString() {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

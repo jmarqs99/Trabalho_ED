@@ -17,7 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *  adsfsagkhsajfhsakjlfghhaj
+ * adsfsagkhsajfhsakjlfghhaj
+ *
  * @author Utilizador
  */
 public class Classificacao implements IClassificacao {
@@ -45,15 +46,13 @@ public class Classificacao implements IClassificacao {
         String linha = lerArq.readLine(); // lê a primeira linha
         // a variável "linha" recebe o valor "null" quando o processo
         // de repetição atingir o final do arquivo texto
+        String result = "";
         while (linha != null) {
-            int i = 0;
-            System.out.printf("%s\n", linha);
+            result += linha;
             linha = lerArq.readLine();
         }
-        return "aaa";
+        return result;
     }
-    
-    
 
     public void loadtxt() throws FileNotFoundException, IOException {
         FileReader arq = new FileReader("./Classificacoes/classificacoes_" + getMapa().getNOME() + "_" + getDificuldade() + ".txt");
@@ -63,12 +62,12 @@ public class Classificacao implements IClassificacao {
         // de repetição atingir o final do arquivo texto
         while (linha != null) {
             // Busca a posição da Palavra Pontos
-            int posPontos  = linha.indexOf("Pontos:");
+            int posPontos = linha.indexOf("Pontos:");
             //Cria um jogador com o nome
-            Jogador temp = new Jogador(linha.substring(37, posPontos-1));
+            Jogador temp = new Jogador(linha.substring(37, posPontos - 1));
             // Busca a posição da Palavra Mapa
             int posMapa = linha.indexOf("Mapa:");
-            temp.setPontos(Integer.parseInt(linha.substring(posPontos+8, posMapa-1)));
+            temp.setPontos(Integer.parseInt(linha.substring(posPontos + 8, posMapa - 1)));
             getClassificacao().add(temp);
             linha = lerArq.readLine();
         }

@@ -6,8 +6,11 @@
 package Classes;
 
 /**
+ * Classe para gerir informações acerca do jogador
  *
- * @author Utilizador
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551
+ * @author João Sousa nº8180175
  */
 public class Jogador implements Comparable<Jogador> {
 
@@ -17,21 +20,35 @@ public class Jogador implements Comparable<Jogador> {
     /**
      * Construtor parameterizado
      *
-     * @param pontos pontos iniciais do jogo, dado pelo mapa
      * @param nome nome do jogador
      */
     public Jogador(String nome) {
         this.nome = nome;
     }
 
+    /**
+     * Método para retornar nome do jogador
+     *
+     * @return nome do jogador
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Método para retornar número de pontos do jogador
+     *
+     * @return número de pontos do jogador
+     */
     public int getPontos() {
         return pontos;
     }
 
+    /**
+     * Método para definir número de pontos do jogador
+     *
+     * @param pontos número de pontos a serem inseridos
+     */
     public void setPontos(int pontos) {
         this.pontos = pontos;
     }

@@ -44,9 +44,9 @@ public class Test1 {
         Jogador j2 = new Jogador("dsasf");
        //c.addClassificacao(j2);
         
-        c.loadtxt();
-        //System.out.println(c.getsClassificacao());
-        System.out.println(c.getClassificacao().first().getNome());
+        //c.loadtxt();
+        System.out.println(c.getsClassificacao());
+        //System.out.println(c.getClassificacao().first().getNome());
         
 
     }

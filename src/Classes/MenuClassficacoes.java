@@ -14,9 +14,9 @@ import java.io.IOException;
  */
 public class MenuClassficacoes extends javax.swing.JFrame {
 
-    Mapas mapa;
-    LinkedOrderedList<Integer> classificacao = new LinkedOrderedList<>();
-    Classificacao cl = new Classificacao(classificacao);
+    private Mapas mapa;
+    private LinkedOrderedList<Jogador> classificacao = new LinkedOrderedList<>();
+    private Classificacao cl = new Classificacao(classificacao, mapa, 1);
 
     /**
      * Creates new form MenuClassficacoes. Shows all classifications of all maps
@@ -37,8 +37,8 @@ public class MenuClassficacoes extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); //Coloca a janela ao centro do 
 
         for (int i = 0; i < jTable1.getRowCount(); i++) {
-            jTable1.setValueAt((i+1), i, 0);
-            jTable1.setValueAt(cl.getClassificacao(), i, 1);
+            jTable1.setValueAt((i + 1), i, 0);
+            jTable1.setValueAt(cl.getsClassificacao(), i, 1);
         }
 
     }

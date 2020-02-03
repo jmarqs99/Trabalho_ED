@@ -5,7 +5,6 @@
  */
 package Classes;
 
-import EstruturasDeDados.Network;
 import EstruturasDeDados.NetworkADT;
 import Exceptions.ElementNotFoundException;
 import java.util.logging.Level;
@@ -13,8 +12,11 @@ import java.util.logging.Logger;
 import org.json.simple.*;
 
 /**
+ * Classe para inserir vértices e arestas do mapa em JSON
  *
- * @author Utilizador
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551
+ * @author João Sousa nº8180175
  */
 public class Mapas {
 
@@ -23,8 +25,9 @@ public class Mapas {
     private NetworkADT<String> aposentos;
 
     /**
+     * Construtor parameterizado
      *
-     * @param mapa
+     * @param mapa JSONObject para ser retiradas as informações
      */
     public Mapas(JSONObject mapa) {
 
@@ -56,24 +59,27 @@ public class Mapas {
     }
 
     /**
+     * Método para retornar os aposentos do mapa
      *
-     * @return
+     * @return os aposentos do mapa
      */
     public NetworkADT<String> getAposentos() {
         return aposentos;
     }
 
     /**
+     * Método para retornar o nome do mapa
      *
-     * @return
+     * @return nome do mapa
      */
     public String getNOME() {
         return NOME;
     }
 
     /**
+     * Método para retornar número de pontos do mapa
      *
-     * @return
+     * @return número de pontos do mapa
      */
     public long getPONTOS() {
         return PONTOS;
