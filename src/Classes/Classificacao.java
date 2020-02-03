@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ *  adsfsagkhsajfhsakjlfghhaj
  * @author Utilizador
  */
 public class Classificacao implements IClassificacao {
@@ -75,7 +75,12 @@ public class Classificacao implements IClassificacao {
             writer.close();
         } catch (IOException ex) {
             Logger.getLogger(Classificacao.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
+            
+            
         }
     }
 
+    
 }
