@@ -9,7 +9,7 @@ package Classes;
  *
  * @author Utilizador
  */
-public class Jogador {
+public class Jogador implements Comparable<Jogador> {
 
     private int pontos;
     private final String nome;
@@ -36,6 +36,7 @@ public class Jogador {
         this.pontos = pontos;
     }
 
+    @Override
     public int compareTo(Jogador j) {
         if (j.pontos != this.pontos) {
             return this.pontos - j.pontos;

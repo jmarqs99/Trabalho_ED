@@ -42,10 +42,11 @@ public class Test1 {
          //c.addClassificacao(j1,mapa);
         //}
         Jogador j2 = new Jogador("dsasf");
-        c.addClassificacao(j2);
+       //c.addClassificacao(j2);
         
         c.loadtxt();
-        System.out.println(c.getClassificacao());
+        //System.out.println(c.getsClassificacao());
+        System.out.println(c.getClassificacao().first().getNome());
         
 
     }

@@ -18,6 +18,6 @@ public interface IClassificacao {
 
     public void addClassificacao(Jogador j1);
 
-    public String getClassificacao() throws FileNotFoundException, IOException;
+    public String getsClassificacao() throws FileNotFoundException, IOException;
 
 }
