@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Classe para gerir a interface gráfica que apresenta o menu para iniciar o
- * jogo
+ * jogo.
  *
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
@@ -21,28 +21,39 @@ import javax.swing.JOptionPane;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
+    /**
+     * Lista de classificações. São carregadas devido á persistência de dados
+     * nesta classe.
+     */
     UnorderedListADT<Classificacao> classificacoes;
 
     /**
-     * Creates new form MenuPrincipal
+     * Creates new form MenuPrincipal.
      */
     public MenuPrincipal() {
-        this.setTitle("Menu Principal");
+        this.setTitle("Menu Principal"); //Titulo da janela
         initComponents();
-        setResizable(false);
+        setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize"
 
         this.classificacoes = new ArrayUnorderedList<>();
         try {
-            loadtxt();
+            loadtxt(); //Carrega todos os ficheiros de classificações
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao carregar as classificações."
                     + "\nO jogo vai prosseguir sem classificações.", null, WIDTH); //Mensagem de erro numa janela
         }
 
-        //Dar Load de todos os ficheiros classificaçoes
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); //Coloca a janela ao centro do ecrã
     }
 
+    /**
+     * Método usado para carregar todos os ficheiros, com o estilo definido pelo
+     * método 'save' da classe 'Classificacao', que estão na pasta
+     * 'Classificacoes'.
+     *
+     * @throws FileNotFoundException caso não encontre o ficheiro
+     * @throws IOException quando ocorre um erro de I/O
+     */
     private void loadtxt() throws FileNotFoundException, IOException {
         File[] classifs = new File("./Classificacoes").listFiles();
 
@@ -58,22 +69,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
             int posMap = linha.indexOf("Mapa:");
             // Busca a posição da Palavra Dificuldade
             int posDificuldade = linha.indexOf("Dificuldade:");
-            String nomeMapa = linha.substring(posMap + 6, posDificuldade - 1);
-            int dificuldade = Integer.parseInt(linha.substring(posDificuldade + 13, posDificuldade + 14));
-            Classificacao classificacao = new Classificacao(nomeMapa, dificuldade);
+            String nomeMapa = linha.substring(posMap + 6, posDificuldade - 1); //Busca a nome do Mapa
+            int dificuldade = Integer.parseInt(linha.substring(posDificuldade + 13, posDificuldade + 14)); //Busca a dificuldade
+            Classificacao classificacao = new Classificacao(nomeMapa, dificuldade); //Cria uma classificacao onde vai adicionar as classificações contidas no ficheiro
 
             while (linha != null) {
                 // Busca a posição da Palavra Pontos
                 int posPontos = linha.indexOf("Pontos:");
-                //Cria um jogador com o nome
+                // Cria um jogador com o nome encontrado
                 Jogador temp = new Jogador(linha.substring(37, (posPontos - 1)));
                 // Busca a posição da Palavra Mapa
                 int posMapaJ = linha.indexOf("Mapa:");
+                // Associa a pontuação ao jogador
                 temp.setPontos(Integer.parseInt(linha.substring(posPontos + 8, posMapaJ - 1)));
+                // Adiciona o Jogador (classificação) ás classificações através do método 'addClassificacaoRepetida(Jogador j1)' que guarda a classificação do jogador sem dar save novamente no ficheiro
                 classificacao.addClassificacaoRepetida(temp);
+                // Avança para a linha seguinte
                 linha = lerArq.readLine();
             }
-            this.classificacoes.addToFront(classificacao);
+            this.classificacoes.addToFront(classificacao); // Adiciona estas classificações á lista de classificações e passa para o ficheiro seguinte
         }
     }
 
@@ -160,11 +174,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Botão para Iniciar o jogo.
+     *
+     * @param evt evento de um clique no botão
+     */
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
         this.setVisible(false);
         new Menu(this, classificacoes).setVisible(true);
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
+    /**
+     * Botão para mostrar as classificações de todos os mapas e todas as
+     * dificuldades.
+     *
+     * @param evt evento de um clique no botão
+     */
     private void jButtonClassificacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClassificacoesActionPerformed
         new MenuClassficacoes(this.classificacoes);
     }//GEN-LAST:event_jButtonClassificacoesActionPerformed

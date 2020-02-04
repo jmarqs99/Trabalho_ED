@@ -5,7 +5,7 @@ import Classes.NetworkJogo;
 
 /**
  * Classe para gerir a interface gráfica que apresenta o mapa opcional para o
- * modo manual
+ * modo manual.
  *
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
@@ -13,16 +13,21 @@ import Classes.NetworkJogo;
  */
 public class VisualizarMapa extends javax.swing.JFrame {
 
+    /**
+     * Mapa a ser visualizado.
+     */
     private final Mapas mapa;
 
     /**
-     * Creates new form VisualizarMapa
+     * Creates new form VisualizarMapa.
      *
-     * @param mapa
+     * @param mapa mapa que se pretende mostrar
      */
     public VisualizarMapa(Mapas mapa) {
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //Muda o botão de fechar a janela 'x' para fechar apenas a janela e não o programa
+        this.setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize"
+        
         this.mapa = mapa;
 
         jLabelMapa.setToolTipText("Legendas: S - Com ligação   N - Sem ligação"); //Legendas do mapa
@@ -30,11 +35,10 @@ public class VisualizarMapa extends javax.swing.JFrame {
         jLabelTitulo.setText("Mapa: " + mapa.getNOME()); //Titulo com o Nome do mapa
         String map = "<html>" + ((NetworkJogo) mapa.getAposentos()).toStringWithoutGhosts();
         map = map.concat("</html>");
-        jLabelMapa.setText(map);
+        jLabelMapa.setText(map); //Apresenta o mapa
 
-        this.setVisible(true);
-        this.setResizable(false);
-        this.setLocationRelativeTo(null);
+        this.setVisible(true); //Torna este janela visivel
+        this.setLocationRelativeTo(null); // Para posionar a janela para o meio do ecrã
     }
 
     /**

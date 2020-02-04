@@ -16,7 +16,7 @@ import javax.swing.Timer;
 
 /**
  * Classe para gerir a interface gráfica que apresenta o menu das preferências
- * do jogo
+ * do jogo.
  *
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
@@ -24,21 +24,41 @@ import javax.swing.Timer;
  */
 public class Menu extends javax.swing.JFrame {
 
+    /**
+     * Menu Principal onde se inicia o programa.
+     */
     private final JFrame frameMenuPrincipal;
+
+    /**
+     * Jogador que vai ser criado neste menu.
+     */
     private Jogador jogador;
-    private final File[] mapas; //Array com todos os mapas do jogo
-    private Mapas mapa; //Mapa escolhido pelo utilizador
+
+    /**
+     * Array com todos os mapas do jogo.
+     */
+    private final File[] mapas;
+
+    /**
+     * Mapa escolhido pelo utilizador neste menu.
+     */
+    private Mapas mapa;
+
+    /**
+     * Lista de classificações carregadas no inicio do jogo. São carregadas
+     * devido á persistência de dados.
+     */
     private final UnorderedListADT<Classificacao> classificacoes;
 
     /**
      * Creates new form NewJFrame
      *
-     * @param frame
-     * @param classifics
+     * @param frame Frame do Menu Principal
+     * @param classifics Lista ordenada com as classificações de todos os mapas
      */
     public Menu(JFrame frame, UnorderedListADT<Classificacao> classifics) {
-        this.setTitle("Menu"); //Titulo da window
-        setResizable(false);
+        this.setTitle("Menu"); //Titulo da janela
+        setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize"
         initComponents();
 
         this.classificacoes = (ArrayUnorderedList<Classificacao>) classifics;
@@ -50,30 +70,30 @@ public class Menu extends javax.swing.JFrame {
             jComboBoxMapas.addItem((i + 1) + ". " + ReadJSON.loadJSON(mapas[i].getPath()).get("nome")); //Adiciona todos os mapas à Combo Box
         }
 
-        jButtonAvancar.setVisible(false);
-        jPanelEscolhas.setVisible(false);
+        jButtonAvancar.setVisible(false); //Desaparece o botão para avançar para o jogo Manual
 
-        apresentaDificuldade.setVisible(false);
+        jPanelEscolhas.setVisible(false); //Desaparece o painel das escolhas (Modo e dificuldade)
+        apresentaDificuldade.setVisible(false); //Desaparece o label que indica a dificuldade (só aparece se for escolhido o modo manual)
 
-        jPanelTitulo.setOpaque(false);
+        jPanelTitulo.setOpaque(false); //Retira o fundo a este painel
 
-        mapasPanel.setVisible(false);
-        mapasPanel.setOpaque(false);
+        mapasPanel.setVisible(false); //Desaparece o painel da escolha do mapa (aparece quando se introduz o nome)
+        mapasPanel.setOpaque(false); //Retira o fundo a este painel
 
-        modoPanel.setOpaque(false);
-        modoPanel.setVisible(false);
+        modoPanel.setOpaque(false); //Retira o fundo a este painel
+        modoPanel.setVisible(false); //Desaparece o painel da escolha do modo (aparece quando se escolhe o mapa)
 
-        dificuldadePanel.setOpaque(false);
-        dificuldadePanel.setVisible(false);
+        dificuldadePanel.setOpaque(false); //Retira o fundo a este painel
+        dificuldadePanel.setVisible(false); //Desaparece os botões para se escolher a dificuldade (aparece quando se escolhe o modo Manual)
 
-        apresentacoisasPanel.setOpaque(false);
+        apresentacoisasPanel.setOpaque(false); //Retira o fundo a este painel
 
-        loadingPanel1.setOpaque(false);
-        loadingPanel1.setVisible(false);
+        loadingPanel1.setOpaque(false); //Retira o fundo a este painel
+        loadingPanel1.setVisible(false); //Desaparece o painel que contém o loading do modo automático (aparece quando se escolhe o modo automático)
 
-        jButtonBack.setToolTipText("Se voltar ao Menu Principal perde as preferências...");
-        TextFIeldNomeJogador.setToolTipText("Após a escolha do mapa não podes mudar o nome!");
-        jButtonEscolherMapa.setToolTipText("Após a escolha do modo não podes mudar o mapa!");
+        jButtonBack.setToolTipText("Se voltar ao Menu Principal perde as preferências..."); //ToolTip dada pelo botão 'Voltar'
+        TextFIeldNomeJogador.setToolTipText("Após a escolha do mapa não podes mudar o nome!"); //ToolTip dada pela barra onde se introduz o nome
+        jButtonEscolherMapa.setToolTipText("Após a escolha do modo não podes mudar o mapa!"); //ToolTip dada pelo botão de escolher o mapa
         jProgressBarLoading.setToolTipText("Tens 2 segundos para cancelar a seleção..."); //ToolTip dada pela barra de progresso
 
         setLocationRelativeTo(null); // Para posionar a janela para o meio do ecrã
@@ -445,21 +465,22 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Listagem dos mapas numa ComboBox
+     * Listagem dos mapas numa ComboBox (Não utilizado).
      *
-     * @param evt
+     * @param evt evento
      */
     private void jComboBoxMapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMapasActionPerformed
 
     }//GEN-LAST:event_jComboBoxMapasActionPerformed
 
     /**
-     * Text Field onde o utilizador coloca o nome
+     * Text Field onde o utilizador coloca o nome.
      *
-     * @param evt
+     * @param evt Quando o utlizador pressiona o 'Enter' para dar entrada do nome
      */
     private void TextFIeldNomeJogadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFIeldNomeJogadorActionPerformed
         String nomeJogador = TextFIeldNomeJogador.getText();
+        // O Nome do jogador deverá ter entre 4 a 30 caracteres
         if (nomeJogador.length() < 4 || nomeJogador.length() > 30) {
             JOptionPane.showMessageDialog(null, "Entrada errada, o nome deve conter entre 4 a 30 caracteres!", null, WIDTH); //Mensagem de erro numa janela
         } else {
@@ -471,9 +492,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_TextFIeldNomeJogadorActionPerformed
 
     /**
-     * Opção Modo Manual (Radio Button)
+     * Opção Modo Manual (Radio Button).
      *
-     * @param evt
+     * @param evt evento de um clique no botão
      */
     private void jRadioButtonModoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonModoManualActionPerformed
         if (jRadioButtonModoManual.isSelected()) {
@@ -481,19 +502,20 @@ public class Menu extends javax.swing.JFrame {
             jButtonEscolherMapa.setEnabled(false); //Não deixa mudar o mapa
             dificuldadePanel.setVisible(true); //Mostra as opções para a dificuldade
             apresentaModo.setText("Modo: Manual"); //Apresenta o modo
-            apresentaDificuldade.setVisible(true);
+            apresentaDificuldade.setVisible(true); // Aparece o label para indicar a dificuldade
         } else {
-            jButtonAvancar.setVisible(false);
-            jRadioButtonModoAuto.setEnabled(true);
+            jButtonAvancar.setVisible(false);// Não deixa avançar
+            jRadioButtonModoAuto.setEnabled(true); //Deixa escolher outra opção de modo
             dificuldadePanel.setVisible(false); //Pode escolher outra opção
             jButtonEscolherMapa.setEnabled(true); //Deixa mudar o mapa
             apresentaModo.setText("Modo:");  //Apresenta o modo como nao escolhido
-            apresentaDificuldade.setVisible(false);
+            apresentaDificuldade.setVisible(false); //Desaparece o label para indicar a dificuldade
         }
     }//GEN-LAST:event_jRadioButtonModoManualActionPerformed
 
     /**
-     * Timer usado para ajudar na progress bar
+     * Timer usado para ajudar na progress bar. Aqui é chamada a função
+     * 'showTheGame()' que vai iniciar o jogo em modo automático
      */
     private Timer timer = new Timer(20, new ActionListener() {
         private int counter = 0;
@@ -515,11 +537,11 @@ public class Menu extends javax.swing.JFrame {
     });
 
     /**
-     * Método chamado pelo modo automático(pelo Timer) para mostrar o jogo e
-     * esconder a janela de escolhas
+     * Método chamado pelo modo automático (pelo Timer) para mostrar o jogo e
+     * esconder a janela de escolhas.
      */
     private void showTheGame() {
-        new MenuJogo(this, "Automático", 1, jogador, mapa, classificacoes);
+        new MenuJogo(this, "Automático", 1, jogador, mapa, classificacoes); //Inicia o jogo
         setVisible(false); //Faz desaparecer o menu de escolhas
         jRadioButtonModoAuto.doClick(); //Tira a opção do modo para a próxima vez estar limpo
         jComboBoxMapas.setSelectedIndex(0); //Tira a opção do mapa para a próxima vez estar limpo
@@ -527,7 +549,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     /**
-     * Method that sets the Loading bar visible and working
+     * Método que define a barra de loading visivel e a funcionar.
      */
     private void showLoadingBar() {
         loadingPanel1.setVisible(true); //Mostra a label que diz "LOADING..." e a barra de progresso
@@ -538,9 +560,9 @@ public class Menu extends javax.swing.JFrame {
     }
 
     /**
-     * Opção Modo Automático (Radio Button)
+     * Opção Modo Automático (Radio Button).
      *
-     * @param evt
+     * @param evt evento de um clique no botão
      */
     private void jRadioButtonModoAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonModoAutoActionPerformed
         if (jRadioButtonModoAuto.isSelected()) {
@@ -557,9 +579,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonModoAutoActionPerformed
 
     /**
-     * Opção Nível Básico (Radio Button)
+     * Opção Nível Básico (Radio Button).
      *
-     * @param evt
+     * @param evt evento de um clique no botão
      */
     private void jRadioButtonNivelBasicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNivelBasicoActionPerformed
         if (jRadioButtonNivelBasico.isSelected()) {
@@ -576,9 +598,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonNivelBasicoActionPerformed
 
     /**
-     * Opção Nível Normal (Radio Button)
+     * Opção Nível Normal (Radio Button).
      *
-     * @param evt
+     * @param evt evento de um clique no botão
      */
     private void jRadioButtonNivelNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNivelNormalActionPerformed
         if (jRadioButtonNivelNormal.isSelected()) {
@@ -595,9 +617,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonNivelNormalActionPerformed
 
     /**
-     * Opção Nível Dificil (Radio Button)
+     * Opção Nível Dificil (Radio Button).
      *
-     * @param evt
+     * @param evt evento de um clique no botão
      */
     private void jRadioButtonNivelDificilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNivelDificilActionPerformed
         if (jRadioButtonNivelDificil.isSelected()) {
@@ -614,50 +636,50 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonNivelDificilActionPerformed
 
     /**
-     * Botão para Escolher o mapa
+     * Botão para Escolher o mapa.
      *
-     * @param evt
+     * @param evt evento de um clique no botão
      */
     private void jButtonEscolherMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEscolherMapaActionPerformed
         if (jComboBoxMapas.getSelectedItem().equals("<Seleciona uma das opções>")) {
             apresentaNomeMapa.setText("Mapa:"); //Apresenta  o nome do mapa como não escolhido
-            jPanelEscolhas.setVisible(false);
-            modoPanel.setVisible(false);
+            jPanelEscolhas.setVisible(false); //Desaparece o painel das escolhas
+            modoPanel.setVisible(false); //Desaparece o painel da escolha do modo
         } else {
             TextFIeldNomeJogador.setEnabled(false); //Não pode mudar o nome
             jPanelEscolhas.setVisible(true); //Mostra o painel das escolhas onde pode decidir os modos
             modoPanel.setVisible(true); //Pode escolher um dos modos
             apresentaNomeMapa.setText("Mapa: " + jComboBoxMapas.getSelectedItem()); //Apresenta o nome do mapa
-            this.mapa = new Mapas(ReadJSON.loadJSON(mapas[jComboBoxMapas.getSelectedIndex() - 1].getPath()));
+            this.mapa = new Mapas(ReadJSON.loadJSON(mapas[jComboBoxMapas.getSelectedIndex() - 1].getPath())); // Associa o mapa escolhido à variável 'mapa'
         }
     }//GEN-LAST:event_jButtonEscolherMapaActionPerformed
 
     /**
-     * Botão 'Avançar' para avançar para o jogo
+     * Botão 'Avançar' para avançar para o jogo.
      *
-     * @param evt
+     * @param evt  evento de um clique no botão
      */
     private void jButtonAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvancarActionPerformed
         if (jRadioButtonNivelBasico.isSelected()) {
-            new MenuJogo(this, "Manual", 1, jogador, mapa, classificacoes);
+            new MenuJogo(this, "Manual", 1, jogador, mapa, classificacoes); //Inicia o jogo
             jRadioButtonNivelBasico.doClick(); //Tira a opção do nível para a próxima vez estar limpo
         } else if (jRadioButtonNivelNormal.isSelected()) {
-            new MenuJogo(this, "Manual", 2, jogador, mapa, classificacoes);
+            new MenuJogo(this, "Manual", 2, jogador, mapa, classificacoes); //Inicia o jogo
             jRadioButtonNivelNormal.doClick(); //Tira a opção do nível para a próxima vez estar limpo
         } else {
-            new MenuJogo(this, "Manual", 3, jogador, mapa, classificacoes);
+            new MenuJogo(this, "Manual", 3, jogador, mapa, classificacoes); //Inicia o jogo
             jRadioButtonNivelDificil.doClick(); //Tira a opção do nível para a próxima vez estar limpo
         }
-        this.setVisible(false);
+        this.setVisible(false); //Esconde esta frame de Menu de escolhas enquanto estiver a jogar
         jRadioButtonModoManual.doClick(); //Tira a opção do modo para a próxima vez estar limpo
         jComboBoxMapas.setSelectedIndex(0); //Tira a opção do mapa para a próxima vez estar limpo
         jButtonEscolherMapa.doClick(); //Tira a opção do mapa para a próxima vez estar limpo
     }//GEN-LAST:event_jButtonAvancarActionPerformed
 
     /**
-     * Botão 'Voltar' para voltar ao Menu Principal
+     * Botão 'Voltar' para voltar ao Menu Principal.
      *
-     * @param evt
+     * @param evt  evento de um clique no botão
      */
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         this.dispose();

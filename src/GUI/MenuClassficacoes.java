@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * Classe para gerir a interface gráfica que apresenta as classificações dos
- * jogadores
+ * jogadores.
  *
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
@@ -17,12 +17,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MenuClassficacoes extends javax.swing.JFrame {
 
+    /**
+     * Lista de classificações.
+     */
     private final UnorderedListADT<Classificacao> classificacoes;
 
     /**
-     * Creates new form MenuClassficacoes. Shows all classifications of all maps
+     * Creates new form MenuClassficacoes.
      *
-     * @param classifs
+     * @param classifs Lista com todas as classificações a apresentar
      */
     public MenuClassficacoes(UnorderedListADT<Classificacao> classifs) {
         this.classificacoes = (ArrayUnorderedList<Classificacao>) classifs; //AQUI VAI RECEBER OU TODAS AS CLASSFICAÇOES OU UMA LIST SO COM UMA CLASSIFICAÇAO CORRESPONDENTE AQUELE MAPA E DIFICULDADE
@@ -37,7 +40,7 @@ public class MenuClassficacoes extends javax.swing.JFrame {
 
         jTable1.setModel(new DefaultTableModel());
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addColumn("Posição");
+        model.addColumn("Posição"); 
         model.addColumn("Jogador");
         model.addColumn("Pontuação");
         model.addColumn("Mapa");

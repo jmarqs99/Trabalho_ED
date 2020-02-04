@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * Classe para gerir a interface gráfica que apresenta o jogo jogável
+ * Classe para gerir a interface gráfica que apresenta o jogo jogável.
  *
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
@@ -21,26 +21,47 @@ import javax.swing.JOptionPane;
  */
 public class MenuJogo extends javax.swing.JFrame {
 
-    private final JFrame frameMenuEscolhas; //Menu de escolhas
-    private final Jogador jogador;
-    private final int dificuldade;
-    private final String modo;
-    private final Mapas mapa;
     /**
-     * Classificaçoes deste mapa com esta dificuldade
+     * Menu de preferências do jogo.
+     */
+    private final JFrame frameMenuEscolhas;
+
+    /**
+     * Jogador criado anteriormente no menu de preferências.
+     */
+    private final Jogador jogador;
+
+    /**
+     * Dificuldade escolhida anteriormente no menu de preferências.
+     */
+    private final int dificuldade;
+
+    /**
+     * Modo de jogo escolhido anteriormente no menu de preferências. Útil para
+     * apresentação na Interface do modo pretendido
+     */
+    private final String modo;
+
+    /**
+     * Mapa escolhido anteriormente no menu de preferências.
+     */
+    private final Mapas mapa;
+
+    /**
+     * Classificaçoes deste mapa com esta dificuldade.
      */
     private final Classificacao classificacao;
 
     /**
-     * Creates new form MenuJogo
+     * Creates new form MenuJogo.
      *
      * @param frame Frame do Menu de escolhas
      * @param modo Modo de jogo (Manual ou Automático)
      * @param dificuldade Dificuldade do jogo (Básico, Normal ou Difícil)
      * @param jogador Informações do jogador, essenciais para o progresso no
      * jogo
-     * @param mapa
-     * @param classif
+     * @param mapa Mapa escolhido da lista de mapas
+     * @param classif Lista ordenada com as classificações de todos os mapas
      */
     public MenuJogo(JFrame frame, String modo, int dificuldade, Jogador jogador, Mapas mapa, UnorderedListADT<Classificacao> classif) {
         this.frameMenuEscolhas = frame;
@@ -50,30 +71,14 @@ public class MenuJogo extends javax.swing.JFrame {
         this.mapa = mapa;
         this.count = 1;
 
-        // Isto deve estar só no modo Manual?
-        Iterator itr = ((ArrayUnorderedList) classif).iterator();
-        Classificacao found = null;
-        while (itr.hasNext()) {
-            Classificacao temp = (Classificacao) itr.next();
-            if (temp.getMapa().equals(this.mapa.getNOME()) && temp.getDificuldade() == this.dificuldade) {
-                found = temp;
-            }
-        }
-        if (found == null) {
-            this.classificacao = new Classificacao(this.mapa.getNOME(), this.dificuldade);
-            classif.addToFront(this.classificacao); //Será que isto vai funcionar como supostamente esta lista é uma copia?
-        } else {
-            this.classificacao = found;
-        }
-
         this.jogador.setPontos((int) mapa.getPONTOS());
 
-        this.setTitle("Jogo - A Casa Assombrada");
+        this.setTitle("Jogo - A Casa Assombrada"); //Titulo da janela
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); //O botão de fechar a janela 'x' fecha esta janela só
         initComponents();
-        this.setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize" ACHO QUE NÃO É PRECISO
+        this.setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize"
 
-        this.jButton1.setVisible(false); //Desapere o botão das classificações e só deve aparecer quando o jogador conclui o mapa
+        this.jButtonClassificacao.setVisible(false); //Desapere o botão das classificações e só deve aparecer quando o jogador conclui o mapa
 
         this.jLabelInformacoes.setText("<html>O jogo começa contigo na entrada, o objetivo é conseguires chegar ao exterior para "
                 + "poderes fugir. Algumas salas vão ter fantasmas outras não, vais ter de confiar no teu instinto para fugires desta casa.");
@@ -84,8 +89,28 @@ public class MenuJogo extends javax.swing.JFrame {
         this.updateInfoVida(); //Método criado para atualizar a vida no painel de informações
 
         if (modo.equals("Manual")) {
+
             jPanelModoAuto.setVisible(false); //Desaparece a janela do modo auto
             jPanelModoManual.setVisible(true); //Aparece a janela do modo manual
+
+            //Esta parte do iterator vai procurar se existe alguma classificação para este mapa com esta 
+            // dificuldade, caso haja associa á variável classificacao, caso não haja cria uma classificacao 
+            // nova e adiciona-a à lista das classificações.
+            Iterator itr = ((ArrayUnorderedList) classif).iterator();
+            Classificacao found = null;
+            while (itr.hasNext()) {
+                Classificacao temp = (Classificacao) itr.next();
+                if (temp.getMapa().equals(this.mapa.getNOME()) && temp.getDificuldade() == this.dificuldade) {
+                    found = temp;
+                }
+            }
+            if (found == null) {
+                this.classificacao = new Classificacao(this.mapa.getNOME(), this.dificuldade);
+                classif.addToFront(this.classificacao); //Será que isto vai funcionar como supostamente esta lista é uma copia?
+            } else {
+                this.classificacao = found;
+            }
+
             //Coloca a dificulade nas informações
             switch (this.dificuldade) {
                 case 1:
@@ -99,14 +124,15 @@ public class MenuJogo extends javax.swing.JFrame {
                     break;
             }
 
-            jLabelCaminhos.setText("<html>entrada");
-            jLabelAposentoAtual.setText(jLabelAposentoAtual.getText() + " entrada");
+            jLabelCaminhos.setText("<html>entrada"); //UI: Inicia o caminho adicionando a entrada para que o user veja o caminho que percorreu
+            jLabelAposentoAtual.setText(jLabelAposentoAtual.getText() + " entrada");  //UI: Coloca como aposento atual a entrada
 
             try {
                 UnorderedListADT<String> listaEdges = ((NetworkJogo) mapa.getAposentos()).getEdges("entrada");
-                jComboBox1.addItem(listaEdges.iterator().next()); //Porque a entrada só tem uma ligação, só necessitamos de ver essa ligação
-                //Sabemos que não tem muito sentido o utilizador escolher na entrada pois só terá uma opção mas terá a possibilidade de Desistir 
-                // antes de entrar na casa o que para nós faz mais sentido
+                jComboBox1.addItem(listaEdges.iterator().next()); //UI: Adicona o aposento que está ligado à entrada
+                //Porque a entrada só tem uma ligação, só necessitamos de ver essa ligação
+                //Sabemos que não tem muito sentido o utilizador escolher na entrada pois só terá uma opção 
+                //mas terá a possibilidade de Desistir antes de entrar na casa o que para nós faz mais sentido
 
             } catch (ElementNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao carregar o mapa, tente novamente."
@@ -115,14 +141,16 @@ public class MenuJogo extends javax.swing.JFrame {
                 frameMenuEscolhas.setVisible(true);
             }
         } else {
-            jPanelModoManual.setVisible(false);//Desaparece a janela do modo manual
-            jPanelModoAuto.setVisible(true); //Aparece a janela do modo auto
-            jLabelDificuldade.setVisible(false);
+            this.classificacao = null; // Porque no modo automático não se disponibiliza as classificações
+            jPanelModoManual.setVisible(false);//UI: Desaparece a janela do modo manual
+            jPanelModoAuto.setVisible(true); //UI: Aparece a janela do modo auto
+            jLabelDificuldade.setVisible(false); //UI: Aparece a informação da dificuldade
 
             try {
+                //Esta parte do iterador serve para adicionar o caminho automático à UI para que o user possa ver
                 Iterator itr2 = mapa.getAposentos().iteratorShortestPath("entrada", "exterior");
                 jLabelCaminhos.setText("<html>entrada");
-                itr2.next(); //Saltar a entrada
+                itr2.next(); //Saltar a entrada porque já a adicionamos
                 while (itr2.hasNext()) {
                     String proxAposento = (String) itr2.next();
                     if (!"exterior".equals(proxAposento)) {
@@ -136,9 +164,8 @@ public class MenuJogo extends javax.swing.JFrame {
 
                 String map = "<html>" + mapa.getAposentos().toString();
                 map = map.concat("</html>");
-                jLabelShowMap.setText(map);
-
-                jButtonDesistir.setText("VOLTAR");
+                jLabelShowMap.setText(map); //Apresenta o mapa com indicação dos fantasmas
+                jButtonDesistir.setText("VOLTAR"); //Muda o botão de DESISTIR PARA VOLTAR porque não faz sentido ele desistir em modo automático
             } catch (ElementNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao carregar o mapa, tente novamente."
                         + "\nSe o erro persistir o mapa ou os aposentos podem estar mal formatados.", null, WIDTH); //Mensagem de erro numa janela
@@ -179,11 +206,11 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelVida = new javax.swing.JLabel();
         jLabelInformacoes = new javax.swing.JLabel();
         jLabelTituloInformacoes = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButtonViewMap = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabelCaminhoTitulo = new javax.swing.JLabel();
         jLabelCaminhos = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonClassificacao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -306,10 +333,10 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelTituloInformacoes.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N
         jLabelTituloInformacoes.setText("Informações:");
 
-        jButton2.setText("Ver Mapa");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonViewMap.setText("Ver Mapa");
+        jButtonViewMap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonViewMapActionPerformed(evt);
             }
         });
 
@@ -336,7 +363,7 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonDesistir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonViewMap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(92, 92, 92))
         );
         jPanelInformaçõesLayout.setVerticalGroup(
@@ -355,7 +382,7 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jButtonViewMap)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonDesistir)
                 .addContainerGap())
@@ -368,10 +395,10 @@ public class MenuJogo extends javax.swing.JFrame {
         jLabelCaminhos.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabelCaminhos.setAutoscrolls(true);
 
-        jButton1.setText("Classificações");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonClassificacao.setText("Classificações");
+        jButtonClassificacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonClassificacaoActionPerformed(evt);
             }
         });
 
@@ -388,7 +415,7 @@ public class MenuJogo extends javax.swing.JFrame {
                             .addComponent(jLabelCaminhoTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jButtonClassificacao)
                         .addGap(53, 53, 53))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -399,7 +426,7 @@ public class MenuJogo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelCaminhos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jButtonClassificacao)
                 .addContainerGap())
         );
 
@@ -454,12 +481,14 @@ public class MenuJogo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Método para atualizar a vida no painel de informações
+     * Método para atualizar a vida no painel de informações. Se a vida chegar a
+     * zero adiciona a pontuação às classificações
      */
     private void updateInfoVida() {
         jLabelVida.setText("Vida: " + jogador.getPontos());
         if (jogador.getPontos() < 0) {
             jButtonEscolheAposento.setEnabled(false); //Bloqueia o botão para escolher aposentos
+            this.classificacao.addClassificacao(jogador); //adiciona a classificação do jogador
             JOptionPane.showMessageDialog(null, "Perdeste mas ao menos tentaste.\nVais voltar para o Menu onde podes escolher outro mapa."
                     + "\nPara a próxima consegues, que nenhum fantasma te persiga..", null, WIDTH); //Mensagem de erro numa janela
             this.dispose();
@@ -469,10 +498,15 @@ public class MenuJogo extends javax.swing.JFrame {
 
     /**
      * Contador do número de aposentos passados, ajuda a perceber a ordem do
-     * caminho
+     * caminho.
      */
     private int count;
 
+    /**
+     * Botão 'Escolher' para escolher o mapa.
+     *
+     * @param evt evento de um clique no botão
+     */
     private void jButtonEscolheAposentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEscolheAposentoActionPerformed
         if (jComboBox1.getSelectedItem().equals("<Seleciona uma das opções>")) {
             JOptionPane.showMessageDialog(null, "Opção Inválida.\nEscolhe uma das opções válidas!", null, WIDTH); //Mensagem de erro numa janela
@@ -481,14 +515,14 @@ public class MenuJogo extends javax.swing.JFrame {
             jButtonDesistir.setText("VOLTAR"); //O botão 'DESISTIR' passa  chamar-se 'VOLTAR' uma vez que o jogo já chegou ao fim
             jLabelCaminhos.setText(jLabelCaminhos.getText() + "<br/>exterior</html>"); //Acrescenta o exterior ao caminho
             this.classificacao.addClassificacao(jogador); //Adiciona a classificação do jogador
-            jButton1.setVisible(true); //Aparece o botão para mostrar as classificações
+            jButtonClassificacao.setVisible(true); //Aparece o botão para mostrar as classificações
         } else {
             String aposentoPassado = jLabelAposentoAtual.getText().replace("Tu estás em: ", ""); //Obtém o aposento em que se está antes de clicar no novo aposento para poder calcular a vida
             String aposentoAtual = (String) jComboBox1.getSelectedItem(); //Aposento selecionado para ir
             jLabelCaminhos.setText(jLabelCaminhos.getText() + "<br/>" + (count++) + "º - " + aposentoAtual); //Acrescenta o aposento para onde foi
             jLabelAposentoAtual.setText("Tu estás em: " + aposentoAtual); //Atualiza o nome do aposento Atual
             jComboBox1.removeAllItems(); //Tira todos os aposentos antigos para que se possam adicionar os novos
-            jComboBox1.addItem("<Seleciona uma das opções>");
+            jComboBox1.addItem("<Seleciona uma das opções>"); // Adiciona novamente esta opção Default
             try {
                 UnorderedListADT<String> listaEdges = ((NetworkJogo) mapa.getAposentos()).getEdges(aposentoAtual); //Lista com os vértices que têm ligação ao aposento anterior
                 Iterator<String> itr = listaEdges.iterator();
@@ -496,7 +530,7 @@ public class MenuJogo extends javax.swing.JFrame {
                     jComboBox1.addItem(itr.next()); //Apresenta todas as opções ao utilizador
                 }
                 this.jogador.setPontos(this.jogador.getPontos() - (dificuldade * ((int) ((NetworkJogo) mapa.getAposentos()).getWeight(aposentoPassado, aposentoAtual)))); //Atualiza a vida do jogador
-                updateInfoVida(); //Atualiza a vida no painel de informações
+                updateInfoVida(); //UI: Atualiza a vida no painel de informações
             } catch (ElementNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao carregar o mapa, tente novamente."
                         + "\nSe o erro persistir o mapa ou os aposentos podem estar mal formatados.", null, WIDTH); //Mensagem de erro numa janela
@@ -511,14 +545,14 @@ public class MenuJogo extends javax.swing.JFrame {
      * a decorrer funciona como 'Desistir', quando o jogo termina o botão passa
      * a ser 'Voltar'
      *
-     * @param evt
+     * @param evt evento de um clique no botão
      */
     private void jButtonDesistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesistirActionPerformed
         String mensagemFinal = "";
         if (jButtonDesistir.getText().equals("DESISTIR")) {
             mensagemFinal = "Quem não arrisca não petisca.\nMas não te preocupes que não contamos a ninguém.\nPontuação: 0";
-            jogador.setPontos(0);
-            updateInfoVida();
+            jogador.setPontos(0); // Atualiza a vida  do jogador para 0
+            updateInfoVida(); //UI: Atualiza a vida no painel de informações
         } else {
             mensagemFinal = "Parabéns, passaste o nível.\nPodes estar descansado que vamos guardar a tua pontuação automagicamente."
                     + "\nAgora podes ir experimentar outros mapas e niveis.\nA tua pontuação: " + jogador.getPontos();
@@ -528,22 +562,33 @@ public class MenuJogo extends javax.swing.JFrame {
         frameMenuEscolhas.setVisible(true);
     }//GEN-LAST:event_jButtonDesistirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        UnorderedListADT<Classificacao> temp = new ArrayUnorderedList<>();
-        temp.addToFront(classificacao);
+    /**
+     * Botão que abre uma nova janela que mostra as classificações neste mapa e
+     * com esta dificuldade.
+     *
+     * @param evt evento de um clique no botão
+     */
+    private void jButtonClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClassificacaoActionPerformed
+        UnorderedListADT<Classificacao> temp = new ArrayUnorderedList<>(); //Cria-se uma lista nova
+        temp.addToFront(classificacao); //Adiciona-se apenas a classificação correspondente a este mapa para que seja apresentado apenas as classificações deste mapa
         new MenuClassficacoes(temp);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonClassificacaoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new VisualizarMapa(mapa);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    /**
+     * Botão que abre uma nova janela que mosta o mapa.
+     *
+     * @param evt evento de um clique no botão
+     */
+    private void jButtonViewMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewMapActionPerformed
+        new VisualizarMapa(mapa); //Abre a janela que mostra o mapa
+    }//GEN-LAST:event_jButtonViewMapActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonClassificacao;
     private javax.swing.JButton jButtonDesistir;
     private javax.swing.JButton jButtonEscolheAposento;
+    private javax.swing.JButton jButtonViewMap;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabelAposentoAtual;

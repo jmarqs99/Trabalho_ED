@@ -270,7 +270,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButtonDesistir" max="32767" attributes="0"/>
-                          <Component id="jButton2" max="32767" attributes="0"/>
+                          <Component id="jButtonViewMap" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                   </Group>
@@ -292,7 +292,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabelInformacoes" min="-2" pref="165" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonViewMap" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonDesistir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -358,12 +358,12 @@
                 <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="jButtonViewMap">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ver Mapa"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonViewMapActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -384,7 +384,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonClassificacao" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -399,7 +399,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabelCaminhos" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonClassificacao" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -421,12 +421,12 @@
                 <Property name="autoscrolls" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="jButtonClassificacao">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Classifica&#xe7;&#xf5;es"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonClassificacaoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
