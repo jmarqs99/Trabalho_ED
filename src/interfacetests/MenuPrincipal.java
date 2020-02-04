@@ -5,7 +5,11 @@
  */
 package interfacetests;
 
+import Classes.Classificacao;
 import Classes.MenuClassficacoes;
+import EstruturasDeDados.ArrayUnorderedList;
+import EstruturasDeDados.LinkedUnorderedList;
+import EstruturasDeDados.UnorderedListADT;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +20,8 @@ import java.util.logging.Logger;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
+    UnorderedListADT<Classificacao> classificacoes;
+
     /**
      * Creates new form MenuPrincipal
      */
@@ -23,6 +29,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setTitle("Menu Principal");
         initComponents();
         setResizable(false);
+
+        this.classificacoes = new ArrayUnorderedList<>();
 
         setLocationRelativeTo(null);
     }
@@ -116,11 +124,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     private void jButtonClassificacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClassificacoesActionPerformed
-        try {
-            new MenuClassficacoes(null);
-        } catch (IOException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
+//        try {
+//            new MenuClassficacoes(this.classificacoes);
+//        } catch (IOException ex) {
+//            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+       
     }//GEN-LAST:event_jButtonClassificacoesActionPerformed
 
     /**

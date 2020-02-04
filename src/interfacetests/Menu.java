@@ -1,8 +1,10 @@
 package interfacetests;
 
+import Classes.Classificacao;
 import Classes.Jogador;
 import Classes.Mapas;
 import Classes.ReadJSON;
+import EstruturasDeDados.UnorderedListADT;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +23,7 @@ public class Menu extends javax.swing.JFrame {
     private Jogador jogador;
     private File[] mapas; //Array com todos os mapas do jogo
     private Mapas mapa; //Mapa escolhido pelo utilizador
+    private UnorderedListADT<Classificacao> classificacoes;
 
     /**
      * Creates new form NewJFrame
@@ -511,7 +514,7 @@ public class Menu extends javax.swing.JFrame {
      * esconder a janela de escolhas
      */
     private void showTheGame() {
-        new MenuJogo(this, "Automático", 1, jogador, mapa);
+        new MenuJogo(this, "Automático", 1, jogador, mapa, classificacoes);
         setVisible(false); //Faz desaparecer o menu de escolhas
         jRadioButtonModoAuto.doClick(); //Tira a opção do modo para a próxima vez estar limpo
         jComboBoxMapas.setSelectedIndex(0); //Tira a opção do mapa para a próxima vez estar limpo
@@ -631,13 +634,13 @@ public class Menu extends javax.swing.JFrame {
      */
     private void jButtonAvancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAvancarActionPerformed
         if (jRadioButtonNivelBasico.isSelected()) {
-            new MenuJogo(this, "Manual", 1, jogador, mapa);
+            new MenuJogo(this, "Manual", 1, jogador, mapa, classificacoes);
             jRadioButtonNivelBasico.doClick(); //Tira a opção do nível para a próxima vez estar limpo
         } else if (jRadioButtonNivelNormal.isSelected()) {
-            new MenuJogo(this, "Manual", 2, jogador, mapa);
+            new MenuJogo(this, "Manual", 2, jogador, mapa, classificacoes);
             jRadioButtonNivelNormal.doClick(); //Tira a opção do nível para a próxima vez estar limpo
         } else {
-            new MenuJogo(this, "Manual", 3, jogador, mapa);
+            new MenuJogo(this, "Manual", 3, jogador, mapa, classificacoes);
             jRadioButtonNivelDificil.doClick(); //Tira a opção do nível para a próxima vez estar limpo
         }
         this.setVisible(false);

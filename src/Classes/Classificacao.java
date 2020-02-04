@@ -6,6 +6,7 @@
 package Classes;
 
 import EstruturasDeDados.LinkedOrderedList;
+import EstruturasDeDados.OrderedListADT;
 import Interfaces.IClassificacao;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -23,12 +24,12 @@ import java.util.logging.Logger;
  */
 public class Classificacao implements IClassificacao {
 
-    private LinkedOrderedList<Jogador> classificacao;
-    private Mapas mapa;
-    private int dificuldade;
+    private OrderedListADT<Jogador> classificacao;
+    private final Mapas mapa;
+    private final int dificuldade;
 
-    public Classificacao(LinkedOrderedList<Jogador> classificacao, Mapas map, int dificuldade) {
-        this.classificacao = classificacao;
+    public Classificacao(Mapas map, int dificuldade) {
+        this.classificacao = new LinkedOrderedList<>();
         mapa = map;
         this.dificuldade = dificuldade;
     }
@@ -100,7 +101,7 @@ public class Classificacao implements IClassificacao {
     /**
      * @return the classificacao
      */
-    public LinkedOrderedList<Jogador> getClassificacao() {
+    public OrderedListADT<Jogador> getClassificacao() {
         return classificacao;
     }
 }

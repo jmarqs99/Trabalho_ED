@@ -1,10 +1,12 @@
 package interfacetests;
 
+import Classes.Classificacao;
 import Classes.Jogador;
 import Classes.Mapas;
 import Classes.MenuClassficacoes;
 import Classes.NetworkJogo;
-import EstruturasDeDados.Network;
+import EstruturasDeDados.ArrayUnorderedList;
+import EstruturasDeDados.LinkedOrderedList;
 import EstruturasDeDados.UnorderedListADT;
 import Exceptions.ElementNotFoundException;
 import static java.awt.image.ImageObserver.WIDTH;
@@ -23,12 +25,16 @@ public class MenuJogo extends javax.swing.JFrame {
 
     private final JFrame frameMenuEscolhas; //Menu de escolhas
     private final Jogador jogador;
-    private final int dificuldade;
+    private final int dificuldade; //PODE SAIR PORQUE TEMOS O MAPA NA CLASSIFICAÇAO, no construtor tb
     private final String modo;
-    private final Mapas mapa;
+    private final Mapas mapa; //PODE SAIR PORQUE TEMOS O MAPA NA CLASSIFICAÇAO, no construtor tambem
+    /**
+     * Classificaçoes deste mapa com esta dificuldade
+     */
+    private final Classificacao classificacao;
 
     /**
-    * Creates new form MenuJogo
+     * Creates new form MenuJogo
      *
      * @param frame Frame do Menu de escolhas
      * @param modo Modo de jogo (Manual ou Automático)
@@ -36,14 +42,31 @@ public class MenuJogo extends javax.swing.JFrame {
      * @param jogador Informações do jogador, essenciais para o progresso no
      * jogo
      * @param mapa
+     * @param classif
      */
-    public MenuJogo(JFrame frame, String modo, int dificuldade, Jogador jogador, Mapas mapa) {
+    public MenuJogo(JFrame frame, String modo, int dificuldade, Jogador jogador, Mapas mapa, UnorderedListADT<Classificacao> classif) {
         this.frameMenuEscolhas = frame;
         this.jogador = jogador;
         this.dificuldade = dificuldade;
         this.modo = modo;
         this.mapa = mapa;
         this.count = 1;
+
+        // Isto deve estar só no modo Manual?
+        Iterator itr = classif.iterator();
+        Classificacao found = null;
+        while (itr.hasNext()) {
+            Classificacao temp = (Classificacao) itr.next();
+            if (temp.getMapa().equals(this.mapa) && temp.getDificuldade() == this.dificuldade) {
+                found = temp;
+            }
+        }
+        if (found == null) {
+            this.classificacao = new Classificacao(this.mapa, this.dificuldade);
+            classif.addToFront(this.classificacao); //Será que isto vai funcionar como supostamente esta lista é uma copia?
+        } else {
+            this.classificacao = found;
+        }
 
         this.jogador.setPontos((int) mapa.getPONTOS());
 
@@ -99,11 +122,11 @@ public class MenuJogo extends javax.swing.JFrame {
             jLabelDificuldade.setVisible(false);
 
             try {
-                Iterator itr = mapa.getAposentos().iteratorShortestPath("entrada", "exterior");
+                Iterator itr2 = mapa.getAposentos().iteratorShortestPath("entrada", "exterior");
                 jLabelCaminhos.setText("<html>entrada");
-                itr.next(); //Saltar a entrada
-                while (itr.hasNext()) {
-                    String proxAposento = (String) itr.next();
+                itr2.next(); //Saltar a entrada
+                while (itr2.hasNext()) {
+                    String proxAposento = (String) itr2.next();
                     if (!"exterior".equals(proxAposento)) {
                         jLabelCaminhos.setText(jLabelCaminhos.getText() + "<br/>" + (count++) + "º - " + proxAposento);
                     } else {
@@ -497,11 +520,15 @@ public class MenuJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDesistirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            new MenuClassficacoes(mapa);
-        } catch (IOException ex) {
-            Logger.getLogger(MenuJogo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        Classificacao found = null;
+//        Iterator itr = classificacoes.iterator();
+//        while (itr.hasNext()) {
+//            
+//        }
+//        if ((ArrayUnorderedList) classificacoes[i].)
+        UnorderedListADT<Classificacao> temp = new ArrayUnorderedList<>();
+        temp.addToFront(classificacao);
+        new MenuClassficacoes(temp);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

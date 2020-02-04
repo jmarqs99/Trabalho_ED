@@ -63,7 +63,7 @@
                   <Component id="jPanelTitulo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="filler3" max="32767" attributes="0"/>
+                      <Component id="filler3" pref="275" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="LabelNomeJogador" alignment="3" max="32767" attributes="0"/>

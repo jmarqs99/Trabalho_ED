@@ -5,8 +5,9 @@
  */
 package Classes;
 
-import EstruturasDeDados.LinkedOrderedList;
-import java.io.IOException;
+import EstruturasDeDados.ArrayUnorderedList;
+import EstruturasDeDados.UnorderedListADT;
+import java.util.Iterator;
 
 /**
  *
@@ -14,33 +15,38 @@ import java.io.IOException;
  */
 public class MenuClassficacoes extends javax.swing.JFrame {
 
-    private Mapas mapa;
-    private LinkedOrderedList<Jogador> classificacao = new LinkedOrderedList<>();
-    private Classificacao cl = new Classificacao(classificacao, mapa, 1);
+    private final UnorderedListADT<Classificacao> classificacoes;
 
     /**
      * Creates new form MenuClassficacoes. Shows all classifications of all maps
      *
-     * @param mapa null if is to show all maps otherwise show only of one map
+     * @param classifs
      */
-    public MenuClassficacoes(Mapas mapa) throws IOException {
+    public MenuClassficacoes(UnorderedListADT<Classificacao> classifs) {
+        this.classificacoes = (ArrayUnorderedList<Classificacao>) classifs; //AQUI VAI RECEBER OU TODAS AS CLASSFICAÇOES OU UMA LIST SO COM UMA CLASSIFICAÇAO CORRESPONDENTE AQUELE MAPA E DIFICULDADE
 
         this.setTitle("Classificações");
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //Anula o botão de fechar a janela 'x'
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //Muda o botão de fechar a janela 'x' para fechar apenas a janela e não o programa
         initComponents();
         this.setResizable(false); //Anula a maximização da janela ou qualquer outro tipo de "resize"
 
-        if (mapa != null) {
-            this.mapa = mapa;
-        }
         this.setVisible(true); //Faz aparecer esta janela do jogo
         this.setLocationRelativeTo(null); //Coloca a janela ao centro do 
 
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
-            jTable1.setValueAt((i + 1), i, 0);
-            jTable1.setValueAt(cl.getsClassificacao(), i, 1);
+        Iterator itrClassificacoes = classificacoes.iterator();
+        while (itrClassificacoes.hasNext()) {
+            Classificacao tempClassificacoes = (Classificacao) itrClassificacoes.next();
+            int i = 0;
+            Iterator itrJogadores = tempClassificacoes.getClassificacao().iterator();
+            while (itrJogadores.hasNext()) {
+                Jogador tempJogador = (Jogador) itrJogadores.next();
+                jTable1.setValueAt(i + 1, i, 0);
+                jTable1.setValueAt(tempJogador.getNome(), i, 1);
+                jTable1.setValueAt(tempJogador.getPontos(), i, 2);
+                jTable1.setValueAt(tempClassificacoes.getMapa(), i, 3);
+                jTable1.setValueAt(tempClassificacoes.getDificuldade(), i, 4);
+            }
         }
-
     }
 
     /**
@@ -61,47 +67,47 @@ public class MenuClassficacoes extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Pos", "Jogador", "Pontuação", "Mapa"
+                "Pos", "Jogador", "Pontuação", "Mapa", "Dificuldade"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Short.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Short.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -119,6 +125,7 @@ public class MenuClassficacoes extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jLabelTitulo.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 24)); // NOI18N
