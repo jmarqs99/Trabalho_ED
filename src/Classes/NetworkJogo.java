@@ -48,7 +48,25 @@ public class NetworkJogo<T> extends Network<T> {
 
     @Override
     public String toString() {
-        return super.toString(); 
+        return super.toString();
+    }
+
+    public String toStringWithoutGhosts() {
+
+        String res = "  ";
+        for (int y = 0; y < size(); y++) {
+            res = res + " " + vertices[y];
+        }
+        res = res + "<br>";
+        for (int i = 0; i < size(); i++) {
+            res = res + vertices[i] + " ";
+            for (int y = 0; y < size(); y++) {
+
+                res = res + " " + (adjMatrix[i][y] != null ? "S" : "N");
+            }
+            res = res + "<br>";
+        }
+        return res;
     }
 
 }
