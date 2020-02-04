@@ -41,6 +41,7 @@ public class Mapas {
 
     private void addEdge(JSONObject edge) {
         int fantasma = ((Long) edge.get("fantasma")).intValue();
+        
         ((JSONArray) (edge.get("ligacoes"))).forEach(i -> {
             try {
                 aposentos.addEdge((String) i, (String) (edge.get("aposento")), fantasma);

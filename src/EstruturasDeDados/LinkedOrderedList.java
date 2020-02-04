@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EstruturasDeDados;
 
 /**
@@ -12,6 +7,10 @@ package EstruturasDeDados;
  */
 public class LinkedOrderedList<T> extends LinkedList<T> implements OrderedListADT<T> {
 
+    /**
+     *
+     * @param element
+     */
     @Override
     public void add(T element) {
         if (element instanceof Comparable) {

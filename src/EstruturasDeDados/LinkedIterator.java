@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EstruturasDeDados;
 
 import java.util.Iterator;
@@ -14,8 +9,12 @@ import java.util.Iterator;
  */
 public class LinkedIterator<T> implements Iterator {
 
-    DoubleNode<T> current;
+    private DoubleNode<T> current;
 
+    /**
+     *
+     * @param list
+     */
     public LinkedIterator(LinkedList<T> list) {
         current = list.head;
     }

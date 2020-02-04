@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EstruturasDeDados;
 
 import Exceptions.ElementNotFoundException;
@@ -14,20 +9,46 @@ import java.util.logging.Logger;
 /**
  *
  * @author Utilizador
+ * @param <T>
  */
 public class Network<T> implements NetworkADT<T> {
     
+    /**
+     *
+     */
     protected final int DEFAULT_CAPACITY = 10;
+
+    /**
+     *
+     */
     protected int numVertices;
+
+    /**
+     *
+     */
     protected Double[][] adjMatrix;
+
+    /**
+     *
+     */
     protected T[] vertices;
     
+    /**
+     *
+     */
     public Network() {
         this.numVertices = 0;
         this.adjMatrix = new Double[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
         this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
     }
     
+    /**
+     *
+     * @param vertex1
+     * @param vertex2
+     * @param weight
+     * @throws ElementNotFoundException
+     */
     @Override
     public void addEdge(T vertex1, T vertex2, double weight) throws ElementNotFoundException {
         addEdgeInter(getIndex(vertex1), getIndex(vertex2), weight);
@@ -44,6 +65,12 @@ public class Network<T> implements NetworkADT<T> {
         }
     }
     
+    /**
+     *
+     * @param vertex
+     * @return
+     * @throws ElementNotFoundException
+     */
     public int getIndex(T vertex) throws ElementNotFoundException {
         int pos = -1;
         boolean found = false;
@@ -63,6 +90,13 @@ public class Network<T> implements NetworkADT<T> {
         return vertices[index] != null;
     }
     
+    /**
+     *
+     * @param vertex1
+     * @param vertex2
+     * @return
+     * @throws ElementNotFoundException
+     */
     @Override
     public double shortestPathWeight(T vertex1, T vertex2) throws ElementNotFoundException {
         int startIndex = getIndex(vertex1);
@@ -156,6 +190,11 @@ public class Network<T> implements NetworkADT<T> {
         removeEdge(getIndex(vertex1), getIndex(vertex2));
     }
     
+    /**
+     *
+     * @param index1
+     * @param index2
+     */
     public void removeEdge(int index1, int index2) {
         if (indexIsValid(index1) && indexIsValid(index2)) {
             adjMatrix[index1][index2] = null;

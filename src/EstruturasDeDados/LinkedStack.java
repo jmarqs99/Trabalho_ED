@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EstruturasDeDados;
 
 import Exceptions.EmptyCollectionException;
@@ -10,17 +5,25 @@ import Exceptions.EmptyCollectionException;
 /**
  *
  * @author Utilizador
+ * @param <T>
  */
 public class LinkedStack<T> implements StackADT<T> {
 
     private LinkedNode<T> top;
     private int count;
 
+    /**
+     *
+     */
     public LinkedStack() {
         this.top = null;
         this.count = 0;
     }
 
+    /**
+     *
+     * @param element
+     */
     @Override
     public void push(T element) {
         LinkedNode<T> newNode = new LinkedNode<>(top, element);
@@ -28,6 +31,10 @@ public class LinkedStack<T> implements StackADT<T> {
         count++;
     }
 
+    /**
+     *
+     * @return @throws EmptyCollectionException
+     */
     @Override
     public T pop() throws EmptyCollectionException {
         if (isEmpty() == true) {
@@ -39,6 +46,10 @@ public class LinkedStack<T> implements StackADT<T> {
         return result;
     }
 
+    /**
+     *
+     * @return @throws EmptyCollectionException
+     */
     @Override
     public T peek() throws EmptyCollectionException {
         if (isEmpty() == true) {
@@ -47,6 +58,10 @@ public class LinkedStack<T> implements StackADT<T> {
         return top.getElement();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isEmpty() {
         if (count == 0) {
@@ -55,6 +70,10 @@ public class LinkedStack<T> implements StackADT<T> {
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int size() {
         return count;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EstruturasDeDados;
 
 import Exceptions.ElementNotFoundException;
@@ -19,15 +14,22 @@ public class ArrayList<T> implements ListaADT<T>, Iterable<T> {
     final int DEFAULT_SIZE = 1000;
     private final int EXPAND_BY = 2;
     private final int NOT_FOUND = -1;
-
     protected int rear;
     protected T[] list;
 
+    /**
+     *
+     */
     public ArrayList() {
         this.list = (T[]) new Object[DEFAULT_SIZE];
         this.rear = 0;
     }
 
+    /**
+     *
+     * @return
+     * @throws EmptyCollectionException
+     */
     @Override
     public T removeFirst() throws EmptyCollectionException {
         if (isEmpty()) {
@@ -42,6 +44,11 @@ public class ArrayList<T> implements ListaADT<T>, Iterable<T> {
         return result;
     }
 
+    /**
+     *
+     * @return
+     * @throws EmptyCollectionException
+     */
     @Override
     public T removeLast() throws EmptyCollectionException {
         T result = list[rear - 1];
@@ -50,6 +57,13 @@ public class ArrayList<T> implements ListaADT<T>, Iterable<T> {
         return result;
     }
 
+    /**
+     *
+     * @param element
+     * @return
+     * @throws EmptyCollectionException
+     * @throws ElementNotFoundException
+     */
     @Override
     public T remove(T element) throws EmptyCollectionException, ElementNotFoundException {
         int pos = -1;
@@ -76,16 +90,29 @@ public class ArrayList<T> implements ListaADT<T>, Iterable<T> {
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public T first() {
         return list[0];
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public T last() {
         return list[rear - 1];
     }
 
+    /**
+     *
+     * @param target
+     * @return
+     */
     @Override
     public boolean contains(T target) {
         boolean found = false;
@@ -99,11 +126,19 @@ public class ArrayList<T> implements ListaADT<T>, Iterable<T> {
         return found;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isEmpty() {
         return (rear == 0);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int size() {
         return rear;

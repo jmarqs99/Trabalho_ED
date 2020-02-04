@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EstruturasDeDados;
 
 import Exceptions.ElementNotFoundException;
@@ -14,9 +9,16 @@ import Exceptions.ElementNotFoundException;
  */
 public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedListADT<T> {
 
+    /**
+     *
+     */
     public LinkedUnorderedList() {
     }
 
+    /**
+     *
+     * @param element
+     */
     @Override
     public void addToFront(T element) {
         DoubleNode node = new DoubleNode(element);
@@ -29,6 +31,10 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
         count++;
     }
 
+    /**
+     *
+     * @param element
+     */
     @Override
     public void addToRear(T element) {
         DoubleNode node = new DoubleNode(element);
@@ -44,6 +50,12 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
         count++;
     }
 
+    /**
+     *
+     * @param element
+     * @param prevElement
+     * @throws ElementNotFoundException
+     */
     @Override
     public void addAfter(T element, T prevElement) throws ElementNotFoundException {
         if (!contains(prevElement)) {

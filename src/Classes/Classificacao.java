@@ -10,8 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,16 +22,15 @@ import javax.swing.JOptionPane;
 public class Classificacao implements IClassificacao {
 
     private OrderedListADT<Jogador> classificacao;
-    /**
-     * Nome do mapa
-     */
     private final String mapa;
     private final int dificuldade;
 
     /**
+     * Construtor parameterizado
      *
-     * @param map
-     * @param dificuldade
+     * @param map mapa para o qual ira ser tratada a classificação
+     * @param dificuldade dificuldade para o qual ira ser tratada a
+     * classificação
      */
     public Classificacao(String map, int dificuldade) {
         this.classificacao = new LinkedOrderedList<>();
@@ -60,6 +57,7 @@ public class Classificacao implements IClassificacao {
         // a variável "linha" recebe o valor "null" quando o processo
         // de repetição atingir o final do arquivo texto
         String result = "";
+
         while (linha != null) {
             result += linha;
             linha = lerArq.readLine();
@@ -79,23 +77,33 @@ public class Classificacao implements IClassificacao {
     }
 
     /**
-     * @return the mapa
+     * Método para retornar o nome do mapa
+     *
+     * @return the mapa retorna o nome do mapa
      */
     public String getMapa() {
         return mapa;
     }
 
     /**
-     * @return the dificuldade
+     * Método para retornar a dificuldade do mapa
+     *
+     * @return the dificuldade a dificuldade do mapa
      */
     public int getDificuldade() {
         return dificuldade;
     }
 
     /**
-     * @return the classificacao
+     * Método para retornar a lista de classificação de jogadores do mapa
+     *
+     * @return the classificacao lista de classificação de jogadores do mapa
      */
     public OrderedListADT<Jogador> getClassificacao() {
         return classificacao;
     }
+
+
+
+
 }

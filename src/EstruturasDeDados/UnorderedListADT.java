@@ -1,11 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EstruturasDeDados;
-
-import Exceptions.ElementNotFoundException;
 
 /**
  *
@@ -14,9 +7,23 @@ import Exceptions.ElementNotFoundException;
  */
 public interface UnorderedListADT<T> extends ListaADT<T> {
 
+    /**
+     *
+     * @param element
+     */
     public void addToFront(T element);
 
+    /**
+     *
+     * @param element
+     */
     public void addToRear(T element);
 
+    /**
+     *
+     * @param element
+     * @param prevElement
+     * @throws Exception
+     */
     public void addAfter(T element, T prevElement) throws Exception;
 }
