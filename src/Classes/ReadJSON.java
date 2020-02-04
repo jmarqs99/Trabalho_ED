@@ -10,8 +10,8 @@ import org.json.simple.parser.*;
  * Classe para fazer a leitura do ficheiro JSon
  *
  * @author Grupo 21
- * @author João Pedro Faria Marques nº8180551
- * @author João Sousa nº8180175
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class ReadJSON {
 
@@ -24,14 +24,14 @@ public class ReadJSON {
     public static JSONObject loadJSON(String caminho) {
         JSONParser jsonParser = new JSONParser();
         Object jsonObj = null;
-        
+
         try (FileReader reader = new FileReader(caminho)) {
             jsonObj = jsonParser.parse(reader);
         } catch (FileNotFoundException e) {
             System.out.println("Ficheiro não encontrado!\n");
         } catch (IOException | ParseException e) {
         }
-        
+
         return (JSONObject) jsonObj;
     }
 

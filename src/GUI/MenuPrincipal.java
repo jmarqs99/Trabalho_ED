@@ -1,22 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package interfacetests;
+package GUI;
 
 import Classes.Classificacao;
-import Classes.MenuClassficacoes;
+import Classes.Jogador;
 import EstruturasDeDados.ArrayUnorderedList;
-import EstruturasDeDados.LinkedUnorderedList;
 import EstruturasDeDados.UnorderedListADT;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
+ * Classe para gerir a interface gráfica que apresenta o menu para iniciar o
+ * jogo
  *
- * @author Joao Sousa
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
@@ -31,8 +32,50 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setResizable(false);
 
         this.classificacoes = new ArrayUnorderedList<>();
+        try {
+            loadtxt();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar as classificações."
+                    + "\nO jogo vai prosseguir sem classificações.", null, WIDTH); //Mensagem de erro numa janela
+        }
 
+        //Dar Load de todos os ficheiros classificaçoes
         setLocationRelativeTo(null);
+    }
+
+    private void loadtxt() throws FileNotFoundException, IOException {
+        File[] classifs = new File("./Classificacoes").listFiles();
+
+        for (int i = 0; i < classifs.length; i++) {
+            FileReader arq = new FileReader(classifs[i]);
+            System.out.println(i);
+            BufferedReader lerArq = new BufferedReader(arq);
+            String linha = lerArq.readLine(); // lê a primeira linha
+            // a variável "linha" recebe o valor "null" quando o processo
+            // de repetição atingir o final do arquivo texto
+
+            // Busca a posição da Palavra Mapa
+            int posMap = linha.indexOf("Mapa:");
+            // Busca a posição da Palavra Dificuldade
+            int posDificuldade = linha.indexOf("Dificuldade:");
+            String nomeMapa = linha.substring(posMap + 6, posDificuldade - 1);
+            int dificuldade = Integer.parseInt(linha.substring(posDificuldade + 13, posDificuldade + 14));
+            Classificacao classificacao = new Classificacao(nomeMapa, dificuldade);
+
+            while (linha != null) {
+                // Busca a posição da Palavra Pontos
+                int posPontos = linha.indexOf("Pontos:");
+                //Cria um jogador com o nome
+                System.out.println(posPontos);
+                Jogador temp = new Jogador(linha.substring(37, (posPontos - 1)));
+                // Busca a posição da Palavra Mapa
+                int posMapaJ = linha.indexOf("Mapa:");
+                temp.setPontos(Integer.parseInt(linha.substring(posPontos + 8, posMapaJ - 1)));
+                classificacao.addClassificacaoRepetida(temp);
+                linha = lerArq.readLine();
+            }
+            this.classificacoes.addToFront(classificacao);
+        }
     }
 
     /**
@@ -85,12 +128,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addComponent(jLabelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jDesktopPane2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonClassificacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
-                .addComponent(jButtonClassificacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,17 +161,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
         this.setVisible(false);
-        new Menu(this).setVisible(true);
+        new Menu(this, classificacoes).setVisible(true);
     }//GEN-LAST:event_jButtonIniciarActionPerformed
 
     private void jButtonClassificacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClassificacoesActionPerformed
-       
-//        try {
-//            new MenuClassficacoes(this.classificacoes);
-//        } catch (IOException ex) {
-//            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-       
+        new MenuClassficacoes(this.classificacoes);
     }//GEN-LAST:event_jButtonClassificacoesActionPerformed
 
     /**

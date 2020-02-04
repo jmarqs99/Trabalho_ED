@@ -1,33 +1,31 @@
-package interfacetests;
+package GUI;
 
 import Classes.Classificacao;
 import Classes.Jogador;
 import Classes.Mapas;
-import Classes.MenuClassficacoes;
 import Classes.NetworkJogo;
 import EstruturasDeDados.ArrayUnorderedList;
-import EstruturasDeDados.LinkedOrderedList;
 import EstruturasDeDados.UnorderedListADT;
 import Exceptions.ElementNotFoundException;
 import static java.awt.image.ImageObserver.WIDTH;
-import java.io.IOException;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
+ * Classe para gerir a interface gráfica que apresenta o jogo jogável
  *
- * @author Joao Sousa
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class MenuJogo extends javax.swing.JFrame {
 
     private final JFrame frameMenuEscolhas; //Menu de escolhas
     private final Jogador jogador;
-    private final int dificuldade; //PODE SAIR PORQUE TEMOS O MAPA NA CLASSIFICAÇAO, no construtor tb
+    private final int dificuldade;
     private final String modo;
-    private final Mapas mapa; //PODE SAIR PORQUE TEMOS O MAPA NA CLASSIFICAÇAO, no construtor tambem
+    private final Mapas mapa;
     /**
      * Classificaçoes deste mapa com esta dificuldade
      */
@@ -53,16 +51,16 @@ public class MenuJogo extends javax.swing.JFrame {
         this.count = 1;
 
         // Isto deve estar só no modo Manual?
-        Iterator itr = classif.iterator();
+        Iterator itr = ((ArrayUnorderedList) classif).iterator();
         Classificacao found = null;
         while (itr.hasNext()) {
             Classificacao temp = (Classificacao) itr.next();
-            if (temp.getMapa().equals(this.mapa) && temp.getDificuldade() == this.dificuldade) {
+            if (temp.getMapa().equals(this.mapa.getNOME()) && temp.getDificuldade() == this.dificuldade) {
                 found = temp;
             }
         }
         if (found == null) {
-            this.classificacao = new Classificacao(this.mapa, this.dificuldade);
+            this.classificacao = new Classificacao(this.mapa.getNOME(), this.dificuldade);
             classif.addToFront(this.classificacao); //Será que isto vai funcionar como supostamente esta lista é uma copia?
         } else {
             this.classificacao = found;
@@ -330,20 +328,20 @@ public class MenuJogo extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInformaçõesLayout.createSequentialGroup()
                         .addGroup(jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelTituloInformacoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelInformacoes, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                            .addComponent(jLabelInformacoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(60, 60, 60))))
         );
         jPanelInformaçõesLayout.setVerticalGroup(
             jPanelInformaçõesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInformaçõesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                .addComponent(jLabelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelDificuldade, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                .addComponent(jLabelDificuldade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelNomeJogador, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                .addComponent(jLabelNomeJogador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelVida, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addComponent(jLabelVida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(24, 24, 24)
                 .addComponent(jLabelTituloInformacoes)
                 .addGap(0, 0, 0)
@@ -472,6 +470,7 @@ public class MenuJogo extends javax.swing.JFrame {
             jButtonEscolheAposento.setEnabled(false); //Desativa o botão para não se escolher mais opções que podem causar problemas no sistema
             jButtonDesistir.setText("VOLTAR"); //O botão 'DESISTIR' passa  chamar-se 'VOLTAR' uma vez que o jogo já chegou ao fim
             jLabelCaminhos.setText(jLabelCaminhos.getText() + "<br/>exterior</html>"); //Acrescenta o exterior ao caminho
+            this.classificacao.addClassificacao(jogador); //Adiciona a classificação do jogador
             jButton1.setVisible(true); //Aparece o botão para mostrar as classificações
         } else {
             String aposentoPassado = jLabelAposentoAtual.getText().replace("Tu estás em: ", ""); //Obtém o aposento em que se está antes de clicar no novo aposento para poder calcular a vida
@@ -520,12 +519,6 @@ public class MenuJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDesistirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        Classificacao found = null;
-//        Iterator itr = classificacoes.iterator();
-//        while (itr.hasNext()) {
-//            
-//        }
-//        if ((ArrayUnorderedList) classificacoes[i].)
         UnorderedListADT<Classificacao> temp = new ArrayUnorderedList<>();
         temp.addToFront(classificacao);
         new MenuClassficacoes(temp);

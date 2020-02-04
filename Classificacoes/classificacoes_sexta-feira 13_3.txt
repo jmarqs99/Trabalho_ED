@@ -1,0 +1,15 @@
+[2020-02-04 14:46:49.434]: Jogador: asdas Pontos: 40 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 14:47:16.388]: Jogador: dasfas Pontos: 40 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 14:47:49.454]: Jogador: fsafsa Pontos: 40 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 14:58:59.664]: Jogador: asfasf Pontos: 45 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:08:23.646]: Jogador: asfa Pontos: 50 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:09:16.247]: Jogador: fasfas Pontos: 65 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:16:15.454]: Jogador: asfasfa Pontos: 100 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:17:18.153]: Jogador: fasfas Pontos: 70 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:20:14.134]: Jogador: qfwfas Pontos: 40 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:20:59.367]: Jogador: fsafasf Pontos: 40 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:21:51.461]: Jogador: asfafs Pontos: 40 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:24:51.055]: Jogador: afsasfas Pontos: 40 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:29:57.566]: Jogador: asdasf Pontos: 40 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:31:20.620]: Jogador: asfasf Pontos: 40 Mapa: sexta-feira 13 Dificuldade: 3
+[2020-02-04 15:32:34.070]: Jogador: agfasga Pontos: 40 Mapa: sexta-feira 13 Dificuldade: 3

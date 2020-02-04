@@ -8,8 +8,8 @@ import Exceptions.ElementNotFoundException;
  * Classe para adicionar métodos adicionais á Network
  *
  * @author Grupo 21
- * @author João Pedro Faria Marques nº8180551
- * @author João Sousa nº8180175
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  * @param <T> genérico
  */
 public class NetworkJogo<T> extends Network<T> {
@@ -36,9 +36,9 @@ public class NetworkJogo<T> extends Network<T> {
     public ArrayUnorderedList<T> getEdges(T vertex) throws ElementNotFoundException {
         int index = getIndex(vertex);
         ArrayUnorderedList result = new ArrayUnorderedList<>();
-        
+
         for (int i = 0; i < super.vertices.length; i++) {
-            
+
             if (adjMatrix[index][i] != null) {
                 result.addToRear(super.vertices[i]);
             }

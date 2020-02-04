@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaces;
 
 import Classes.Jogador;
@@ -10,13 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
+ * Interface para contratar/garantir a gestão das classificações
  *
- * @author Utilizador
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public interface IClassificacao {
 
     /**
-     * Método para adicionar classificação
+     * Método para adicionar classificação. Usa o save para guardar a
+     * classificação em ficheiro
      *
      * @param j1 jogador ao qual vai ser adicionada a classificação
      */
@@ -31,4 +30,11 @@ public interface IClassificacao {
      */
     public String getsClassificacao() throws FileNotFoundException, IOException;
 
+    /**
+     * Usado para dar load ás classificações já existentes em ficheiros. A
+     * diferença para o outro é que não usa o save
+     *
+     * @param j1 jogador ao qual vai ser adicionada a classificação
+     */
+    public void addClassificacaoRepetida(Jogador j1);
 }

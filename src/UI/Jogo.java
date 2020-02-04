@@ -1,12 +1,14 @@
-package Classes;
+package UI;
 
+import Classes.Classificacao;
+import Classes.Jogador;
+import Classes.Mapas;
+import Classes.NetworkJogo;
+import Classes.ReadJSON;
 import EstruturasDeDados.LinkedOrderedList;
 import EstruturasDeDados.UnorderedListADT;
 import Exceptions.ElementNotFoundException;
 import Exceptions.FicheiroNaoEncontrado;
-import UI.Inputs;
-import UI.MenusInteracao;
-import UI.Util;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -14,15 +16,25 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 
 /**
+ * Classe Jogo onde decorre o jogo com uma Interface textual para o utilizador
  *
- * @author Utilizador
+ * <h3>
+ * ESTG - Escola Superior de Tecnologia e Gestão<br>
+ * IPP - Instituto Politécnico do Porto<br>
+ * LEI - Licenciatura em Engenharia Informática<br>
+ * ED - Estruturas de Dados<br>
+ * </h3>
+ *
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class Jogo {
 
-    private Jogador jogador;
+    private final Jogador jogador;
     private Mapas mapa;
     private LinkedOrderedList<Jogador> classificacao = new LinkedOrderedList<>();
-    private Classificacao c = new Classificacao(classificacao, mapa, 1);
+    private Classificacao c = new Classificacao(mapa.getNOME(), 1);
 
     public Jogo() throws IOException, FicheiroNaoEncontrado, ElementNotFoundException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));

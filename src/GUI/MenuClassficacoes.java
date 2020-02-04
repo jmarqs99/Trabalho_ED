@@ -1,17 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Classes;
+package GUI;
 
+import Classes.Classificacao;
+import Classes.Jogador;
 import EstruturasDeDados.ArrayUnorderedList;
 import EstruturasDeDados.UnorderedListADT;
 import java.util.Iterator;
+import javax.swing.table.DefaultTableModel;
 
 /**
+ * Classe para gerir a interface gráfica que apresenta as classificações dos
+ * jogadores
  *
- * @author Joao Sousa
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class MenuClassficacoes extends javax.swing.JFrame {
 
@@ -33,18 +35,30 @@ public class MenuClassficacoes extends javax.swing.JFrame {
         this.setVisible(true); //Faz aparecer esta janela do jogo
         this.setLocationRelativeTo(null); //Coloca a janela ao centro do 
 
+        jTable1.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.addColumn("Posição");
+        model.addColumn("Jogador");
+        model.addColumn("Pontuação");
+        model.addColumn("Mapa");
+        model.addColumn("Dificuldade");
+
+        /**
+         * Para adicionar as classificações à tabela fazemos ao
+         * contrário(adicionando sempre a linha nova na posição 0 e o i(posição
+         * do jogador) a decrementar em vez de incrementar), tendo em conta que
+         * a ordered List ordena de menor para maior ou seja o 0 seria o 1º e
+         * assim garantimos que isso não acontece
+         */
         Iterator itrClassificacoes = classificacoes.iterator();
         while (itrClassificacoes.hasNext()) {
             Classificacao tempClassificacoes = (Classificacao) itrClassificacoes.next();
-            int i = 0;
             Iterator itrJogadores = tempClassificacoes.getClassificacao().iterator();
+            int i = tempClassificacoes.getClassificacao().size() - 1;
             while (itrJogadores.hasNext()) {
                 Jogador tempJogador = (Jogador) itrJogadores.next();
-                jTable1.setValueAt(i + 1, i, 0);
-                jTable1.setValueAt(tempJogador.getNome(), i, 1);
-                jTable1.setValueAt(tempJogador.getPontos(), i, 2);
-                jTable1.setValueAt(tempClassificacoes.getMapa(), i, 3);
-                jTable1.setValueAt(tempClassificacoes.getDificuldade(), i, 4);
+                model.insertRow(0, new Object[]{(i + 1), tempJogador.getNome(), tempJogador.getPontos(), tempClassificacoes.getMapa(), tempClassificacoes.getDificuldade()});
+                i--;
             }
         }
     }
@@ -67,37 +81,7 @@ public class MenuClassficacoes extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Pos", "Jogador", "Pontuação", "Mapa", "Dificuldade"

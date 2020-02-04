@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Classes;
 
 import EstruturasDeDados.NetworkADT;
@@ -15,8 +10,8 @@ import org.json.simple.*;
  * Classe para inserir vértices e arestas do mapa em JSON
  *
  * @author Grupo 21
- * @author João Pedro Faria Marques nº8180551
- * @author João Sousa nº8180175
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class Mapas {
 

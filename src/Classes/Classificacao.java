@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Classes;
 
 import EstruturasDeDados.LinkedOrderedList;
 import EstruturasDeDados.OrderedListADT;
 import Interfaces.IClassificacao;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -16,19 +12,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
- * adsfsagkhsajfhsakjlfghhaj
+ * Classe para gerir classificações acerca do jogador
  *
- * @author Utilizador
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class Classificacao implements IClassificacao {
 
     private OrderedListADT<Jogador> classificacao;
-    private final Mapas mapa;
+    /**
+     * Nome do mapa
+     */
+    private final String mapa;
     private final int dificuldade;
 
-    public Classificacao(Mapas map, int dificuldade) {
+    /**
+     *
+     * @param map
+     * @param dificuldade
+     */
+    public Classificacao(String map, int dificuldade) {
         this.classificacao = new LinkedOrderedList<>();
         mapa = map;
         this.dificuldade = dificuldade;
@@ -37,12 +44,17 @@ public class Classificacao implements IClassificacao {
     @Override
     public void addClassificacao(Jogador j1) {
         getClassificacao().add(j1);
-        save(" Jogador: " + j1.getNome() + " Pontos: " + j1.getPontos() + " Mapa: " + getMapa().getNOME() + " Dificuldade: " + getDificuldade());
+        save(" Jogador: " + j1.getNome() + " Pontos: " + j1.getPontos() + " Mapa: " + getMapa() + " Dificuldade: " + getDificuldade());
+    }
+
+    @Override
+    public void addClassificacaoRepetida(Jogador j1) {
+        getClassificacao().add(j1);
     }
 
     @Override
     public String getsClassificacao() throws FileNotFoundException, IOException {
-        FileReader arq = new FileReader("./Classificacoes/classificacoes_" + getMapa().getNOME() + "_" + getDificuldade() + ".txt");
+        FileReader arq = new FileReader("./Classificacoes/classificacoes_" + getMapa() + "_" + getDificuldade() + ".txt");
         BufferedReader lerArq = new BufferedReader(arq);
         String linha = lerArq.readLine(); // lê a primeira linha
         // a variável "linha" recebe o valor "null" quando o processo
@@ -55,39 +67,21 @@ public class Classificacao implements IClassificacao {
         return result;
     }
 
-    public void loadtxt() throws FileNotFoundException, IOException {
-        FileReader arq = new FileReader("./Classificacoes/classificacoes_" + getMapa().getNOME() + "_" + getDificuldade() + ".txt");
-        BufferedReader lerArq = new BufferedReader(arq);
-        String linha = lerArq.readLine(); // lê a primeira linha
-        // a variável "linha" recebe o valor "null" quando o processo
-        // de repetição atingir o final do arquivo texto
-        while (linha != null) {
-            // Busca a posição da Palavra Pontos
-            int posPontos = linha.indexOf("Pontos:");
-            //Cria um jogador com o nome
-            Jogador temp = new Jogador(linha.substring(37, posPontos - 1));
-            // Busca a posição da Palavra Mapa
-            int posMapa = linha.indexOf("Mapa:");
-            temp.setPontos(Integer.parseInt(linha.substring(posPontos + 8, posMapa - 1)));
-            getClassificacao().add(temp);
-            linha = lerArq.readLine();
-        }
-    }
-
     private void save(String mensagem) {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(("./Classificacoes/classificacoes_" + getMapa().getNOME() + "_" + getDificuldade() + ".txt"), true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(("./Classificacoes/classificacoes_" + getMapa() + "_" + getDificuldade() + ".txt"), true));
             writer.append("[" + java.time.LocalDate.now() + " " + java.time.LocalTime.now() + "]:" + mensagem + "\n");
             writer.close();
         } catch (IOException ex) {
-            Logger.getLogger(Classificacao.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro ao guardar a classificação."
+                    + "\nO jogo vai prosseguir sem guardar.", null, WIDTH); //Mensagem de erro numa janela
         }
     }
 
     /**
      * @return the mapa
      */
-    public Mapas getMapa() {
+    public String getMapa() {
         return mapa;
     }
 

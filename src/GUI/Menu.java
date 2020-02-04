@@ -1,9 +1,10 @@
-package interfacetests;
+package GUI;
 
 import Classes.Classificacao;
 import Classes.Jogador;
 import Classes.Mapas;
 import Classes.ReadJSON;
+import EstruturasDeDados.ArrayUnorderedList;
 import EstruturasDeDados.UnorderedListADT;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
@@ -14,30 +15,34 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
+ * Classe para gerir a interface gráfica que apresenta o menu das preferências
+ * do jogo
  *
- * @author Joao Sousa
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class Menu extends javax.swing.JFrame {
 
     private final JFrame frameMenuPrincipal;
     private Jogador jogador;
-    private File[] mapas; //Array com todos os mapas do jogo
+    private final File[] mapas; //Array com todos os mapas do jogo
     private Mapas mapa; //Mapa escolhido pelo utilizador
-    private UnorderedListADT<Classificacao> classificacoes;
+    private final UnorderedListADT<Classificacao> classificacoes;
 
     /**
      * Creates new form NewJFrame
      *
      * @param frame
+     * @param classifics
      */
-    public Menu(JFrame frame) {
+    public Menu(JFrame frame, UnorderedListADT<Classificacao> classifics) {
         this.setTitle("Menu"); //Titulo da window
-
         setResizable(false);
-
-        this.frameMenuPrincipal = frame; //referência para frame principal
-
         initComponents();
+
+        this.classificacoes = (ArrayUnorderedList<Classificacao>) classifics;
+        this.frameMenuPrincipal = frame; //referência para frame principal
 
         mapas = new File("./mapas").listFiles(); // Cria um array com todos os mapas
 
@@ -411,7 +416,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jPanelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(filler3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(filler3, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelNomeJogador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -421,7 +426,7 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jPanelEscolhas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(loadingPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(apresentacoisasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(apresentacoisasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
                 .addGap(69, 69, 69))
         );
 

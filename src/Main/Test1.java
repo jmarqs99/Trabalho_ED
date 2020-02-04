@@ -1,7 +1,7 @@
 package Main;
 
 import Classes.Jogador;
-import Classes.Jogo;
+import UI.Jogo;
 import EstruturasDeDados.LinkedOrderedList;
 import Exceptions.ElementNotFoundException;
 import Exceptions.FicheiroNaoEncontrado;
@@ -14,18 +14,17 @@ import Classes.ReadJSON;
 import java.io.File;
 
 /**
+ * Main
+ *
  * <h3>
  * ESTG - Escola Superior de Tecnologia e Gestão<br>
  * IPP - Instituto Politécnico do Porto<br>
  * LEI - Licenciatura em Engenharia Informática<br>
- * PP - Paradigmas de Programação<br>
+ * ED - Estruturas de Dados<br>
  * </h3>
- * <p>
- * <strong>Author: </strong><br>
- * Joao Sousa<br>
- * <strong>Description: </strong><br>
- *
- * </p>
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class Test1 {
 
@@ -37,7 +36,6 @@ public class Test1 {
         Mapas mapa;
         mapa = new Mapas(ReadJSON.loadJSON(mapas[0].getPath()));
         LinkedOrderedList<Jogador> classificacao = new LinkedOrderedList<>();
-        Classificacao c = new Classificacao(classificacao,mapa,1);
         //for(int i=0;i<30;i++){
          //c.addClassificacao(j1,mapa);
         //}
@@ -45,7 +43,6 @@ public class Test1 {
        //c.addClassificacao(j2);
         
         //c.loadtxt();
-        System.out.println(c.getsClassificacao());
         //System.out.println(c.getClassificacao().first().getNome());
         
 
