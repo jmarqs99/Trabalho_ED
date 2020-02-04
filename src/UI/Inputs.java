@@ -7,14 +7,15 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 
 /**
- * Classe para gerir os inputs inseridos pelo utilizador
- * 
+ * Classe para gerir os inputs inseridos pelo utilizador(DEPRECATED).
+ *
  * <h3>
  * ESTG - Escola Superior de Tecnologia e Gestão<br>
  * IPP - Instituto Politécnico do Porto<br>
  * LEI - Licenciatura em Engenharia Informática<br>
  * ED - Estruturas de Dados<br>
  * </h3>
+ *
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
  * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
@@ -55,10 +56,10 @@ public class Inputs {
                 Util.limparEcra();
             }
             while (tempIt.hasNext()) {
-                        if (pontoSeguinte.equals(tempIt.next())) {
-                            found = true;
-                        }
-                    }
+                if (pontoSeguinte.equals(tempIt.next())) {
+                    found = true;
+                }
+            }
             if (!found) {
                 System.err.println("Vértice ou ligação inexistente!");
             }

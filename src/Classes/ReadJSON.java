@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 /**
- * Classe para fazer a leitura do ficheiro JSon
+ * Classe para fazer a leitura do ficheiro JSON
  *
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2

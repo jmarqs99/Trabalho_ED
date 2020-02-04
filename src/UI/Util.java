@@ -3,7 +3,7 @@ package UI;
 import java.util.Scanner;
 
 /**
- * Classe para ajudar a utlização da interface gráfica
+ * Classe para ajudar a utlização da interface gráfica(DEPRECATED).
  *
  * <h3>
  * ESTG - Escola Superior de Tecnologia e Gestão<br>
@@ -11,6 +11,7 @@ import java.util.Scanner;
  * LEI - Licenciatura em Engenharia Informática<br>
  * ED - Estruturas de Dados<br>
  * </h3>
+ *
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
  * @author João Pedro Brandão Moreira de Sousa nº8180175, T4

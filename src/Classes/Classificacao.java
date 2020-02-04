@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class Classificacao implements IClassificacao {
-
+    
     private OrderedListADT<Jogador> classificacao;
     private final String mapa;
     private final int dificuldade;

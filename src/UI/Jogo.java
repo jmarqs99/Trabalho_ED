@@ -16,7 +16,8 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 
 /**
- * Classe Jogo onde decorre o jogo com uma Interface textual para o utilizador
+ * Classe Jogo onde decorre o jogo com uma Interface textual para o
+ * utilizador(DEPRECATED)
  *
  * <h3>
  * ESTG - Escola Superior de Tecnologia e Gestão<br>

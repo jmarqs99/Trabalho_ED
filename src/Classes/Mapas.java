@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import org.json.simple.*;
 
 /**
- * Classe para inserir vértices e arestas do mapa em JSON
+ * Classe para inserir vértices e arestas do mapa em JSON.
  *
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
