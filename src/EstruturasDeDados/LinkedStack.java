@@ -3,9 +3,10 @@ package EstruturasDeDados;
 import Exceptions.EmptyCollectionException;
 
 /**
- *
- * @author Utilizador
- * @param <T>
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
+ * @param <T> generico
  */
 public class LinkedStack<T> implements StackADT<T> {
 
@@ -13,79 +14,64 @@ public class LinkedStack<T> implements StackADT<T> {
     private int count;
 
     /**
-     *
+     * Construtor sem parametros
      */
     public LinkedStack() {
         this.top = null;
         this.count = 0;
     }
 
-    /**
-     *
-     * @param element
-     */
     @Override
     public void push(T element) {
         LinkedNode<T> newNode = new LinkedNode<>(top, element);
+
         top = newNode;
+
         count++;
     }
 
-    /**
-     *
-     * @return @throws EmptyCollectionException
-     */
     @Override
     public T pop() throws EmptyCollectionException {
         if (isEmpty() == true) {
             throw new EmptyCollectionException("ERRO:Sem elementos na Stack!");
         }
+
         T result = top.getElement();
         top = top.getNext();
+
         count--;
+
         return result;
     }
 
-    /**
-     *
-     * @return @throws EmptyCollectionException
-     */
     @Override
     public T peek() throws EmptyCollectionException {
         if (isEmpty() == true) {
-            throw new EmptyCollectionException("ERRO:Sem elementos na Stack!");
+            throw new EmptyCollectionException("A stack não tem elementos!\n");
         }
         return top.getElement();
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public boolean isEmpty() {
-        if (count == 0) {
-            return true;
-        }
-        return false;
+        return count == 0;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public int size() {
         return count;
     }
 
+    @Override
     public String toString() {
         String result = "";
         LinkedNode<T> iterationNode = top;
+
         for (int i = 0; i < count; i++) {
             result = result + iterationNode.getElement().toString() + "\n";
             iterationNode = iterationNode.getNext();
         }
         return result;
     }
+
 }

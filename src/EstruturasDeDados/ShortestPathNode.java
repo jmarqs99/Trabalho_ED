@@ -1,85 +1,82 @@
 package EstruturasDeDados;
 
 /**
- *
- * @author Utilizador
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  * @param <T>
  */
 public class ShortestPathNode<T> {
 
-    /**
-     *
-     */
     protected T element;
-
-    /**
-     *
-     */
     protected ShortestPathNode<T> antecessor;
-
-    /**
-     *
-     */
     protected Double lenght;
 
     /**
+     * Construtor parameterizado
      *
      * @param element
      * @param antecessor
      * @param len
      */
-    public ShortestPathNode(T element, ShortestPathNode<T> antecessor,Double len) {
+    public ShortestPathNode(T element, ShortestPathNode<T> antecessor, Double len) {
         this.element = element;
         this.antecessor = antecessor;
         this.lenght = len;
     }
 
     /**
+     * Retorna o elemento
      *
-     * @return
+     * @return o elemento
      */
     public T getElement() {
         return element;
     }
 
     /**
+     * Define o elemento
      *
-     * @param element
+     * @param element o elemento a ser definido
      */
     public void setElement(T element) {
         this.element = element;
     }
 
     /**
+     * Retrona o node anterior
      *
-     * @return
+     * @return o node anterior
      */
     public ShortestPathNode<T> getAntecessor() {
         return antecessor;
     }
 
     /**
+     * Define o node anterior
      *
-     * @param antecessor
+     * @param antecessor o node anterior
      */
     public void setAntecessor(ShortestPathNode<T> antecessor) {
         this.antecessor = antecessor;
     }
 
     /**
+     * Retorna o tamanho
      *
-     * @return
+     * @return o tamanho
      */
     public Double getLenght() {
         return lenght;
     }
 
     /**
+     * Define o tamanho
      *
-     * @param lenght
+     * @param lenght valor do tamanho
      */
     public void setLenght(double lenght) {
         this.lenght = lenght;
     }
-    
+
 }

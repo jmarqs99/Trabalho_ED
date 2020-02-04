@@ -1,9 +1,10 @@
 package EstruturasDeDados;
 
 /**
- *
- * @author Utilizador
- * @param <T>
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
+ * @param <T> generico
  */
 public class LinearNode<T> {
 
@@ -11,6 +12,7 @@ public class LinearNode<T> {
     private T element;
 
     /**
+     * Construtor parameterizado
      *
      * @param next
      * @param element
@@ -21,32 +23,36 @@ public class LinearNode<T> {
     }
 
     /**
+     * Retorna o elemento seguinte
      *
-     * @return
+     * @return o elemento seguinte
      */
     public LinearNode<T> getNext() {
         return next;
     }
 
     /**
+     * Define o elemento seguinte
      *
-     * @param next
+     * @param next o elemento seguinte
      */
     public void setNext(LinearNode<T> next) {
         this.next = next;
     }
 
     /**
+     * Retorna o elemento
      *
-     * @return
+     * @return o elemento
      */
     public T getElement() {
         return element;
     }
 
     /**
+     * Define o elemento
      *
-     * @param element
+     * @param element o elemento a definir
      */
     public void setElement(T element) {
         this.element = element;

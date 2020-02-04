@@ -1,16 +1,13 @@
 package EstruturasDeDados;
 
 /**
- *
- * @author Utilizador
- * @param <T>
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
+ * @param <T> generico
  */
 public class LinkedOrderedList<T> extends LinkedList<T> implements OrderedListADT<T> {
 
-    /**
-     *
-     * @param element
-     */
     @Override
     public void add(T element) {
         if (element instanceof Comparable) {

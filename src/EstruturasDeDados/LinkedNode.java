@@ -1,9 +1,10 @@
 package EstruturasDeDados;
 
 /**
- *
- * @author Utilizador
- * @param <T>
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
+ * @param <T> generico
  */
 public class LinkedNode<T> {
 
@@ -11,9 +12,9 @@ public class LinkedNode<T> {
     private T element;
 
     /**
-     *
-     * @param next
-     * @param element
+     * Construtor parameterizado
+     * @param next elemento seguinte
+     * @param element elemento atual
      */
     public LinkedNode(LinkedNode<T> next, T element) {
         this.next = next;
@@ -21,32 +22,32 @@ public class LinkedNode<T> {
     }
 
     /**
-     *
-     * @return
+     * Retorna o proximo elemento
+     * @return o proximo elemento
      */
     public LinkedNode<T> getNext() {
         return next;
     }
 
     /**
-     *
-     * @return
+     * Retorna o elemento
+     * @return o elemento
      */
     public T getElement() {
         return element;
     }
 
     /**
-     *
-     * @param next
+     * Define o proximo elemento 
+     * @param next o proximo elemento
      */
     public void setNext(LinkedNode<T> next) {
         this.next = next;
     }
 
     /**
-     *
-     * @param element
+     * Define o elemento atual
+     * @param element o elemento atual
      */
     public void setElement(T element) {
         this.element = element;

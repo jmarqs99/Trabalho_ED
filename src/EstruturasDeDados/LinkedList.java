@@ -5,20 +5,22 @@ import Exceptions.EmptyCollectionException;
 import java.util.Iterator;
 
 /**
- *
- * @author Utilizador
- * @param <T>
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
+ * @param <T> generico
  */
 public class LinkedList<T> implements ListaADT<T>, Iterable<T> {
 
     int count = 0;
-    DoubleNode<T> head;
-    DoubleNode<T> tail;
+    protected DoubleNode<T> head;
+    protected DoubleNode<T> tail;
 
     /**
+     * Construtor parameterizado
      *
-     * @param head
-     * @param tail
+     * @param head elemento cabeça
+     * @param tail elemento cauda
      */
     public LinkedList(DoubleNode<T> head, DoubleNode<T> tail) {
         this.head = head;
@@ -26,53 +28,42 @@ public class LinkedList<T> implements ListaADT<T>, Iterable<T> {
     }
 
     /**
-     *
+     * Construtor sem parametros
      */
     public LinkedList() {
         this.head = null;
         this.tail = null;
     }
 
-    /**
-     *
-     * @return @throws EmptyCollectionException
-     */
     @Override
     public T removeFirst() throws EmptyCollectionException {
         if (size() == 0) {
             throw new EmptyCollectionException();
         }
+        
         T result = head.getElement();
         head = head.getNext();
+        
         count--;
 
         return result;
     }
 
-    /**
-     *
-     * @return @throws EmptyCollectionException
-     */
     @Override
     public T removeLast() throws EmptyCollectionException {
         if (size() == 0) {
             throw new EmptyCollectionException();
         }
         T result = tail.getElement();
+        
         tail = tail.getPrev();
         tail.setNext(null);
+        
         count--;
 
         return result;
     }
 
-    /**
-     *
-     * @param element
-     * @return
-     * @throws EmptyCollectionException
-     * @throws ElementNotFoundException
-     */
     @Override
     public T remove(T element) throws EmptyCollectionException, ElementNotFoundException {
         if (size() == 0) {
@@ -83,11 +74,13 @@ public class LinkedList<T> implements ListaADT<T>, Iterable<T> {
         }
         DoubleNode current = head;
         DoubleNode prev = null;
+        
         T temp = null;
 
         do {
             if (current.getElement() == element) {
                 current.setElement(temp);
+                
                 if (prev == null) {
                     head.setNext(head);
                     head.setPrev(null);
@@ -102,29 +95,16 @@ public class LinkedList<T> implements ListaADT<T>, Iterable<T> {
         return temp;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public T first() {
         return head.getElement();
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public T last() {
         return tail.getElement();
     }
 
-    /**
-     *
-     * @param target
-     * @return
-     */
     @Override
     public boolean contains(T target) {
         DoubleNode atual = head;
@@ -138,19 +118,11 @@ public class LinkedList<T> implements ListaADT<T>, Iterable<T> {
         return false;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public boolean isEmpty() {
         return count == 0;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public int size() {
         return count;
@@ -167,6 +139,7 @@ public class LinkedList<T> implements ListaADT<T>, Iterable<T> {
     public String toString() {
         String result = "To String:";
         DoubleNode<T> node = head;
+        
         for (int i = 0; i < size(); i++) {
             result = result + "\n" + node.getElement();
             node = node.getNext();

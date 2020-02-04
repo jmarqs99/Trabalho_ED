@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EstruturasDeDados;
 
 import Exceptions.EmptyCollectionException;
 
 /**
- *
- * @author Utilizador
- * @param <T>
+ * @author Grupo 21
+ * @author João Pedro Faria Marques nº8180551, T2
+ * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
+ * @param <T> generico
  */
 public class LinkedQueue<T> implements QueueADT<T> {
 
@@ -18,6 +14,9 @@ public class LinkedQueue<T> implements QueueADT<T> {
     private LinkedNode<T> rear;
     private int count;
 
+    /**
+     * Construtor sem parametros
+     */
     public LinkedQueue() {
         this.front = null;
         this.rear = null;
@@ -76,10 +75,12 @@ public class LinkedQueue<T> implements QueueADT<T> {
     public String toString() {
         String result = "To string:\n";
         LinkedNode<T> iteratioNode = front;
+        
         for (int i = 0; i < size(); i++) {
             result = result + iteratioNode.getElement() + "\n";
             iteratioNode = iteratioNode.getNext();
         }
         return result;
     }
+
 }
