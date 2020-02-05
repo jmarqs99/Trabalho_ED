@@ -1,10 +1,7 @@
 package Classes;
 
 import org.json.simple.JSONObject;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -16,9 +13,12 @@ import static org.junit.Assert.*;
  * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
  */
 public class ReadJSONTest {
-    
+
+    private ReadJSON rj;
+
     @Before
     public void setUp() {
+        this.rj = new ReadJSON();
     }
 
     /**
@@ -34,5 +34,5 @@ public class ReadJSONTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }

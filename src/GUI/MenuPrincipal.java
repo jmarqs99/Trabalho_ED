@@ -59,7 +59,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         for (int i = 0; i < classifs.length; i++) {
             FileReader arq = new FileReader(classifs[i]);
-            System.out.println(i);
             BufferedReader lerArq = new BufferedReader(arq);
             String linha = lerArq.readLine(); // lê a primeira linha
             // a variável "linha" recebe o valor "null" quando o processo
