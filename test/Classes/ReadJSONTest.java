@@ -25,14 +25,48 @@ public class ReadJSONTest {
      * Test of loadJSON method, of class ReadJSON.
      */
     @Test
-    public void testLoadJSON() {
-        System.out.println("loadJSON");
-        String caminho = "";
+    public void testLoadJSON01() {
+        String caminho = "./mapas/mapa";
+        JSONObject expResult = null;
+        JSONObject result = ReadJSON.loadJSON(caminho);
+        assertNotNull(result);
+    }
+
+    //Testes em que o resultado esperado é IDE Exception não serão testados
+//    @Test
+//    public void testLoadJSON02() {
+//        String caminho = "";
+//        JSONObject expResult = null;
+//        JSONObject result = ReadJSON.loadJSON(caminho);
+//        assertEquals(expResult, result);
+//    }
+//    @Test
+//    public void testLoadJSON03() {
+//        String caminho = "./mapas/mapa" + "./mapas/mapa2";
+//        JSONObject expResult = null;
+//        JSONObject result = ReadJSON.loadJSON(caminho);
+//        assertEquals(expResult, result);
+//    }
+//    @Test
+//    public void testLoadJSON04() {
+//        String caminho = "";
+//        JSONObject expResult = null;
+//        JSONObject result = ReadJSON.loadJSON(caminho);
+//        assertEquals(expResult, result);
+//    }
+    @Test
+    public void testLoadJSON05() {
+        String caminho = "c:peixe";
         JSONObject expResult = null;
         JSONObject result = ReadJSON.loadJSON(caminho);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
+//    @Test
+//    public void testLoadJSON06() {
+//        String caminho = null;
+//        JSONObject expResult = null;
+//        JSONObject result = ReadJSON.loadJSON(caminho);
+//        assertEquals(expResult, result);
+//    }
 }
