@@ -1,7 +1,7 @@
 package EstruturasDeDados;
 
 /**
- * Classe para gerir classificações acerca do jogador
+ * Interface que contrata uma lista não ordenada
  *
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2

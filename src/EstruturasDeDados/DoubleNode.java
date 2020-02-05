@@ -1,6 +1,8 @@
 package EstruturasDeDados;
 
 /**
+ * Classe um nó duplamente ligado
+ * 
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
  * @author João Pedro Brandão Moreira de Sousa nº8180175, T4

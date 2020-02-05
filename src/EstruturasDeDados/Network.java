@@ -7,6 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Classe que representa um grafo pesado
+ * 
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
  * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
