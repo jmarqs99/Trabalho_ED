@@ -32,7 +32,7 @@ public interface QueueADT<T> {
      * Retorna sem remover o elemento na frente do essa fila.
      *
      * @return o primeiro elemento nesta fila
-     * @throws Exceptions.EmptyCollectionException
+     * @throws Exceptions.EmptyCollectionException caso a coleção esteja vazia
      */
     public T first() throws EmptyCollectionException;
 

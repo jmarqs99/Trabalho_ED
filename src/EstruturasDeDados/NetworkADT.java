@@ -17,7 +17,7 @@ public interface NetworkADT<T> extends GraphADT<T> {
      * @param vertex1 primeiro vertice
      * @param vertex2 segundo vertice
      * @param weight peso
-     * @throws ElementNotFoundException 
+     * @throws ElementNotFoundException caso a coleção esteja vazia
      */
     public void addEdge(T vertex1, T vertex2, double weight) throws ElementNotFoundException;
 

@@ -34,7 +34,7 @@ public interface ListaADT<T> extends Iterable<T> {
      *
      * Remove e retorna o elemento especificado dessa lista.
      *
-     * @param element
+     * @param element elemento a seer removido
      * @return elemento o elemento a ser removido da lista
      * @throws EmptyCollectionException lança exceção caso coleção esteja vazia
      * @throws ElementNotFoundException lança exceção caso o elemento não seja

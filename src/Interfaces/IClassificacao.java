@@ -25,8 +25,8 @@ public interface IClassificacao {
      * Método para retornar as informações relativos á classificaçao
      *
      * @return dados da classificação
-     * @throws FileNotFoundException
-     * @throws IOException
+     * @throws FileNotFoundException caso o ficheiro não seja encontrado
+     * @throws IOException execeção input/output
      */
     public String getsClassificacao() throws FileNotFoundException, IOException;
 

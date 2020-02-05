@@ -14,8 +14,8 @@ public class LinearNode<T> {
     /**
      * Construtor parameterizado
      *
-     * @param next
-     * @param element
+     * @param next proximo elemento
+     * @param element elemento atual
      */
     public LinearNode(LinearNode<T> next, T element) {
         this.next = next;

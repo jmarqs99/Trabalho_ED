@@ -4,7 +4,7 @@ package EstruturasDeDados;
  * @author Grupo 21
  * @author João Pedro Faria Marques nº8180551, T2
  * @author João Pedro Brandão Moreira de Sousa nº8180175, T4
- * @param <T>
+ * @param <T> generico
  */
 public class ShortestPathNode<T> {
 
@@ -15,9 +15,9 @@ public class ShortestPathNode<T> {
     /**
      * Construtor parameterizado
      *
-     * @param element
-     * @param antecessor
-     * @param len
+     * @param element elemento atual
+     * @param antecessor elemento anterior
+     * @param len tamanho
      */
     public ShortestPathNode(T element, ShortestPathNode<T> antecessor, Double len) {
         this.element = element;

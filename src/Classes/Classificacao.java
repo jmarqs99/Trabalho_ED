@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class Classificacao implements IClassificacao {
     
-    private OrderedListADT<Jogador> classificacao;
+    private final OrderedListADT<Jogador> classificacao;
     private final String mapa;
     private final int dificuldade;
 
